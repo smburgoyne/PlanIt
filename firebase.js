@@ -3,13 +3,8 @@ $(document).ready(function() {
 	var dbref = firebase.database().ref().child("title");
 	dbref.on('value', snap => title.text(snap.val()));
 
-	verifyUser("Jbizzle");
-	verifyUser("jbizzle");
-	verifyUser("LALA");
-	addUser("2Hype!","Jimmy","secret123","2hype@gmail.com","SWE","Webmaster");
-	authenticateUser("2Hype!","secret123");
-	authenticateUser("Ricardo","secret123");
-	authenticateUser("2Hype!","secret321");
+	
+	addEvent("SWE","Banquet","1/26/18","A cool event","Rietz","Ricardo","9:15PM")
 });
 
 // Function verfies if username is taken or not. Code must be filled in for error verfication
@@ -39,6 +34,16 @@ function addUser(username, name, password, email, organization, role) {
 	var JsonObject = {};
 	JsonObject[role] = username; 
 	firebase.database().ref("/Organizations/" + organization +"/Roles").update(JsonObject);
+}
+
+function addEvent(organization,name, date, description,location,planner,time) {
+		firebase.database().ref("/Organizations/" + organization + "/Events/" + name).update({
+			Date:date,
+			Description:description,
+			Location:location,
+			Planner:planner,
+			Time:time
+		});
 }
 
 function authenticateUser(username, password) {
