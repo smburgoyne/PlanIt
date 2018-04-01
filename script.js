@@ -20,26 +20,48 @@ Vue.component('tab-home', {
 
 Vue.component('tab-upcoming', {
     template: `<div class="page">
-                    <p>upcoming events page</p>
+                    <h1>Upcoming Events</h1>
+                    <event-table></event-table>
                 </div>`
 })
 
 Vue.component('tab-past', {
     template: `<div class="page">
-                    <p>past events page</p>
+                    <h1>Past Events</h1>
+                    <event-table></event-table>
                 </div>`
 })
 
 Vue.component('tab-details', {
+    data: function () {
+        return {
+            eventTitle: 'New Event'
+        }
+    },
     template: `<div class="page">
-                    <p>new events/event details page</p>
+                    <h1>{{ eventTitle }}</h1>
+                    <progress-bar></progress-bar>
+                    <section1></section1>
+                    <section2></section2>
+                    <section3></section3>
+                    <section4></section4>
+                    <section5></section5>
                 </div>`
 })
 
 Vue.component('event-table', {
-    template: `<p>
-                    table
-                </p>`
+    template: `<table>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td>Test event</td>
+                        <td>03/01/2018</td>
+                        <td>Completed</td>
+                    </tr>
+                </table>`
 })
 
 Vue.component('progress-bar', {
@@ -52,6 +74,41 @@ Vue.component('event-section', {
     template: `<p>
                     event section
                 </p>`
+})
+
+Vue.component('section1', {
+    template: `<p>
+                    section 1
+                </p>
+                <event-section></event-section>`
+})
+
+Vue.component('section2', {
+    template: `<p>
+                    section 2
+                </p>
+                <event-section></event-section>`
+})
+
+Vue.component('section3', {
+    template: `<p>
+                    section 3
+                </p>
+                <event-section></event-section>`
+})
+
+Vue.component('section4', {
+    template: `<p>
+                    section 4
+                </p>
+                <event-section></event-section>`
+})
+
+Vue.component('section5', {
+    template: `<p>
+                    section 5
+                </p>
+                <event-section></event-section>`
 })
 
 // Initialize Vue
