@@ -85,3 +85,42 @@ tr:nth-child(even)
 {
     background-color: #dddddd;
 }
+
+.section
+{
+    height: 50px;
+    margin: 0px;
+}
+
+.section-header
+{
+    border-top: 2px solid #737373;
+    border-bottom: 2px solid #737373;
+    vertical-align: center;
+    height: 50px;
+    margin: 10px;
+}
+
+.section-title
+{
+    float: left;
+    font-size: 20px;
+    color: #000;
+    text-align: left;
+    margin: 10px 20px;
+}
+
+.drop-down
+{
+    float: right;
+    font-size: 34px;
+    margin: 5px 20px;
+    background-color: #FFF;
+    border: none;
+    height: 34px;
+}
+
+.material-icons
+{
+    font-size: 34px;
+}

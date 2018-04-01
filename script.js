@@ -70,45 +70,99 @@ Vue.component('progress-bar', {
                 </p>`
 })
 
-Vue.component('event-section', {
-    template: `<p>
-                    event section
-                </p>`
-})
-
 Vue.component('section1', {
-    template: `<p>
-                    section 1
-                </p>
-                <event-section></event-section>`
+    data: function() {
+        return {
+            isVisible: false
+        }
+    },
+    template: `<div class="section">
+                    <div class="section-header">
+                        <p class="section-title">What Is the Event?</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible">
+                        <p>stuff</p>
+                    </div>
+                </div>`
 })
 
 Vue.component('section2', {
-    template: `<p>
-                    section 2
-                </p>
-                <event-section></event-section>`
+    data: function() {
+        return {
+            isVisible: false
+        }
+    },
+    template: `<div class="section">
+                    <div class="section-header">
+                        <p class="section-title">Finances</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible">
+                        <p>stuff</p>
+                    </div>
+                </div>`
 })
 
 Vue.component('section3', {
-    template: `<p>
-                    section 3
-                </p>
-                <event-section></event-section>`
+    data: function() {
+        return {
+            isVisible: false
+        }
+    },
+    template: `<div class="section">
+                    <div class="section-header">
+                        <p class="section-title">Logistics</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible">
+                        <p>stuff</p>
+                    </div>
+                </div>`
 })
 
 Vue.component('section4', {
-    template: `<p>
-                    section 4
-                </p>
-                <event-section></event-section>`
+    data: function() {
+        return {
+            isVisible: false
+        }
+    },
+    template: `<div class="section">
+                    <div class="section-header">
+                        <p class="section-title">Marketing</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible">
+                        <p>stuff</p>
+                    </div>
+                </div>`
 })
 
 Vue.component('section5', {
-    template: `<p>
-                    section 5
-                </p>
-                <event-section></event-section>`
+    data: function() {
+        return {
+            isVisible: false
+        }
+    },
+    template: `<div class="section">
+                    <div class="section-header">
+                        <p class="section-title">Post Event Tasks</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible">
+                        <p>stuff</p>
+                    </div>
+                </div>`
 })
 
 // Initialize Vue
