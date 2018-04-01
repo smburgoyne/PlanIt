@@ -1,26 +1,31 @@
-// All the components
+// All the components and associated variables
+// var isHome = true;
+// var isEventDetails = false;
+// var isUpcomingEvents = false;
+// var isPastEvents = false;
+
 Vue.component('home', {
-    template: `<p>
-                    Home page
-                </p>`
+    template: `<div>
+                    <p>Home page</p>
+                </div>`
 })
 
 Vue.component('upcoming-events', {
-    template: `<p>
-                    upcoming events page
-                </p>`
+    template: `<div>
+                    <p>upcoming events page</p>
+                </div>`
 })
 
 Vue.component('past-events', {
-    template: `<p>
-                    past events page
-                </p>`
+    template: `<div>
+                    <p>past events page</p>
+                </div>`
 })
 
 Vue.component('event-details', {
-    template: `<p>
-                    new events/event details page
-                </p>`
+    template: `<div>
+                    <p>new events/event details page</p>
+                </div>`
 })
 
 Vue.component('navbar', {
@@ -57,6 +62,10 @@ Vue.component('event-section', {
 new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!'
+      message: 'Hello Vue!',
+      isHome: false,
+        isEventDetails: false,
+        isUpcomingEvents: true,
+        isPastEvents: false
     }
   })
