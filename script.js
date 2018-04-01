@@ -39,10 +39,10 @@ Vue.component('event-details', {
 Vue.component('navbar', {
     template: `<div class="navbar">
                     <img src="./logo2.png">
-                    <button type="button" class="navbartab btn">Past Events</button>
-                    <button type="button" class="navbartab btn">Upcoming Events</button>
-                    <button type="button" class="navbartab btn">New Event</button>
-                    <button type="button" class="navbartab btn">Home</button>
+                    <button type="button" class="navbartab btn" v-on:click="$emit('clickpastevents')">Past Events</button>
+                    <button type="button" class="navbartab btn" v-on:click="$emit('clickupcomingevents')">Upcoming Events</button>
+                    <button type="button" class="navbartab btn" v-on:click="$emit('clicknewevent')">New Event</button>
+                    <button type="button" class="navbartab btn" v-on:click="$emit('clickhome')">Home</button>
                 </div>`
 })
 
@@ -73,5 +73,31 @@ new Vue({
         isEventDetails: false,
         isUpcomingEvents: false,
         isPastEvents: false
+    },
+    computed: {
+        clickHome: function () {
+            isHome = true;
+            isEventDetails = false;
+            isUpcomingEvents = false;
+            isPastEvents = false;
+        },
+        clickNewEvent: function () {
+            isHome = false;
+            isEventDetails = true;
+            isUpcomingEvents = false;
+            isPastEvents = false;
+        },
+        clickUpcomingEvents: function () {
+            isHome = false;
+            isEventDetails = false;
+            isUpcomingEvents = true;
+            isPastEvents = false;
+        },
+        clickPastEvents: function () {
+            this.isHome = false;
+            this.isEventDetails = false;
+            this.isUpcomingEvents = false;
+            this.isPastEvents = true;
+        }
     }
 })

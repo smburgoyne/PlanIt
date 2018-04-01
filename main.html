@@ -9,11 +9,15 @@
 	<div id="app">
 		<!-- <h1>{{ message }}</h1> -->
 
-		<navbar></navbar>
-		<home v-if="isHome"></home>
+		<navbar v-on:clickhome="clickHome" v-on:clicknewevent="clickNewEvent" v-on:clickupcomingevents="clickUpcomingEvents" v-on:clickpastevents="clickPastEvents"></navbar>
+		<template v-show="isHome">
+			<home></home>
+		</template>
 		<event-details v-if="isEventDetails"></event-details>
 		<upcoming-events v-if="isUpcomingEvents"></upcoming-events>
-		<past-events v-if="isPastEvents"></past-events>
+		<template v-show="isPastEvents">
+			<past-events></past-events>
+		</template>
 	</div>
 
 	<!--------------------------------------Testing------------------------------------------>
