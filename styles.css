@@ -67,6 +67,20 @@ p
     margin: 10px;
 }
 
+.cancel
+{
+    font-size: 18px;
+}
+
+.save
+{
+    background-color: #7700FF;
+    color: #FFF;
+    width: 140px;
+    height: 60px;
+    font-size: 18px;
+}
+
 table 
 {
     border-collapse: collapse;
@@ -123,4 +137,24 @@ tr:nth-child(even)
 .material-icons
 {
     font-size: 34px;
+}
+
+label
+{
+    margin: 10px 10px 10px 20px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+input, textarea 
+{
+    width: 50%;
+    border-radius: 4px;
+    margin: 10px 20px 10px 10px;
+    display: inline-block;
+}
+
+.inputs
+{
+    text-align: left;
 }

@@ -38,15 +38,20 @@ Vue.component('tab-details', {
             eventTitle: 'New Event'
         }
     },
+    // template: `<div class="page">
+    //                 <h1>{{ eventTitle }}</h1>
+    //                 <progress-bar></progress-bar>
+    //                 <section1></section1>
+    //                 <section2></section2>
+    //                 <section3></section3>
+    //                 <section4></section4>
+    //                 <section5></section5>
+    //             </div>`
     template: `<div class="page">
-                    <h1>{{ eventTitle }}</h1>
-                    <progress-bar></progress-bar>
-                    <section1></section1>
-                    <section2></section2>
-                    <section3></section3>
-                    <section4></section4>
-                    <section5></section5>
-                </div>`
+                <h1>{{ eventTitle }}</h1>
+                <progress-bar></progress-bar>
+                <section1></section1>
+            </div>`
 })
 
 Vue.component('event-table', {
@@ -70,6 +75,13 @@ Vue.component('progress-bar', {
                 </p>`
 })
 
+/*
+    name of event
+    description/about
+    primary planner
+    date/time
+    location
+*/
 Vue.component('section1', {
     data: function() {
         return {
@@ -83,12 +95,32 @@ Vue.component('section1', {
                             <i class="material-icons">keyboard_arrow_down</i>
                         </button>
                     </div>
-                    <div v-if="isVisible">
-                        <p>stuff</p>
+                    <div v-if="isVisible" class="inputs">
+                        <form>
+                            <label for="name">Event Name</label>
+                            <input id="name" type="text"><br>
+                            <label for="date">Date</label>
+                            <input id="date" type="date"><br>
+                            <label for="time">Time</label>
+                            <input id="time" type="time"><br>
+                            <label for="place">Location</label>
+                            <input id="place" type="text"><br>
+                            <label for="about">Event Description</label>
+                            <textarea id="about"></textarea><br>
+                            <label for="planner">Primary Event Planner</label>
+                            <input id="planner" type="text"><br>
+                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
+                            <button id="submit1" type="button" class="save btn btn-light">Save</button>
+                        </form>
                     </div>
                 </div>`
 })
 
+/*
+    request budget button
+    itemized list - google sheet link
+    reinmursement form - link to form
+*/
 Vue.component('section2', {
     data: function() {
         return {
@@ -108,6 +140,14 @@ Vue.component('section2', {
                 </div>`
 })
 
+/*
+    date/time
+    location
+    supplies - link to itemized list
+    sign in sheet - link to form
+    volunteers - link to form
+    carpool - link to form/sheet
+*/
 Vue.component('section3', {
     data: function() {
         return {
@@ -127,6 +167,9 @@ Vue.component('section3', {
                 </div>`
 })
 
+/*
+    request to advertise - with response
+*/
 Vue.component('section4', {
     data: function() {
         return {
@@ -146,6 +189,11 @@ Vue.component('section4', {
                 </div>`
 })
 
+/*
+    link to ffedback form - fake link
+    final reminders
+    text input for additional comments
+*/
 Vue.component('section5', {
     data: function() {
         return {
