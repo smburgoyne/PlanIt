@@ -46,11 +46,13 @@ Vue.component('tab-details', {
     //                 <section3></section3>
     //                 <section4></section4>
     //                 <section5></section5>
+    //                  <button id="submit" type="button" class="save btn btn-light">Event is Finished!</button>
     //             </div>`
     template: `<div class="page">
                 <h1>{{ eventTitle }}</h1>
                 <progress-bar></progress-bar>
-                <section2></section2>
+                <section5></section5>
+                <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
             </div>`
 })
 
@@ -83,7 +85,7 @@ Vue.component('progress-bar', {
     location
 */
 Vue.component('section1', {
-    data: function() {
+    data: function () {
         return {
             isVisible: false
         }
@@ -122,7 +124,7 @@ Vue.component('section1', {
     reinmursement form - link to form
 */
 Vue.component('section2', {
-    data: function() {
+    data: function () {
         return {
             isVisible: false
         }
@@ -155,7 +157,7 @@ Vue.component('section2', {
     carpool - link to form/sheet
 */
 Vue.component('section3', {
-    data: function() {
+    data: function () {
         return {
             isVisible: false
         }
@@ -167,8 +169,25 @@ Vue.component('section3', {
                             <i class="material-icons">keyboard_arrow_down</i>
                         </button>
                     </div>
-                    <div v-if="isVisible">
-                        <p>stuff</p>
+                    <div v-if="isVisible" class="inputs">
+                        <form>
+                            <label for="date">Date</label>
+                            <input id="date" type="date"><br>
+                            <label for="time">Time</label>
+                            <input id="time" type="time"><br>
+                            <label for="place">Location</label>
+                            <input id="place" type="text"><br>
+                            <button id="list" type="button" class="btn btn-light">Supplies List</button>
+                            <br>
+                            <button id="signin" type="button" class="btn btn-light">Event Sign-In Form</button>
+                            <br>
+                            <button id="volunteers" type="button" class="btn btn-light">Volunteers Form</button>
+                            <br>
+                            <button id="carpool" type="button" class="btn btn-light">Carpool Form</button>
+                            <br>
+                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+                            <button id="submit3" type="button" class="save btn btn-light">Save</button>
+                        </form>
                     </div>
                 </div>`
 })
@@ -177,7 +196,7 @@ Vue.component('section3', {
     request to advertise - with response
 */
 Vue.component('section4', {
-    data: function() {
+    data: function () {
         return {
             isVisible: false
         }
@@ -189,8 +208,12 @@ Vue.component('section4', {
                             <i class="material-icons">keyboard_arrow_down</i>
                         </button>
                     </div>
-                    <div v-if="isVisible">
-                        <p>stuff</p>
+                    <div v-if="isVisible" class="inputs">
+                        <form>
+                            <button id="advertise" type="button" class="btn btn-light">Request to Advertise</button>
+                            <br>
+                            <p>response from advertisor</p>
+                        </form>
                     </div>
                 </div>`
 })
@@ -201,7 +224,7 @@ Vue.component('section4', {
     text input for additional comments
 */
 Vue.component('section5', {
-    data: function() {
+    data: function () {
         return {
             isVisible: false
         }
@@ -213,8 +236,21 @@ Vue.component('section5', {
                             <i class="material-icons">keyboard_arrow_down</i>
                         </button>
                     </div>
-                    <div v-if="isVisible">
-                        <p>stuff</p>
+                    <div v-if="isVisible" class="inputs">
+                        <form>
+                            <button id="feedback" type="button" class="btn btn-light">Event Feedback</button>
+                            <br>
+                            <label for="about">Anything else you want to say about this event?</label>
+                            <textarea id="about"></textarea><br>
+                            <p>
+                                Remember to do anything else your organization requires you to do, such as
+                                sending in attendance, completeing <a href="" target="_blank">reimbursement forms</a>,
+                                and filling out <a href="" target="_blank">feedback forms</a>.
+                            </p>
+                            <br>
+                            <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
+                            <button id="submit5" type="button" class="save btn btn-light">Save</button>
+                        </form>
                     </div>
                 </div>`
 })
