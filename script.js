@@ -38,22 +38,22 @@ Vue.component('tab-details', {
             eventTitle: 'New Event'
         }
     },
-    // template: `<div class="page">
-    //                 <h1>{{ eventTitle }}</h1>
-    //                 <progress-bar></progress-bar>
-    //                 <section1></section1>
-    //                 <section2></section2>
-    //                 <section3></section3>
-    //                 <section4></section4>
-    //                 <section5></section5>
-    //                  <button id="submit" type="button" class="save btn btn-light">Event is Finished!</button>
-    //             </div>`
     template: `<div class="page">
-                <h1>{{ eventTitle }}</h1>
-                <progress-bar></progress-bar>
-                <section5></section5>
-                <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
-            </div>`
+                    <h1>{{ eventTitle }}</h1>
+                    <progress-bar></progress-bar>
+                    <section1></section1>
+                    <section2></section2>
+                    <section3></section3>
+                    <section4></section4>
+                    <section5></section5>
+                    <button id="submit" type="button" class="save btn btn-light">Event is Finished!</button>
+                </div>`
+    // template: `<div class="page">
+    //             <h1>{{ eventTitle }}</h1>
+    //             <progress-bar></progress-bar>
+    //             <section5></section5>
+    //             <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+    //         </div>`
 })
 
 Vue.component('event-table', {
