@@ -1,5 +1,5 @@
 // All the components and associated variables
-Vue.component('home', {
+Vue.component('tab-home', {
     template: `<div class="page">
                     <h1>PlanIt</h1>
                     <img src="./logo2.png" class="home-img">
@@ -18,31 +18,21 @@ Vue.component('home', {
                 </div>`
 })
 
-Vue.component('upcoming-events', {
+Vue.component('tab-upcoming', {
     template: `<div class="page">
                     <p>upcoming events page</p>
                 </div>`
 })
 
-Vue.component('past-events', {
+Vue.component('tab-past', {
     template: `<div class="page">
                     <p>past events page</p>
                 </div>`
 })
 
-Vue.component('event-details', {
+Vue.component('tab-details', {
     template: `<div class="page">
                     <p>new events/event details page</p>
-                </div>`
-})
-
-Vue.component('navbar', {
-    template: `<div class="navbar">
-                    <img src="./logo2.png">
-                    <button type="button" class="navbartab btn" v-on:click="$emit('clickpastevents')">Past Events</button>
-                    <button type="button" class="navbartab btn" v-on:click="$emit('clickupcomingevents')">Upcoming Events</button>
-                    <button type="button" class="navbartab btn" v-on:click="$emit('clicknewevent')">New Event</button>
-                    <button type="button" class="navbartab btn" v-on:click="$emit('clickhome')">Home</button>
                 </div>`
 })
 
@@ -68,36 +58,17 @@ Vue.component('event-section', {
 new Vue({
     el: '#app',
     data: {
-        message: 'Hello Vue!',
-        isHome: true,
-        isEventDetails: false,
-        isUpcomingEvents: false,
-        isPastEvents: false
+        currentTab: 'Home',
+        tabs: [
+            'Home',
+            'Details',
+            'Upcoming',
+            'Past'
+        ]
     },
     computed: {
-        clickHome: function () {
-            isHome = true;
-            isEventDetails = false;
-            isUpcomingEvents = false;
-            isPastEvents = false;
-        },
-        clickNewEvent: function () {
-            isHome = false;
-            isEventDetails = true;
-            isUpcomingEvents = false;
-            isPastEvents = false;
-        },
-        clickUpcomingEvents: function () {
-            isHome = false;
-            isEventDetails = false;
-            isUpcomingEvents = true;
-            isPastEvents = false;
-        },
-        clickPastEvents: function () {
-            this.isHome = false;
-            this.isEventDetails = false;
-            this.isUpcomingEvents = false;
-            this.isPastEvents = true;
+        currentTabChange: function () {
+            return 'tab-' + this.currentTab.toLowerCase();
         }
     }
 })
