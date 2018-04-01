@@ -50,7 +50,7 @@ Vue.component('tab-details', {
     template: `<div class="page">
                 <h1>{{ eventTitle }}</h1>
                 <progress-bar></progress-bar>
-                <section1></section1>
+                <section2></section2>
             </div>`
 })
 
@@ -134,8 +134,14 @@ Vue.component('section2', {
                             <i class="material-icons">keyboard_arrow_down</i>
                         </button>
                     </div>
-                    <div v-if="isVisible">
-                        <p>stuff</p>
+                    <div v-if="isVisible" class="inputs">
+                        <form>
+                            <button id="budget" type="button" class="btn btn-light">Request Budget</button>
+                            <br>
+                            <button id="list" type="button" class="btn btn-light">Supplies List</button>
+                            <br>
+                            <button id="reimbursement" type="button" class="btn btn-light">Reimbursement Form</button>
+                        </form>
                     </div>
                 </div>`
 })
