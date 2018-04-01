@@ -1,27 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Plan It</title>
+	<title>PlanIt</title>
 </head>
+
 <body>
+	<div id="app">
+		<div class="navbar">
+				<img src="./logo2.png">
+				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Past'">Past Events</button>
+				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Upcoming'">Upcoming Events</button>
+				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Details'">New Event</button>
+				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Home'">Home</button>
+		</div>
 
-	<h1 style="margin: auto;width: 15%">Firebase Test</h1>
-	<p id = "test" style="margin: auto; font-size: 20px;width:15%;margin-top: 20px"></p>
+		<component v-bind:is="currentTabChange"></component>
 
+	</div>
+
+	<!--------------------------------------Testing------------------------------------------>
+
+	<div style="margin-top:300px">
+		<h1 style="margin: auto;width: 15%">Firebase Test</h1>
+		<p id="test" style="margin: auto; font-size: 20px;width:15%;margin-top: 20px"></p>
+	</div>
+
+	<!--------------------------------------End Testing------------------------------------------>
+
+	<!-- Firebase stuff -->
 	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
 	<script>
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
-	    authDomain: "planit-e0809.firebaseapp.com",
-	    databaseURL: "https://planit-e0809.firebaseio.com",
-	    projectId: "planit-e0809",
-	    storageBucket: "planit-e0809.appspot.com",
-	    messagingSenderId: "956681008314"
-	  };
-	  firebase.initializeApp(config);
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
+			authDomain: "planit-e0809.firebaseapp.com",
+			databaseURL: "https://planit-e0809.firebaseio.com",
+			projectId: "planit-e0809",
+			storageBucket: "planit-e0809.appspot.com",
+			messagingSenderId: "956681008314"
+		};
+		firebase.initializeApp(config);
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="firebase.js"></script>
+	
+	<!-- Vue stuff -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+
+	<!-- Styling stuff -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	 crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	 rel="stylesheet">
+	 <style>
+			@import './styles.css'
+		</style>
 </body>
+
 </html>
