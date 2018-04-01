@@ -1,46 +1,52 @@
 // All the components and associated variables
-// var isHome = true;
-// var isEventDetails = false;
-// var isUpcomingEvents = false;
-// var isPastEvents = false;
-
 Vue.component('home', {
-    template: `<div>
-                    <p>Home page</p>
+    template: `<div class="page">
+                    <h1>PlanIt</h1>
+                    <img src="./logo2.png" class="home-img">
+                    <p>
+                        PlanIt is the only event-planning app you'll need. Here, you'll be able to see 
+                        everything that goes into event planning and be able to track the progress of every task.
+                        In a world of event planning tasks, all you need to do is visit PlanIt!
+                    </p>
+                    <div>
+                    <button type="button" class="new-event btn btn-light">New Event</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary"> Upcoming Events</button>
+                        <button type="button" class="btn btn-secondary">Past Events</button>
+                    </div>
                 </div>`
 })
 
 Vue.component('upcoming-events', {
-    template: `<div>
+    template: `<div class="page">
                     <p>upcoming events page</p>
                 </div>`
 })
 
 Vue.component('past-events', {
-    template: `<div>
+    template: `<div class="page">
                     <p>past events page</p>
                 </div>`
 })
 
 Vue.component('event-details', {
-    template: `<div>
+    template: `<div class="page">
                     <p>new events/event details page</p>
                 </div>`
 })
 
 Vue.component('navbar', {
-    template: `<p>
-                    Navbar
-                </p>`
+    template: `<div class="navbar">
+                    <img src="./logo2.png">
+                    <button type="button" class="navbartab btn">Past Events</button>
+                    <button type="button" class="navbartab btn">Upcoming Events</button>
+                    <button type="button" class="navbartab btn">New Event</button>
+                    <button type="button" class="navbartab btn">Home</button>
+                </div>`
 })
 
-Vue.component('button', {
-    template: `<p>
-                    button
-                </p>`
-})
-
-Vue.component('table', {
+Vue.component('event-table', {
     template: `<p>
                     table
                 </p>`
@@ -62,10 +68,10 @@ Vue.component('event-section', {
 new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!',
-      isHome: false,
+        message: 'Hello Vue!',
+        isHome: true,
         isEventDetails: false,
-        isUpcomingEvents: true,
+        isUpcomingEvents: false,
         isPastEvents: false
     }
-  })
+})

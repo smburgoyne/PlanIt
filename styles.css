@@ -1,0 +1,67 @@
+.navbar
+{
+    height: 70px;
+    margin: 10px;
+    border-bottom: 3px solid #000;
+}
+
+img
+{
+    height: 50px;
+    margin: 10px 20px;
+}
+
+.home-img
+{
+    height: 250px;
+}
+
+.navbartab
+{
+    float: right;
+    height: 50px;
+    border: none;
+    color: #000;
+    background-color: #FFF;
+}
+
+h1
+{
+    margin: 20px auto;
+    text-align: center;
+}
+
+p
+{
+    margin: 20px 10%;
+    text-align: center;
+}
+
+.page
+{
+    text-align: center;
+}
+
+.btn
+{
+    margin: 10px 20px;
+    text-align: center;
+}
+
+.new-event
+{
+    background-color: #7700FF;
+    color: #FFF;
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.btn-secondary
+{
+    background-color: #92EEEF;
+    color: #000;
+    width: 140px;
+    height: 60px;
+    margin: 10px;
+}
