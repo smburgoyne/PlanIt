@@ -57,6 +57,22 @@ Vue.component('tab-details', {
 })
 
 Vue.component('event-table', {
+    data: function () {
+        var eventList = new Array();
+            var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
+            dbref.once('value').then(snap => {
+                snap.forEach(childsnap => {
+
+                    var nameColumn = childsnap.key;
+                    var dateColumn = childsnap.child("Date").val();
+                    var statusColumn = childsnap.child("Status").val();
+                    eventList.push({name: nameColumn, date: dateColumn, status: statusColumn});
+                });
+            });
+        return {
+            events: eventList
+        }
+    },
     template: `<table id=event-table>
                     <tr>
                         <th>Event Name</th>
@@ -68,7 +84,24 @@ Vue.component('event-table', {
                         <td>03/01/2018</td>
                         <td>Completed</td>
                     </tr>
+                    <event-row
+                        v-for="event in events"
+                        v-bind:name="event.name"
+                        v-bind:date="event.date"
+                        v-bind:status="event.status"
+                        ></event-row>
                 </table>`
+
+
+})
+
+Vue.component('event-row', {
+    props: ['name', 'date', 'status'],
+    template: `<tr>
+                    <td>{{name}}</td>
+                    <td>{{date}}</td>
+                    <td>{{status}}</td>
+                </tr>`
 })
 
 Vue.component('progress-bar', {
