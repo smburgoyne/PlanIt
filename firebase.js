@@ -42,7 +42,8 @@ function addEvent(organization,name, date, description,location,planner,time) {
 			Description:description,
 			Location:location,
 			Planner:planner,
-			Time:time
+			Time:time,
+			Status:"Ongoing"
 		});
 }
 
