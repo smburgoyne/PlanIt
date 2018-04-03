@@ -57,6 +57,24 @@ Vue.component('tab-details', {
 })
 
 Vue.component('event-table', {
+    data: function () {
+        var eventList = new Array();
+            var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
+            dbref.on('value', snap => {
+                var i = 0;
+                snap.forEach(childsnap => {
+
+                    var nameColumn = childsnap.key;
+                    var dateColumn = childsnap.child("Date").val();
+                    var statusColumn = childsnap.child("Status").val();
+                    eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
+                });
+                eventList.sort();
+            });
+        return {
+            events: eventList
+        }
+    },
     template: `<table id=event-table>
                     <tr>
                         <th>Event Name</th>
@@ -68,7 +86,24 @@ Vue.component('event-table', {
                         <td>03/01/2018</td>
                         <td>Completed</td>
                     </tr>
+                    <event-row
+                        v-for="event in events"
+                        v-bind:name="event.name"
+                        v-bind:date="event.date"
+                        v-bind:status="event.status"
+                        ></event-row>
                 </table>`
+
+
+})
+
+Vue.component('event-row', {
+    props: ['name', 'date', 'status'],
+    template: `<tr>
+                    <td>{{name}}</td>
+                    <td>{{date}}</td>
+                    <td>{{status}}</td>
+                </tr>`
 })
 
 Vue.component('progress-bar', {
@@ -88,6 +123,18 @@ Vue.component('section1', {
     data: function () {
         return {
             isVisible: false
+        }
+    },
+    methods: { 
+        addEvent: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+                Date:$('#date').val(),
+                Description:$('#about').val(),
+                Location:$('#place').val(),
+                Planner:$('#planner').val(),
+                Time:$('#time').val(),
+                Status:"Ongoing"
+            });
         }
     },
     template: `<div class="section">
@@ -112,7 +159,7 @@ Vue.component('section1', {
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
                             <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit1" type="button" class="save btn btn-light">Save</button>
+                            <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
                         </form>
                     </div>
                 </div>`
