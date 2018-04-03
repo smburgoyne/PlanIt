@@ -60,14 +60,16 @@ Vue.component('event-table', {
     data: function () {
         var eventList = new Array();
             var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
-            dbref.once('value').then(snap => {
+            dbref.on('value', snap => {
+                var i = 0;
                 snap.forEach(childsnap => {
 
                     var nameColumn = childsnap.key;
                     var dateColumn = childsnap.child("Date").val();
                     var statusColumn = childsnap.child("Status").val();
-                    eventList.push({name: nameColumn, date: dateColumn, status: statusColumn});
+                    eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
                 });
+                eventList.sort();
             });
         return {
             events: eventList
