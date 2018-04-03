@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+.collapsible {
+    background-color: #566573;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 8px;
+}
+
+.active, .collapsible:hover {
+    background-color: #808B96  ;
+}
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn
+{
+    margin: 10px 20px;
+    text-align: center;
+}
+
+.btn-secondary
+{
+    background-color: grey;
+    color: #FFF;
+    width: 120px;
+    height: 40px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.save
+{
+    background-color: grey;
+    color: #FFF;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+
+.progressbar
+{
+    color: blue;
+    width: 100%;
+    padding: 18px;    
+}
+
+input, textarea 
+{
+    width: 50%;
+    border-radius: 4px;
+    margin: 10px 20px 10px 10px;
+    display: inline-block;
+}
+
+.inputs
+{
+    text-align: left;
+
+}
+
+label
+{
+    font-size: 16px;
+    display: inline-block;
+}
+
+</style>
+</head>
+<body>
+
+<h2>[PROGRESS BAR HERE]</h2>
+
+<div id-"progressbar">
+    <p id-"progresslabel">0%</p>
+</div><br>
+
+
+
+<button class="collapsible">What is this Event?
+        <i class="material-icons">done</i>
+</button>
+    <div class="content">
+        <br>
+        <form>
+            <label for="name">Event Name</label>
+            <input id="name" type="text"><br>
+            <label for="date">Date</label><br>
+            <input id="date" type="date"><br>
+            <label for="time">Time</label><br>
+            <input id="time" type="time"><br>
+            <label for="place">Location</label><br>
+            <input id="place" type="text"><br>
+            <label for="about">Event Description</label><br>
+            <textarea id="about"></textarea><br>
+            <label for="planner">Primary Event Planner</label><br>
+            <input id="planner" type="text"><br>
+            <button id="submit1" type="button" class="save btn btn-light">Save</button>
+            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
+        </form>
+    </div>
+
+<button class="collapsible">Finances
+        <i class="material-icons">done</i>
+</button>
+<div class="content">
+    <form>
+        <button id="budget" type="button" class="btn btn-light">Request Budget</button>
+        <br>
+        <button id="list" type="button" class="btn btn-light">Supplies List</button>
+        <br>
+        <button id="reimbursement" type="button" class="btn btn-light">Reimbursement Form</button>
+    </form>
+</div>
+
+<button class="collapsible">Logistics
+        <i class="material-icons">query_builder</i>
+</button>
+<div class="content">
+ 	<form>
+        <label for="date">Date</label>
+        <input id="date" type="date"><br>
+        <label for="time">Time</label>
+        <input id="time" type="time"><br>
+        <label for="place">Location</label>
+        <input id="place" type="text"><br>
+        <button id="list" type="button" class="btn btn-light">Supplies List</button>
+        <br>
+        <button id="signin" type="button" class="btn btn-light">Event Sign-In Form</button>
+        <br>
+        <button id="volunteers" type="button" class="btn btn-light">Volunteers Form</button>
+        <br>
+        <button id="carpool" type="button" class="btn btn-light">Carpool Form</button>
+        <br>
+        <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+        <button id="submit3" type="button" class="save btn btn-light">Save</button>
+   </form>
+</div>
+
+<button class="collapsible">Marketing
+        <i class="material-icons">query_builder</i>
+</button>
+<div class="content">
+  
+ 	<form>
+        <button id="advertise" type="button" class="btn btn-light">Request to Advertise</button>
+        <br>
+        <p>response from advertisor</p>
+   </form>
+</div>
+
+<button class="collapsible">Post Event Details
+        <i class="material-icons">clear</i>
+</button>
+<div class="content">
+ 	<form>
+        <button id="feedback" type="button" class="btn btn-light">Event Feedback</button>
+        <br>
+        <label for="about">Anything else you want to say about this event?</label>
+        <textarea id="about"></textarea><br>
+        <p>
+        Remember to do anything else your organization requires you to do, such as
+        sending in attendance, completeing <a href="" target="_blank">reimbursement forms</a>,
+        and filling out <a href="" target="_blank">feedback forms</a>.
+        </p>
+        <br>
+        <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
+        <button id="submit5" type="button" class="save btn btn-light">Save</button>
+   </form>
+</div>
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+}
+
+$(function() {
+    $( "#progressbar" ).progressbar({
+      value: 0
+    })
+    .data("value","0");
+    
+    $('#submit1, #submit3. #submit5').click(function() {
+        var currValue = $( "#progressbar" ).data("value");
+        currValue = parseInt(currValue) ? parseInt(currValue) : 0;
+        if(currValue <= 100) {
+            $( "#progressbar" ).progressbar({
+              value: currValue+10
+            }).data("value",currValue+10);
+            $("#progressLabel").html((currValue+10)+"%");
+        }    
+    });
+    
+    
+  });
+</script>
+
+
+
+</body>
+</html>
