@@ -125,6 +125,18 @@ Vue.component('section1', {
             isVisible: false
         }
     },
+    methods: { 
+        addEvent: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+                Date:$('#date').val(),
+                Description:$('#about').val(),
+                Location:$('#place').val(),
+                Planner:$('#planner').val(),
+                Time:$('#time').val(),
+                Status:"Ongoing"
+            });
+        }
+    },
     template: `<div class="section">
                     <div class="section-header">
                         <p class="section-title">What Is the Event?</p>
@@ -147,7 +159,7 @@ Vue.component('section1', {
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
                             <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit1" type="button" class="save btn btn-light">Save</button>
+                            <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
                         </form>
                     </div>
                 </div>`
