@@ -40,20 +40,7 @@ Vue.component('tab-details', {
     },
     template: `<div class="page">
                     <h1>{{ eventTitle }}</h1>
-                    <progress-bar></progress-bar>
-                    <section1></section1>
-                    <section2></section2>
-                    <section3></section3>
-                    <section4></section4>
-                    <section5></section5>
-                    <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
                 </div>`
-    // template: `<div class="page">
-    //             <h1>{{ eventTitle }}</h1>
-    //             <progress-bar></progress-bar>
-    //             <section5></section5>
-    //             <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
-    //         </div>`
 })
 
 Vue.component('event-table', {
@@ -137,14 +124,7 @@ Vue.component('section1', {
             });
         }
     },
-    template: `<div class="section">
-                    <div class="section-header">
-                        <p class="section-title">What Is the Event?</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
+    template: `<div class="inputs">
                         <form>
                             <label for="name">Event Name</label>
                             <input id="name" type="text"><br>
@@ -161,7 +141,7 @@ Vue.component('section1', {
                             <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
                         </form>
-                    </div>
+                    
                 </div>`
 })
 
@@ -176,14 +156,7 @@ Vue.component('section2', {
             isVisible: false
         }
     },
-    template: `<div class="section">
-                    <div class="section-header">
-                        <p class="section-title">Finances</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
+    template: `<div class="inputs">
                         <form>
                             <button id="budget" type="button" class="btn btn-light">Request Budget</button>
                             <br>
@@ -191,7 +164,7 @@ Vue.component('section2', {
                             <br>
                             <button id="reimbursement" type="button" class="btn btn-light">Reimbursement Form</button>
                         </form>
-                    </div>
+                    
                 </div>`
 })
 
@@ -209,14 +182,7 @@ Vue.component('section3', {
             isVisible: false
         }
     },
-    template: `<div class="section">
-                    <div class="section-header">
-                        <p class="section-title">Logistics</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
+    template: `<div class="inputs">
                         <form>
                             <label for="date">Date</label>
                             <input id="date" type="date"><br>
@@ -235,7 +201,7 @@ Vue.component('section3', {
                             <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit3" type="button" class="save btn btn-light">Save</button>
                         </form>
-                    </div>
+                    
                 </div>`
 })
 
@@ -248,20 +214,13 @@ Vue.component('section4', {
             isVisible: false
         }
     },
-    template: `<div class="section">
-                    <div class="section-header">
-                        <p class="section-title">Marketing</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
+    template: `<div class="inputs">
                         <form>
                             <button id="advertise" type="button" class="btn btn-light">Request to Advertise</button>
                             <br>
                             <p>response from advertisor</p>
                         </form>
-                    </div>
+                    
                 </div>`
 })
 
@@ -276,14 +235,7 @@ Vue.component('section5', {
             isVisible: false
         }
     },
-    template: `<div class="section">
-                    <div class="section-header">
-                        <p class="section-title">Post Event Tasks</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
+    template: `<div class="inputs">
                         <form>
                             <button id="feedback" type="button" class="btn btn-light">Event Feedback</button>
                             <br>
@@ -298,7 +250,7 @@ Vue.component('section5', {
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit5" type="button" class="save btn btn-light">Save</button>
                         </form>
-                    </div>
+                    
                 </div>`
 })
 

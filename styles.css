@@ -158,3 +158,23 @@ input, textarea
 {
     text-align: left;
 }
+
+#home
+{
+    display: block;
+}
+
+#details
+{
+    display: none;
+}
+
+#upcoming
+{
+    display: none;
+}
+
+#past
+{
+    display: none;
+}
