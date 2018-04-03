@@ -135,6 +135,7 @@ Vue.component('section1', {
                 Time:$('#time').val(),
                 Status:"Ongoing"
             });
+            eventName = $('#name').val();
         }
     },
     template: `<div class="section">
@@ -209,6 +210,16 @@ Vue.component('section3', {
             isVisible: false
         }
     },
+    methods: { 
+        updateEvent: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Date:$('#date').val(),
+                Location:$('#place').val(),
+                Time:$('#time').val()
+            });
+            eventName = $('#name').val();
+        }
+    },
     template: `<div class="section">
                     <div class="section-header">
                         <p class="section-title">Logistics</p>
@@ -233,7 +244,7 @@ Vue.component('section3', {
                             <button id="carpool" type="button" class="btn btn-light">Carpool Form</button>
                             <br>
                             <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit3" type="button" class="save btn btn-light">Save</button>
+                            <button id="submit3" type="button" class="save btn btn-light" v-on:click="updateEvent">Save</button>
                         </form>
                     </div>
                 </div>`
@@ -322,6 +333,7 @@ new Vue({
 })
 
 var currentOrg = "SWE"; 
+var eventName;
 $(document).ready(function(){
     var eventTable = $("#event-table");
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
