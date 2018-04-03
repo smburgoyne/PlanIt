@@ -34,6 +34,27 @@
 				$('#past').show();
 			});
 
+			$("#new-event-button").click(function () {
+				$('#home').hide();
+				$('#details').show();
+				$('#upcoming').hide();
+				$('#past').hide();
+			});
+
+			$("#upcoming-button").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').show();
+				$('#past').hide();
+			});
+
+			$("#past-button").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').hide();
+				$('#past').show();
+			});
+
 			var coll = document.getElementsByClassName("collapsible");
 			var i;
 
@@ -92,11 +113,11 @@
 				be able to track the progress of every task. In a world of event planning tasks, all you need to do is visit PlanIt!
 			</p>
 			<div>
-				<button type="button" class="new-event btn btn-light">New Event</button>
+				<button id="new-event-button" type="button" class="new-event btn btn-light">New Event</button>
 			</div>
 			<div>
-				<button type="button" class="btn btn-secondary"> Upcoming Events</button>
-				<button type="button" class="btn btn-secondary">Past Events</button>
+				<button id="upcoming-button" type="button" class="btn btn-secondary"> Upcoming Events</button>
+				<button id="past-button" type="button" class="btn btn-secondary">Past Events</button>
 			</div>
 		</div>
 
