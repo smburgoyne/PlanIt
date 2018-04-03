@@ -69,26 +69,27 @@
 					}
 				});
 			}
+			
+			var progress = 0;
 
-			$(function () {
-				$("#progressbar").progressbar({
-					value: 0
-				})
-					.data("value", "0");
-
-				$('#submit1, #submit3. #submit5').click(function () {
-					var currValue = $("#progressbar").data("value");
-					currValue = parseInt(currValue) ? parseInt(currValue) : 0;
-					if (currValue <= 100) {
-						$("#progressbar").progressbar({
-							value: currValue + 10
-						}).data("value", currValue + 10);
-						$("#progressLabel").html((currValue + 10) + "%");
-					}
-				});
-
-
+			$('#test-button2').click(function () {
+				progress += 10;
+				if (progress > 100)
+				{
+					progress = 100;
+				}
+				$('#progressbar > div').css('width', progress+'%');
 			});
+
+			$('#test-button1').click(function () {
+				progress -= 10;
+				if (progress < 0)
+				{
+					progress = 0;
+				}
+				$('#progressbar > div').css('width', progress+'%');
+			});
+
 		})
 	</script>
 </head>
@@ -123,11 +124,12 @@
 
 		<div id="details" class="page">
 			<tab-details></tab-details>
-			<h2>[PROGRESS BAR HERE]</h2>
-
 			<div id="progressbar">
-				<p id="progresslabel">0%</p>
+				<div></div>
 			</div>
+			<button id="test-button1">-</button>
+			<button id="test-button2">+</button>
+			
 			<br>
 
 			<button class="collapsible">What is this Event?
