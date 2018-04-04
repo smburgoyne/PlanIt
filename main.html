@@ -90,11 +90,31 @@
 				$('#progressbar > div').css('width', progress+'%');
 			});
 
+			$('#login-submit').click(function(){
+				var username = $("#uname").val();
+				var password = $("#password").val();
+				if(username === "username" && password === "password")
+				{
+					$('#login').hide();
+					$('#app').show();
+				}
+			});
+
 		})
 	</script>
 </head>
 
 <body>
+	<div id="login">
+			<label for="uname" class="w3-text-teal"><b>Username</b></label>
+			<input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
+			<br>
+			<label for="psw" class="w3-text-teal"><b>Password</b></label>
+			<input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
+			<br>
+			<input id="login-submit" class="save btn btn-light" type="submit" value="Login">
+	</div>
+
 	<div id="app">
 		<div class="navbar">
 			<img src="./logo2.png">

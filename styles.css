@@ -182,6 +182,16 @@ input, textarea
     display: none;
 }
 
+#login
+{
+    display: block;
+}
+
+#app
+{
+    display: none;
+}
+
 .collapsible {
     background-color: #3f7ea6;
     color: white;
