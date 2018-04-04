@@ -227,7 +227,7 @@ const app = new Vue({
                     Notes:"",
                     Planner:$('#planner').val(),
                     Time:$('#time').val(),
-                    Status:"Ongoing"
+                    Status:"Ongoing",
                     Completion: completion
                 });
                 eventName = $('#name').val();
@@ -235,6 +235,55 @@ const app = new Vue({
             }
 
         }
+
+function requiredBudget() {
+    if(completion < 20) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function suppliesList() {
+    if(completion < 30) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function reimbursementForm() {
+    if(completion < 40) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function suppliesList2() {
+    if(completion < 50) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
 function updateEvent() {
     firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
                 Date:$('#date2').val(),
@@ -263,6 +312,7 @@ function clearForms() {
                     var location = $('#place').val("");
                     $('#planner').val("");
                     $('#progressbar > div').css('width', '0%');
+                    completion = 0;
 }
 
 $(document).ready(function(){
@@ -309,6 +359,8 @@ $(document).ready(function(){
                     $("#notes").val(snap.child("Notes").val());
                     var location = $('#place').val(snap.child("Location").val());
                     $('#planner').val(snap.child("Planner").val())
+                    completion = snap.child("Completion").val()
+                    $('#progressbar > div').css('width', completion +'%');
 
                 })
                 $('#home').hide();
