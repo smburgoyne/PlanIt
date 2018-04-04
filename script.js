@@ -92,6 +92,7 @@ Vue.component('section1', {
                 Date:$('#date').val(),
                 Description:$('#about').val(),
                 Location:$('#place').val(),
+                Notes:"",
                 Planner:$('#planner').val(),
                 Time:$('#time').val(),
                 Status:"Ongoing"
@@ -227,12 +228,19 @@ Vue.component('section5', {
             isVisible: false
         }
     },
+    methods: { 
+        addNotes: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Notes:$('#notes').val()
+            });
+        }
+    },
     template: `<div class="inputs">
                         <form>
                             <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
                             <br>
                             <label for="about">Anything else you want to say about this event?</label>
-                            <textarea id="about"></textarea><br>
+                            <textarea id="notes"></textarea><br>
                             <p>
                                 Remember to do anything else your organization requires you to do, such as
                                 sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
@@ -240,7 +248,7 @@ Vue.component('section5', {
                             </p>
                             <br>
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit5" type="button" class="save btn btn-light">Save</button>
+                            <button id="submit5" type="button" class="save btn btn-light" v-on:click="addNotes">Save</button>
                         </form>
                     
                 </div>`
