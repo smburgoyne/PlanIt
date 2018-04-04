@@ -31,6 +31,7 @@ h1
     text-align: center;
     font-family: 'Alegreya Sans SC', sans-serif;
     font-size: 80px;
+    color: black;
 }
 
 p
@@ -151,7 +152,7 @@ label
 
 input, textarea 
 {
-    width: 50%;
+    width: 20%;
     border-radius: 4px;
     margin: 10px 20px 10px 10px;
     display: inline-block;
@@ -200,7 +201,8 @@ input, textarea
 }
 
 .collapsible {
-    background-color: #3f7ea6;
+    /* background-color: #3f7ea6; */
+    background-color: #023059;
     color: white;
     cursor: pointer;
     padding: 18px;
@@ -229,13 +231,16 @@ input, textarea
 {
     margin: 10px 20px;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .btn-secondary
 {
     background-color: grey;
     color: #FFF;
-    width: 120px;
+    width: 12%;
     height: 40px;
     margin: 10px;
     font-size: 16px;
@@ -264,15 +269,16 @@ input, textarea
   }
   
 #progressbar > div {
-     background-color: #023059;
-     width: 20%; /* Adjust with JavaScript */
+     background-color: #ff9528;
+     width: 0%; /* Adjust with JavaScript */
      height: 44px;
      border-radius: 18px;
   }
 
 input, textarea 
 {
-    width: 50%;
+    width: 20%;
+    height: 35px;
     border-radius: 4px;
     margin: 10px 20px 10px 10px;
     display: inline-block;
@@ -288,4 +294,15 @@ label
 {
     font-size: 16px;
     display: inline-block;
+}
+
+#collapse-arrow-down.material-icons
+{
+    float: right;
+}
+
+#hidden-up-arrow.material-icons
+{
+    display: none;
+    float: right;
 }
