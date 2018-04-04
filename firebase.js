@@ -2,9 +2,6 @@ $(document).ready(function() {
 	var title = $("#test");
 	var dbref = firebase.database().ref().child("title");
 	dbref.on('value', snap => title.text(snap.val()));
-
-	
-	addEvent("SWE","Banquet","1/26/18","A cool event","Rietz","Ricardo","9:15PM")
 });
 
 // Function verfies if username is taken or not. Code must be filled in for error verfication
@@ -47,16 +44,22 @@ function addEvent(organization,name, date, description,location,planner,time) {
 		});
 }
 
+function addNotes(organization,event,notes) {
+	firebase.database().ref("/Organizations/" + organization + "/Events/" + event).update({Notes:notes});
+}
+
 function authenticateUser(username, password) {
 	var dbref = firebase.database().ref('/Users/' + username + "/password");
 	dbref.once('value').then(snap => {
 		if(snap.val() == password) {
 			//Username and password are valid. do something
 			console.log("Username and password is valid");
+			return true;
 		}
 		else {
 			//Username and password is not valid , do something 
 			console.log("Username and password not valid");
+			return false;
 		}
 	});	
 
