@@ -185,6 +185,7 @@ input, textarea
 #login
 {
     display: block;
+    text-align: center;
 }
 
 #app
