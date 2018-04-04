@@ -113,7 +113,6 @@ Vue.component('section1', {
                     Status:"Ongoing"
                 });
                 eventName = $('#name').val();
-                newEventName = $('#name').val();
             }
         }
     },
@@ -248,6 +247,17 @@ Vue.component('section5', {
                     <input id="submit5" class="save btn btn-light" type="submit" v-on:click="addNotes" value="Save">
                     <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                 </div>`
+})
+
+Vue.component('finishedbutton', {
+    methods: {
+        completeEvent: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Status:'Completed'
+            });
+        }
+    },
+    template: `<button id="submit" type="button" class="new-event btn btn-light" v-on:click="completeEvent">Event is Finished!</button>`
 })
 
 // Initialize Vue
