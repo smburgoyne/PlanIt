@@ -131,11 +131,11 @@ Vue.component('section2', {
     },
     template: `<div class="inputs">
                         <form>
-                            <button id="budget" type="button" class="btn btn-light">Request Budget</button>
+                            <a id="budget" class="btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank">Required Budget</a>
                             <br>
-                            <button id="list" type="button" class="btn btn-light">Supplies List</button>
+                            <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
                             <br>
-                            <button id="reimbursement" type="button" class="btn btn-light">Reimbursement Form</button>
+                            <a id="reimbursement" class="btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank">Reimbursement Form</a>
                         </form>
                     
                 </div>`
@@ -180,13 +180,13 @@ Vue.component('section3', {
                             <input id="time" type="time"><br>
                             <label for="place">Location</label>
                             <input id="place" type="text"><br>
-                            <button id="list" type="button" class="btn btn-light">Supplies List</button>
+                            <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
                             <br>
-                            <button id="signin" type="button" class="btn btn-light">Event Sign-In Form</button>
+                            <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
                             <br>
-                            <button id="volunteers" type="button" class="btn btn-light">Volunteers Form</button>
+                            <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
                             <br>
-                            <button id="carpool" type="button" class="btn btn-light">Carpool Form</button>
+                            <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                             <br>
                             <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit3" type="button" class="save btn btn-light" v-on:click="updateEvent">Save</button>
@@ -206,7 +206,7 @@ Vue.component('section4', {
     },
     template: `<div class="inputs">
                         <form>
-                            <button id="advertise" type="button" class="btn btn-light">Request to Advertise</button>
+                            <a id="advertise" class="btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank">Request to Advertise</a>
                             <br>
                             <p>response from advertisor</p>
                         </form>
@@ -227,14 +227,14 @@ Vue.component('section5', {
     },
     template: `<div class="inputs">
                         <form>
-                            <button id="feedback" type="button" class="btn btn-light">Event Feedback</button>
+                            <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
                             <br>
                             <label for="about">Anything else you want to say about this event?</label>
                             <textarea id="about"></textarea><br>
                             <p>
                                 Remember to do anything else your organization requires you to do, such as
-                                sending in attendance, completeing <a href="" target="_blank">reimbursement forms</a>,
-                                and filling out <a href="" target="_blank">feedback forms</a>.
+                                sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
+                                and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                             </p>
                             <br>
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
