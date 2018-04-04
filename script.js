@@ -324,6 +324,14 @@ $(document).ready(function(){
                         $('#notes').prop('disabled', true);
                         $('#planner').prop('disabled', true);
                         $('#place').prop('disabled', true);
+
+                        $('#submit1').prop('disabled', true);
+                        $('#cancel1').prop('disabled', true);
+                        $('#submit3').prop('disabled', true);
+                        $('#cancel3').prop('disabled', true);
+                        $('#submit5').prop('disabled', true);
+                        $('#cancel5').prop('disabled', true);
+                        $('#submit').prop('disabled', true);
                     }
                 })
                 $('#home').hide();
