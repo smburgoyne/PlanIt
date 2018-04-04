@@ -182,25 +182,26 @@
 			
 			<br>
 			<div class="collapsing-menu">
-				<button class="collapsible collapsible-top">What is this Event?
+				<button class="collapsible collapsible-top">What is this Event?*
 					<!-- <i class="material-icons">done</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <label for="name">Event Name</label>
+	                    <label for="name">Event Name*</label>
 	                    <input id="name" type="text" required><br>
-	                    <label for="date">Date</label>
+	                    <label for="date">Date*</label>
 	                    <input id="date" type="date" required><br>
-	                    <label for="time">Time</label>
+	                    <label for="time">Time*</label>
 	                    <input id="time" type="time" required><br>
-	                    <label for="place">Location</label>
+	                    <label for="place">Location*</label>
 	                    <input id="place" type="text" required><br>
 	                    <label for="about">Event Description</label>
 	                    <textarea id="about"></textarea><br>
 	                    <label for="planner">Primary Event Planner</label>
 	                    <input id="planner" type="text"><br>
-	                    <p><span id="event-error"></span></p>
+						<p><span id="event-error"></span></p>
+						<p id="tip">*Required inputs</p>
 	                    <input id="submit1" class="save btn btn-light" type="submit" onclick="addEvent()" value="Save">
 	                    <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button> 
                 	</div>

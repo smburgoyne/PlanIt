@@ -256,11 +256,7 @@ function enableInputs() {
             var date = $('#date').val();
             var time = $('#time').val();
             var location = $('#place').val();
-            if(completion < 10) {
-                completion +=10; 
-                $('#progressbar > div').css('width', completion+'%');
-
-            } 
+            
 
             if(name === "" || date === "" || time === "" || location === "")
             {
@@ -285,6 +281,12 @@ function enableInputs() {
                 $('#place2').val($('#place').val());
                 $('#time2').val($('#time').val());
                 enableInputs();
+
+                if(completion < 10) {
+                    completion +=10; 
+                    $('#progressbar > div').css('width', completion+'%');
+    
+                } 
             }
 
         }
