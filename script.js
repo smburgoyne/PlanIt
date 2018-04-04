@@ -242,19 +242,40 @@ new Vue({
 
 var currentOrg = "SWE"; 
 $(document).ready(function(){
-    var eventTable = $("#upcomingEventTable");
+    var upcomingEventTable = $("#upcomingEventTable");
+    var pastEventTable = $("#pastEventTable");
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
-    dbref.once('value').then(snap => {
+    dbref.on('value', snap => {
+        upcomingEventTable.empty();
+        pastEventTable.empty();
+        var titleRow = $("<tr></tr>");
+        var titleRow2 = $("<tr></tr>");
+        var name = $("<th></th>").text("Event Name");
+        var date = $("<th></th>").text("Date");
+        var status = $("<th></th>").text("Status");
+         var name2 = $("<th></th>").text("Event Name");
+        var date2 = $("<th></th>").text("Date");
+        var status2 = $("<th></th>").text("Status");
+        titleRow.append(name,date,status);
+        titleRow2.append(name2,date2,status2);
+        pastEventTable.append(titleRow);
+        upcomingEventTable.append(titleRow2);
         snap.forEach(childsnap => {
-
             var eventRow = $("<tr></tr>");
             var nameColumn = $("<td></td>").text(childsnap.key);
             var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
             eventRow.append(nameColumn,dateColumn,statusColumn);
-            link.append(eventRow);
-            console.log(eventTable);
-            eventTable.append(link);
+           
+            if(statusColumn.text() == "Ongoing") {
+                    upcomingEventTable.append(eventRow);
+                    console.log("ongoing event");
+            }
+            else {
+                pastEventTable.append(eventRow);
+                console.log("past event");
+            }
+            
         });
     });
 });
