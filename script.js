@@ -227,7 +227,7 @@ const app = new Vue({
                     Notes:"",
                     Planner:$('#planner').val(),
                     Time:$('#time').val(),
-                    Status:"Ongoing"
+                    Status:"Ongoing",
                     Completion: completion
                 });
                 eventName = $('#name').val();
