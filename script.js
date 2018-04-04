@@ -1,8 +1,13 @@
-// All the components and associated variables
+var eventName = "New Event";
+var isNew = true;
+var currentOrg = "SWE"; 
+
 Vue.component('tab-details', {
     data: function () {
+        console.log(eventName);
+        console.log("The var is " +isNew);
         return {
-            eventTitle: 'Create New Event'
+            eventTitle: eventName
         }
     },
     template: `<div class="page">
@@ -263,8 +268,6 @@ const app = new Vue({
         }
     }
 })
-
-var currentOrg = "SWE"; 
 $(document).ready(function(){
     var upcomingEventTable = $("#upcomingEventTable");
     var pastEventTable = $("#pastEventTable");
@@ -290,7 +293,20 @@ $(document).ready(function(){
             var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
             eventRow.append(nameColumn,dateColumn,statusColumn);
-           
+            eventRow.css("cursor", "pointer");
+            eventRow.addClass("w3-hover-light-blue");
+
+
+            eventRow.click(function() {
+                eventName = nameColumn.text();
+                $("#detailHeader").text(eventName);
+                console.log(eventName);
+                $('#home').hide();
+                $('#details').show();
+                $('#upcoming').hide();
+                $('#past').hide();
+
+            });
             if(statusColumn.text() == "Ongoing") {
                     upcomingEventTable.append(eventRow);
                     console.log("ongoing event");

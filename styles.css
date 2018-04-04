@@ -324,3 +324,9 @@ label
     display: none;
     float: right;
 }
+
+.w3-hover-light-blue:hover
+{
+    color:#000!important;
+    background-color:#87CEEB!important;
+}

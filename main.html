@@ -14,6 +14,7 @@
 			});
 
 			$("#button2").click(function () {
+				$("#detailHeader").text("New Event");
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -35,6 +36,7 @@
 			});
 
 			$("#new-event-button").click(function () {
+				$("#detailHeader").text("New Event");
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -154,7 +156,7 @@
 		</div>
 
 		<div id="details" class="page">
-			<tab-details></tab-details>
+			<h1 id= "detailHeader">New Event</h1>
 			<div id="progressbar">
 				<div></div>
 			</div>
