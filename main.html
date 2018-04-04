@@ -18,6 +18,7 @@
 			$("#button2").click(function () {
 				$("#detailHeader").text("Create New Event");
 				clearForms();
+				disableInputs();
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -41,6 +42,7 @@
 			$("#new-event-button").click(function () {
 				$("#detailHeader").text("Create New Event");
 				clearForms();
+				disableInputs();
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -61,6 +63,17 @@
 				$('#past').show();
 			});
 
+			var disableInputs = function() {
+				$('#date2').prop('disabled', true);
+				$('#place2').prop('disabled', true);
+				$('#time2').prop('disabled', true);
+				$('#notes').prop('disabled', true);
+				$('#submit3').prop('disabled', true);
+				$('#cancel3').prop('disabled', true);
+				$('#submit5').prop('disabled', true);
+				$('#cancel5').prop('disabled', true);
+				$('#submit').prop('disabled', true);
+			}
 
 			var coll = document.getElementsByClassName("collapsible");
 			var i;

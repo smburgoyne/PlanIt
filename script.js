@@ -184,6 +184,24 @@ Vue.component('finishedbutton', {
             firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
                 Status:'Completed'
             });
+            $('#name').prop('disabled', true);
+            $('#date').prop('disabled', true);
+            $('#time').prop('disabled', true);
+            $('#date2').prop('disabled', true);
+            $('#place2').prop('disabled', true);
+            $('#about').prop('disabled', true);
+            $('#time2').prop('disabled', true);
+            $('#notes').prop('disabled', true);
+            $('#planner').prop('disabled', true);
+            $('#place').prop('disabled', true);
+
+            $('#submit1').prop('disabled', true);
+            $('#cancel1').prop('disabled', true);
+            $('#submit3').prop('disabled', true);
+            $('#cancel3').prop('disabled', true);
+            $('#submit5').prop('disabled', true);
+            $('#cancel5').prop('disabled', true);
+            $('#submit').prop('disabled', true);
         }
     },
     template: `<button id="submit" type="button" class="new-event btn btn-light" v-on:click="completeEvent">Event is Finished!</button>`
@@ -211,6 +229,26 @@ const app = new Vue({
 
 
 
+function enableInputs() {
+    $('#name').prop('disabled', false);
+    $('#date').prop('disabled', false);
+    $('#time').prop('disabled', false);
+    $('#date2').prop('disabled', false);
+    $('#place2').prop('disabled', false);
+    $('#about').prop('disabled', false);
+    $('#time2').prop('disabled', false);
+    $('#notes').prop('disabled', false);
+    $('#planner').prop('disabled', false);
+    $('#place').prop('disabled', false);
+
+    $('#submit1').prop('disabled', false);
+    $('#cancel1').prop('disabled', false);
+    $('#submit3').prop('disabled', false);
+    $('#cancel3').prop('disabled', false);
+    $('#submit5').prop('disabled', false);
+    $('#cancel5').prop('disabled', false);
+    $('#submit').prop('disabled', false);
+}
 
   function addEvent () {
             var name = $('#name').val();
@@ -235,6 +273,10 @@ const app = new Vue({
                 });
                 eventName = $('#name').val();
                 newEventName = $('#name').val();
+                $('#date2').val($('#date').val());
+                $('#place2').val($('#place').val());
+                $('#time2').val($('#time').val());
+                enableInputs();
             }
         }
 function updateEvent() {
@@ -255,15 +297,17 @@ function addNotes() {
 
 function clearForms() {
      var name = $('#name').val("");
-                    var date = $('#date').val("");
-                    var time = $('#time').val("");
-                    $('#date2').val("");
-                    $('#place2').val("");
-                    $('#about').val("")
-                    $('#time2').val("");
-                    $("#notes").val("");
-                    var location = $('#place').val("");
-                    $('#planner').val("");
+    var date = $('#date').val("");
+    var time = $('#time').val("");
+    $('#date2').val("");
+    $('#place2').val("");
+    $('#about').val("")
+    $('#time2').val("");
+    $("#notes").val("");
+    var location = $('#place').val("");
+    $('#planner').val("");
+
+    enableInputs();
 }
 
 $(document).ready(function(){
@@ -332,6 +376,10 @@ $(document).ready(function(){
                         $('#submit5').prop('disabled', true);
                         $('#cancel5').prop('disabled', true);
                         $('#submit').prop('disabled', true);
+                    }
+                    else
+                    {
+                        enableInputs();
                     }
                 })
                 $('#home').hide();
