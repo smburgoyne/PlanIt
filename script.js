@@ -203,6 +203,12 @@ Vue.component('finishedbutton', {
             $('#submit5').prop('disabled', true);
             $('#cancel5').prop('disabled', true);
             $('#submit').prop('disabled', true);
+            completion = 100; 
+            $('#progressbar > div').css('width', completion+'%');
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+
         }
     },
     template: `<button id="submit" type="button" class="new-event btn btn-light" v-on:click="completeEvent">Event is Finished!</button>`
