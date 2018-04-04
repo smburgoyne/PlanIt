@@ -15,13 +15,15 @@ Vue.component('event-table', {
         var eventList = new Array();
             var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
             dbref.on('value', snap => {
-                var i = 0;
+                var i = 0;  
                 snap.forEach(childsnap => {
-
                     var nameColumn = childsnap.key;
                     var dateColumn = childsnap.child("Date").val();
                     var statusColumn = childsnap.child("Status").val();
-                    eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
+                    if((app.currentTab == "Upcoming" && statusColumn == "Ongoing") || (app.currentTab == "Past" && statusColumn == "Completed")) {
+                        eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
+                    }
+                    
                 });
                 eventList.sort();
             });
@@ -31,7 +33,7 @@ Vue.component('event-table', {
     },
 
     mounted () {
-
+        
     },
 
     template: `<table id=event-table>
@@ -245,14 +247,14 @@ Vue.component('section5', {
 })
 
 // Initialize Vue
-new Vue({
+const app = new Vue({
     el: '#app',
     data: {
         currentTab: 'Home',
         tabs: [
             'Home',
             'Details',
-            'Upcoming',
+            'Upcoming' ,
             'Past'
         ]
     },
@@ -265,6 +267,4 @@ new Vue({
 
 var currentOrg = "SWE"; 
 var eventName;
-$(document).ready(function(){
-    
-});
+
