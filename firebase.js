@@ -53,10 +53,12 @@ function authenticateUser(username, password) {
 		if(snap.val() == password) {
 			//Username and password are valid. do something
 			console.log("Username and password is valid");
+			return true;
 		}
 		else {
 			//Username and password is not valid , do something 
 			console.log("Username and password not valid");
+			return false;
 		}
 	});	
 
