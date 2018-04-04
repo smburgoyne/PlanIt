@@ -299,6 +299,55 @@ function addNotes() {
             });
 }
 
+function completeSignin() {
+    if(completion < 60) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeVolunteer() {
+    if(completion < 70) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeCarpool() {
+    if(completion < 80) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeAdvertise() {
+    if(completion < 90) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeReimburse() {
+    if(completion < 100) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
 
 function clearForms() {
      var name = $('#name').val("");
@@ -314,6 +363,8 @@ function clearForms() {
                     $('#progressbar > div').css('width', '0%');
                     completion = 0;
 }
+
+
 
 $(document).ready(function(){
     var upcomingEventTable = $("#upcomingEventTable");

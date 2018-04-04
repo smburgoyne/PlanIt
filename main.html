@@ -219,11 +219,11 @@
 	                    <input id="place2" type="text"><br>
 	                    <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
 	                    <br>
-	                    <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
+	                    <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank" onclick="completeSignin()">Event Sign-In Form</a>
 	                    <br>
-	                    <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
+	                    <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank" onclick="completeVolunteer()">Volunteers Form</a>
 	                    <br>
-	                    <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
+	                    <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank" onclick="completeCarpool()">Carpool Form</a>
 	                    <br>
 	                    <input id="submit3" class="save btn btn-light" type="submit" onclick="updateEvent()" value="Save">
 	                    <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
@@ -236,7 +236,7 @@
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <a id="advertise" class="btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank">Request to Advertise</a>
+	                    <a id="advertise" class="btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank" onclick="completeAdvertise()">Request to Advertise</a>
 	                    <br>
 	                    <p>response from advertisor</p>
                		</div>
@@ -248,7 +248,7 @@
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
+	                    <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank" onclick="completeReimburse()">Reimbursement Form</a>
 	                    <br>
 	                    <label for="about">Anything else you want to say about this event?</label>
 	                    <textarea id="notes"></textarea><br>
