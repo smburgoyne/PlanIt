@@ -248,7 +248,7 @@ input, textarea
   
 #progressbar > div {
      background-color: #023059;
-     width: 20%; /* Adjust with JavaScript */
+     width: 0%; /* Adjust with JavaScript */
      height: 44px;
      border-radius: 18px;
   }
@@ -271,4 +271,15 @@ label
 {
     font-size: 16px;
     display: inline-block;
+}
+
+#collapse-arrow-down.material-icons
+{
+    float: right;
+}
+
+#hidden-up-arrow.material-icons
+{
+    display: none;
+    float: right;
 }
