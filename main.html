@@ -3,19 +3,182 @@
 
 <head>
 	<title>PlanIt</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#button1").click(function () {
+				$('#home').show();
+				$('#details').hide();
+				$('#upcoming').hide();
+				$('#past').hide();
+			});
+
+			$("#button2").click(function () {
+				$('#home').hide();
+				$('#details').show();
+				$('#upcoming').hide();
+				$('#past').hide();
+			});
+
+			$("#button3").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').show();
+				$('#past').hide();
+			});
+
+			$("#button4").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').hide();
+				$('#past').show();
+			});
+
+			$("#new-event-button").click(function () {
+				$('#home').hide();
+				$('#details').show();
+				$('#upcoming').hide();
+				$('#past').hide();
+			});
+
+			$("#upcoming-button").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').show();
+				$('#past').hide();
+			});
+
+			$("#past-button").click(function () {
+				$('#home').hide();
+				$('#details').hide();
+				$('#upcoming').hide();
+				$('#past').show();
+			});
+
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function () {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block") {
+						content.style.display = "none";
+					} else {
+						content.style.display = "block";
+					}
+				});
+			}
+			
+			var progress = 0;
+
+			$('#test-button2').click(function () {
+				progress += 10;
+				if (progress > 100)
+				{
+					progress = 100;
+				}
+				$('#progressbar > div').css('width', progress+'%');
+			});
+
+			$('#test-button1').click(function () {
+				progress -= 10;
+				if (progress < 0)
+				{
+					progress = 0;
+				}
+				$('#progressbar > div').css('width', progress+'%');
+			});
+
+		})
+	</script>
 </head>
 
 <body>
 	<div id="app">
 		<div class="navbar">
-				<img src="./logo2.png">
-				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Past'">Past Events</button>
-				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Upcoming'">Upcoming Events</button>
-				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Details'">New Event</button>
-				<button type="button" class="navbartab btn" v-on:click="currentTab = 'Home'">Home</button>
+			<img src="./logo2.png">
+			<button id="button4" type="button" class="navbartab btn">Past Events</button>
+			<button id="button3" type="button" class="navbartab btn">Upcoming Events</button>
+			<button id="button2" type="button" class="navbartab btn">New Event</button>
+			<button id="button1" type="button" class="navbartab btn">Home</button>
 		</div>
 
-		<component v-bind:is="currentTabChange"></component>
+
+
+		<div id="home" class="page">
+			<h1>PlanIt</h1>
+			<img src="./logo2.png" class="home-img">
+			<p>
+				PlanIt is the only event-planning app you'll need. Here, you'll be able to see everything that goes into event planning and
+				be able to track the progress of every task. In a world of event planning tasks, all you need to do is visit PlanIt!
+			</p>
+			<div>
+				<button id="new-event-button" type="button" class="new-event btn btn-light">New Event</button>
+			</div>
+			<div>
+				<button id="upcoming-button" type="button" class="btn btn-secondary"> Upcoming Events</button>
+				<button id="past-button" type="button" class="btn btn-secondary">Past Events</button>
+			</div>
+		</div>
+
+		<div id="details" class="page">
+			<tab-details></tab-details>
+			<div id="progressbar">
+				<div></div>
+			</div>
+			<button id="test-button1">-</button>
+			<button id="test-button2">+</button>
+			
+			<br>
+
+			<button class="collapsible">What is this Event?
+				<i class="material-icons">done</i>
+			</button>
+			<div class="content">
+				<section1></section1>
+			</div>
+
+			<button class="collapsible">Finances
+				<i class="material-icons">done</i>
+			</button>
+			<div class="content">
+				<section2></section2>
+			</div>
+
+			<button class="collapsible">Logistics
+				<i class="material-icons">query_builder</i>
+			</button>
+			<div class="content">
+				<section3></section3>
+			</div>
+
+			<button class="collapsible">Marketing
+				<i class="material-icons">query_builder</i>
+			</button>
+			<div class="content">
+				<section4></section4>
+			</div>
+
+			<button class="collapsible">Post Event Details
+				<i class="material-icons">clear</i>
+			</button>
+			<div class="content">
+				<section5></section5>
+			</div>
+
+			<button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+		</div>
+
+		<div id="upcoming" class="page">
+			<h1>Upcoming Events</h1>
+			<event-table></event-table>
+		</div>
+
+		<div id="past" class="page">
+			<h1>Past Events</h1>
+			<event-table></event-table>
+		</div>
 
 	</div>
 
@@ -44,7 +207,7 @@
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="firebase.js"></script>
-	
+
 	<!-- Vue stuff -->
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 	<script type="text/javascript" src="script.js"></script>
@@ -56,11 +219,10 @@
 	 crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	 crossorigin="anonymous"></script>
-	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	 rel="stylesheet">
-	 <style>
-			@import './styles.css'
-		</style>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<style>
+		@import './styles.css'
+	</style>
 </body>
 
 </html>
