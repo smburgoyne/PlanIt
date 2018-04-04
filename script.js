@@ -3,39 +3,13 @@ var isNew = true;
 var currentOrg = "SWE"; 
 
 Vue.component('tab-details', {
-    data: function () {
-        console.log(eventName);
-        console.log("The var is " +isNew);
-        return {
-            eventTitle: eventName
-        }
-    },
+  
     template: `<div class="page">
                     <h1>{{ eventTitle }}</h1>
                 </div>`
 })
 
 Vue.component('event-table', {
-    data: function () {
-        var eventList = new Array();
-            var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
-            dbref.on('value', snap => {
-                var i = 0;  
-                snap.forEach(childsnap => {
-                    var nameColumn = childsnap.key;
-                    var dateColumn = childsnap.child("Date").val();
-                    var statusColumn = childsnap.child("Status").val();
-                    if((app.currentTab == "Upcoming" && statusColumn == "Ongoing") || (app.currentTab == "Past" && statusColumn == "Completed")) {
-                        eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
-                    }
-                    
-                });
-                eventList.sort();
-            });
-        return {
-            events: eventList
-        }
-    },
 
     mounted () {
         
@@ -47,17 +21,6 @@ Vue.component('event-table', {
                         <th>Date</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
-                        <td>Test event</td>
-                        <td>03/01/2018</td>
-                        <td>Completed</td>
-                    </tr>
-                    <event-row
-                        v-for="event in events"
-                        v-bind:name="event.name"
-                        v-bind:date="event.date"
-                        v-bind:status="event.status"
-                        ></event-row>
                 </table>`
 
 
@@ -92,29 +55,7 @@ Vue.component('section1', {
         }
     },
     methods: { 
-        addEvent: function (event) {
-            var name = $('#name').val();
-            var date = $('#date').val();
-            var time = $('#time').val();
-            var location = $('#place').val();
-            if(name === "" || date === "" || time === "" || location === "")
-            {
-                $('#event-error').text("Please enter a valid value for event name, date, time, and/or location.");
-            }
-            else
-            {
-                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
-                    Date:$('#date').val(),
-                    Description:$('#about').val(),
-                    Location:$('#place').val(),
-                    Notes:"",
-                    Planner:$('#planner').val(),
-                    Time:$('#time').val(),
-                    Status:"Ongoing"
-                });
-                eventName = $('#name').val();
-            }
-        }
+       
     },
     template: `<div class="inputs">
                     <label for="name">Event Name</label>
@@ -170,14 +111,7 @@ Vue.component('section3', {
         }
     },
     methods: { 
-        updateEvent: function (event) {
-            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
-                Date:$('#date').val(),
-                Location:$('#place').val(),
-                Time:$('#time').val()
-            });
-            eventName = $('#name').val();
-        }
+       
     },
     template: `<div class="inputs">
                     <label for="date">Date</label>
@@ -226,11 +160,7 @@ Vue.component('section5', {
         }
     },
     methods: { 
-        addNotes: function (event) {
-            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
-                Notes:$('#notes').val()
-            });
-        }
+        
     },
     template: `<div class="inputs">
                     <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
@@ -277,6 +207,64 @@ const app = new Vue({
         }
     }
 })
+
+
+
+
+
+  function addEvent () {
+            var name = $('#name').val();
+            var date = $('#date').val();
+            var time = $('#time').val();
+            var location = $('#place').val();
+            if(name === "" || date === "" || time === "" || location === "")
+            {
+                $('#event-error').text("Please enter a valid value for event name, date, time, and/or location.");
+            }
+            else
+            {
+                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+                    Date:$('#date').val(),
+                    Description:$('#about').val(),
+                    Location:$('#place').val(),
+                    Notes:"",
+                    Planner:$('#planner').val(),
+                    Time:$('#time').val(),
+                    Status:"Ongoing"
+                });
+                eventName = $('#name').val();
+                newEventName = $('#name').val();
+            }
+        }
+function updateEvent() {
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Date:$('#date2').val(),
+                Location:$('#place2').val(),
+                Time:$('#time2').val()
+            });
+            eventName = $('#name').val();
+}
+
+function addNotes() {
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Notes:$('#notes').val()
+            });
+}
+
+
+function clearForms() {
+     var name = $('#name').val("");
+                    var date = $('#date').val("");
+                    var time = $('#time').val("");
+                    $('#date2').val("");
+                    $('#place2').val("");
+                    $('#about').val("")
+                    $('#time2').val("");
+                    $("#notes").val("");
+                    var location = $('#place').val("");
+                    $('#planner').val("");
+}
+
 $(document).ready(function(){
     var upcomingEventTable = $("#upcomingEventTable");
     var pastEventTable = $("#pastEventTable");
@@ -310,6 +298,19 @@ $(document).ready(function(){
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
+                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
+                    var name = $('#name').val(eventName);
+                    var date = $('#date').val(snap.child("Date").val());
+                    var time = $('#time').val(snap.child("Time").val());
+                    $('#date2').val(snap.child("Date").val());
+                    $('#place2').val(snap.child("Location").val());
+                    $('#about').val(snap.child("Description").val())
+                    $('#time2').val(snap.child("Time").val());
+                    $("#notes").val(snap.child("Notes").val());
+                    var location = $('#place').val(snap.child("Location").val());
+                    $('#planner').val(snap.child("Planner").val())
+
+                })
                 $('#home').hide();
                 $('#details').show();
                 $('#upcoming').hide();
