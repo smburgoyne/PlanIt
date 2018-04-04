@@ -2,9 +2,6 @@ $(document).ready(function() {
 	var title = $("#test");
 	var dbref = firebase.database().ref().child("title");
 	dbref.on('value', snap => title.text(snap.val()));
-
-	
-	addEvent("SWE","Banquet","1/26/18","A cool event","Rietz","Ricardo","9:15PM")
 });
 
 // Function verfies if username is taken or not. Code must be filled in for error verfication
@@ -45,6 +42,10 @@ function addEvent(organization,name, date, description,location,planner,time) {
 			Time:time,
 			Status:"Ongoing"
 		});
+}
+
+function addNotes(organization,event,notes) {
+	firebase.database().ref("/Organizations/" + organization + "/Events/" + event).update({Notes:notes});
 }
 
 function authenticateUser(username, password) {

@@ -15,13 +15,15 @@ Vue.component('event-table', {
         var eventList = new Array();
             var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
             dbref.on('value', snap => {
-                var i = 0;
+                var i = 0;  
                 snap.forEach(childsnap => {
-
                     var nameColumn = childsnap.key;
                     var dateColumn = childsnap.child("Date").val();
                     var statusColumn = childsnap.child("Status").val();
-                    eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
+                    if((app.currentTab == "Upcoming" && statusColumn == "Ongoing") || (app.currentTab == "Past" && statusColumn == "Completed")) {
+                        eventList[i++] = {name: nameColumn, date: dateColumn, status: statusColumn};
+                    }
+                    
                 });
                 eventList.sort();
             });
@@ -29,7 +31,12 @@ Vue.component('event-table', {
             events: eventList
         }
     },
-    template: `<table>
+
+    mounted () {
+        
+    },
+
+    template: `<table id=event-table>
                     <tr>
                         <th>Event Name</th>
                         <th>Date</th>
@@ -85,10 +92,12 @@ Vue.component('section1', {
                 Date:$('#date').val(),
                 Description:$('#about').val(),
                 Location:$('#place').val(),
+                Notes:"",
                 Planner:$('#planner').val(),
                 Time:$('#time').val(),
                 Status:"Ongoing"
             });
+            eventName = $('#name').val();
         }
     },
     template: `<div class="inputs">
@@ -149,7 +158,24 @@ Vue.component('section3', {
             isVisible: false
         }
     },
+    methods: { 
+        updateEvent: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Date:$('#date').val(),
+                Location:$('#place').val(),
+                Time:$('#time').val()
+            });
+            eventName = $('#name').val();
+        }
+    },
     template: `<div class="inputs">
+                    <div class="section-header">
+                        <p class="section-title">Logistics</p>
+                        <button class="drop-down" v-on:click="isVisible=!isVisible">
+                            <i class="material-icons">keyboard_arrow_down</i>
+                        </button>
+                    </div>
+                    <div v-if="isVisible" class="inputs">
                         <form>
                             <label for="date">Date</label>
                             <input id="date" type="date"><br>
@@ -165,10 +191,10 @@ Vue.component('section3', {
                             <br>
                             <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                             <br>
-                            <input id="submit3" class="save btn btn-light" type="submit" v-on:click="" value="Save">
+                            <input id="submit3" class="save btn btn-light" type="submit" v-on:click="updateEvent" value="Save">
                             <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
-                    
+                    </div>
                 </div>`
 })
 
@@ -202,19 +228,26 @@ Vue.component('section5', {
             isVisible: false
         }
     },
+    methods: { 
+        addNotes: function (event) {
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Notes:$('#notes').val()
+            });
+        }
+    },
     template: `<div class="inputs">
                         <form>
                             <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
                             <br>
                             <label for="about">Anything else you want to say about this event?</label>
-                            <textarea id="about"></textarea><br>
+                            <textarea id="notes"></textarea><br>
                             <p>
                                 Remember to do anything else your organization requires you to do, such as
                                 sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
                                 and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                             </p>
                             <br>
-                            <input id="submit5" class="save btn btn-light" type="submit" v-on:click="" value="Save">
+                            <input id="submit5" class="save btn btn-light" type="submit" v-on:click="addNotes" value="Save">
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
@@ -222,14 +255,14 @@ Vue.component('section5', {
 })
 
 // Initialize Vue
-new Vue({
+const app = new Vue({
     el: '#app',
     data: {
         currentTab: 'Home',
         tabs: [
             'Home',
             'Details',
-            'Upcoming',
+            'Upcoming' ,
             'Past'
         ]
     },
@@ -241,20 +274,5 @@ new Vue({
 })
 
 var currentOrg = "SWE"; 
-$(document).ready(function(){
-    var eventTable = $("#upcomingEventTable");
-    var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
-    dbref.once('value').then(snap => {
-        snap.forEach(childsnap => {
+var eventName;
 
-            var eventRow = $("<tr></tr>");
-            var nameColumn = $("<td></td>").text(childsnap.key);
-            var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
-            var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
-            eventRow.append(nameColumn,dateColumn,statusColumn);
-            link.append(eventRow);
-            console.log(eventTable);
-            eventTable.append(link);
-        });
-    });
-});
