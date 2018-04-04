@@ -103,19 +103,19 @@ Vue.component('section1', {
     template: `<div class="inputs">
                         <form>
                             <label for="name">Event Name</label>
-                            <input id="name" type="text"><br>
+                            <input id="name" type="text" required><br>
                             <label for="date">Date</label>
-                            <input id="date" type="date"><br>
+                            <input id="date" type="date" required><br>
                             <label for="time">Time</label>
-                            <input id="time" type="time"><br>
+                            <input id="time" type="time" required><br>
                             <label for="place">Location</label>
-                            <input id="place" type="text"><br>
+                            <input id="place" type="text" required><br>
                             <label for="about">Event Description</label>
                             <textarea id="about"></textarea><br>
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
-                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
+                            <input id="submit1" class="save btn btn-light" type="submit" v-on:click="addEvent" value="Save">
+                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button> 
                         </form>
                     
                 </div>`
@@ -169,32 +169,24 @@ Vue.component('section3', {
         }
     },
     template: `<div class="inputs">
-                    <div class="section-header">
-                        <p class="section-title">Logistics</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
-                        <form>
-                            <label for="date">Date</label>
-                            <input id="date" type="date"><br>
-                            <label for="time">Time</label>
-                            <input id="time" type="time"><br>
-                            <label for="place">Location</label>
-                            <input id="place" type="text"><br>
-                            <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
-                            <br>
-                            <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
-                            <br>
-                            <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
-                            <br>
-                            <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
-                            <br>
-                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit3" type="button" class="save btn btn-light" v-on:click="updateEvent">Save</button>
-                        </form>
-                    </div>
+                    <form>
+                        <label for="date">Date</label>
+                        <input id="date" type="date"><br>
+                        <label for="time">Time</label>
+                        <input id="time" type="time"><br>
+                        <label for="place">Location</label>
+                        <input id="place" type="text"><br>
+                        <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
+                        <br>
+                        <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
+                        <br>
+                        <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
+                        <br>
+                        <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
+                        <br>
+                        <input id="submit3" class="save btn btn-light" type="submit" v-on:click="updateEvent" value="Save">
+                        <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </form>
                 </div>`
 })
 
@@ -247,8 +239,8 @@ Vue.component('section5', {
                                 and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                             </p>
                             <br>
+                            <input id="submit5" class="save btn btn-light" type="submit" v-on:click="addNotes" value="Save">
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit5" type="button" class="save btn btn-light" v-on:click="addNotes">Save</button>
                         </form>
                     
                 </div>`
@@ -274,5 +266,41 @@ const app = new Vue({
 })
 
 var currentOrg = "SWE"; 
-var eventName;
-
+$(document).ready(function(){
+    var upcomingEventTable = $("#upcomingEventTable");
+    var pastEventTable = $("#pastEventTable");
+    var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
+    dbref.on('value', snap => {
+        upcomingEventTable.empty();
+        pastEventTable.empty();
+        var titleRow = $("<tr></tr>");
+        var titleRow2 = $("<tr></tr>");
+        var name = $("<th></th>").text("Event Name");
+        var date = $("<th></th>").text("Date");
+        var status = $("<th></th>").text("Status");
+         var name2 = $("<th></th>").text("Event Name");
+        var date2 = $("<th></th>").text("Date");
+        var status2 = $("<th></th>").text("Status");
+        titleRow.append(name,date,status);
+        titleRow2.append(name2,date2,status2);
+        pastEventTable.append(titleRow);
+        upcomingEventTable.append(titleRow2);
+        snap.forEach(childsnap => {
+            var eventRow = $("<tr></tr>");
+            var nameColumn = $("<td></td>").text(childsnap.key);
+            var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
+            var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
+            eventRow.append(nameColumn,dateColumn,statusColumn);
+           
+            if(statusColumn.text() == "Ongoing") {
+                    upcomingEventTable.append(eventRow);
+                    console.log("ongoing event");
+            }
+            else {
+                pastEventTable.append(eventRow);
+                console.log("past event");
+            }
+            
+        });
+    });
+});
