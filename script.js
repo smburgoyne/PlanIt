@@ -29,7 +29,7 @@ Vue.component('event-table', {
             events: eventList
         }
     },
-    template: `<table id=event-table>
+    template: `<table>
                     <tr>
                         <th>Event Name</th>
                         <th>Date</th>
@@ -242,7 +242,7 @@ new Vue({
 
 var currentOrg = "SWE"; 
 $(document).ready(function(){
-    var eventTable = $("#event-table");
+    var eventTable = $("#upcomingEventTable");
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.once('value').then(snap => {
         snap.forEach(childsnap => {
@@ -252,8 +252,9 @@ $(document).ready(function(){
             var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
             eventRow.append(nameColumn,dateColumn,statusColumn);
+            link.append(eventRow);
             console.log(eventTable);
-            eventTable.append(eventRow);
+            eventTable.append(link);
         });
     });
 });
