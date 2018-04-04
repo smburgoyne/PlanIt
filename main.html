@@ -57,6 +57,7 @@
 				$('#past').show();
 			});
 
+
 			var coll = document.getElementsByClassName("collapsible");
 			var i;
 
@@ -100,9 +101,14 @@
 					$('#login').hide();
 					$('#app').show();
 				}
+				else
+				{
+					$('#login-error').text("Invalid username/password. Please try again.")
+				}
 			});
 
 		})
+	
 	</script>
 </head>
 
@@ -117,6 +123,7 @@
 				<label for="psw" class="w3-text-teal"><b>Password</b></label>
 				<input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
 				<br>
+				<p><span id="login-error"></span></p>
 				<input id="login-submit" class="save btn btn-light" type="submit" value="Login">
 			</div>
 	</div>
@@ -124,9 +131,9 @@
 	<div id="app">
 		<div class="navbar">
 			<img src="./logo2.png">
-			<button id="button4" type="button" class="navbartab btn">Past Events</button>
-			<button id="button3" type="button" class="navbartab btn">Upcoming Events</button>
-			<button id="button2" type="button" class="navbartab btn">New Event</button>
+			<button id="button4" type="button" class="navbartab btn">Completed Events</button>
+			<button id="button3" type="button" class="navbartab btn">Ongoing Events</button>
+			<button id="button2" type="button" class="navbartab btn">Create New Event</button>
 			<button id="button1" type="button" class="navbartab btn">Home</button>
 		</div>
 
@@ -140,11 +147,11 @@
 				be able to track the progress of every task. In a world of event planning tasks, all you need to do is visit PlanIt!
 			</p>
 			<div>
-				<button id="new-event-button" type="button" class="new-event btn btn-light">New Event</button>
+				<button id="new-event-button" type="button" class="new-event btn btn-light">Create a New Event</button>
 			</div>
 			<div>
-				<button id="upcoming-button" type="button" class="btn btn-secondary"> Upcoming Events</button>
-				<button id="past-button" type="button" class="btn btn-secondary">Past Events</button>
+				<button id="upcoming-button" type="button" class="btn btn-secondary"> Ongoing Events</button>
+				<button id="past-button" type="button" class="btn btn-secondary">Completed Events</button>
 			</div>
 		</div>
 
@@ -157,52 +164,60 @@
 			<button id="test-button2">+</button>
 			
 			<br>
+			<div class="collapsing-menu">
+				<button class="collapsible collapsible-top">What is this Event?
+					<i class="material-icons">done</i>
+					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
+				</button>
+				<div class="content">
+					<section1></section1>
+				</div>
 
-			<button class="collapsible">What is this Event?
-				<i class="material-icons">done</i>
-			</button>
-			<div class="content">
-				<section1></section1>
+				<button class="collapsible">Finances
+					<i class="material-icons">done</i>
+					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
+				</button>
+				<div class="content">
+					<section2></section2>
+				</div>
+
+				<button class="collapsible">Logistics
+					<i class="material-icons">query_builder</i>
+					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
+				</button>
+				<div class="content">
+					<section3></section3>
+				</div>
+
+				<button class="collapsible">Marketing
+					<i class="material-icons">query_builder</i>
+					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
+				</button>
+				<div class="content">
+					<section4></section4>
+				</div>
+
+				<button class="collapsible collapsible-bottom">Post Event Details
+					<i class="material-icons">clear</i>
+					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
+				</button>
+				<div class="content">
+					<section5></section5>
+				</div>
+
+				<button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
 			</div>
-
-			<button class="collapsible">Finances
-				<i class="material-icons">done</i>
-			</button>
-			<div class="content">
-				<section2></section2>
-			</div>
-
-			<button class="collapsible">Logistics
-				<i class="material-icons">query_builder</i>
-			</button>
-			<div class="content">
-				<section3></section3>
-			</div>
-
-			<button class="collapsible">Marketing
-				<i class="material-icons">query_builder</i>
-			</button>
-			<div class="content">
-				<section4></section4>
-			</div>
-
-			<button class="collapsible">Post Event Details
-				<i class="material-icons">clear</i>
-			</button>
-			<div class="content">
-				<section5></section5>
-			</div>
-
-			<button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
 		</div>
 
 		<div id="upcoming" class="page">
-			<h1>Upcoming Events</h1>
+			<h1>Ongoing Events</h1>
+			<p>These events are all of those that are still in progress. This includes events that have yet to happen and events that still need to be followed up on.</p>
 			<event-table id="upcomingEventTable"></event-table>
 		</div>
 
 		<div id="past" class="page">
-			<h1>Past Events</h1>
+			<h1>Completed Events</h1>
+			<p>These events are all of those that are completed, which are events that have already past and all follow-up has been completed</p>
 			<event-table id = "pastEventTable"></event-table>
 		</div>
 
