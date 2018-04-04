@@ -1,6 +1,7 @@
 var eventName = "New Event";
 var isNew = true;
 var currentOrg = "SWE"; 
+var completion = 0;
 
 Vue.component('tab-details', {
   
@@ -207,6 +208,12 @@ const app = new Vue({
             var date = $('#date').val();
             var time = $('#time').val();
             var location = $('#place').val();
+            if(completion < 10) {
+                completion +=10; 
+                $('#progressbar > div').css('width', completion+'%');
+
+            } 
+
             if(name === "" || date === "" || time === "" || location === "")
             {
                 $('#event-error').text("Please enter a valid value for event name, date, time, and/or location.");
@@ -221,10 +228,12 @@ const app = new Vue({
                     Planner:$('#planner').val(),
                     Time:$('#time').val(),
                     Status:"Ongoing"
+                    Completion: completion
                 });
                 eventName = $('#name').val();
                 newEventName = $('#name').val();
             }
+
         }
 function updateEvent() {
     firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -253,6 +262,7 @@ function clearForms() {
                     $("#notes").val("");
                     var location = $('#place').val("");
                     $('#planner').val("");
+                    $('#progressbar > div').css('width', '0%');
 }
 
 $(document).ready(function(){
