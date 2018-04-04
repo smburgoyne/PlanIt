@@ -126,7 +126,7 @@ Vue.component('section1', {
                     <label for="place">Location</label>
                     <input id="place" type="text" required><br>
                     <label for="about">Event Description</label>
-                    <textarea id="about"></textarea><br>
+                    <textarea id="about" rows="7" cols="50"></textarea><br>
                     <label for="planner">Primary Event Planner</label>
                     <input id="planner" type="text"><br>
                     <p><span id="event-error"></span></p>
@@ -147,11 +147,11 @@ Vue.component('section2', {
         }
     },
     template: `<div class="inputs">
-                    <a id="budget" class="btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank">Required Budget</a>
+                    <a id="budget" class="form-link btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank">Required Budget</a>
                     <br>
-                    <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
+                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
                     <br>
-                    <a id="reimbursement" class="btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank">Reimbursement Form</a>
+                    <a id="reimbursement" class="form-link btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank">Reimbursement Form</a>
                 </div>`
 })
 
@@ -186,13 +186,13 @@ Vue.component('section3', {
                     <input id="time" type="time"><br>
                     <label for="place">Location</label>
                     <input id="place" type="text"><br>
-                    <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
+                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
                     <br>
-                    <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
+                    <a id="signin" class="form-link btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
                     <br>
-                    <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
+                    <a id="volunteers" class="form-link btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
                     <br>
-                    <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
+                    <a id="carpool" class="form-link btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                     <br>
                     <input id="submit3" class="save btn btn-light" type="submit" v-on:click="updateEvent" value="Save">
                     <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
@@ -209,9 +209,8 @@ Vue.component('section4', {
         }
     },
     template: `<div class="inputs">
-                    <a id="advertise" class="btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank">Request to Advertise</a>
+                    <a id="advertise" class="form-link btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank">Request to Advertise</a>
                     <br>
-                    <p>response from advertisor</p>
                 </div>`
 })
 
@@ -234,11 +233,11 @@ Vue.component('section5', {
         }
     },
     template: `<div class="inputs">
-                    <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
+                    <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank">Reimbursement Form</a>
                     <br>
                     <label for="about">Anything else you want to say about this event?</label>
-                    <textarea id="notes"></textarea><br>
-                    <p>
+                    <textarea id="notes" rows="7" cols="50"></textarea><br>
+                    <p class="form">
                         Remember to do anything else your organization requires you to do, such as
                         sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
                         and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.

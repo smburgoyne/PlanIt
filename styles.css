@@ -330,3 +330,21 @@ label
     color:#000!important;
     background-color:#87CEEB!important;
 }
+
+textarea
+{
+    vertical-align: top;
+    height: 110px;
+    width: 350px;
+}
+
+.form
+{
+    text-align: left;
+    margin-left: 15px;
+}
+
+.form-link
+{
+    margin-left: 5px;
+}
