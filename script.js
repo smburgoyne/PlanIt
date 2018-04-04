@@ -169,32 +169,24 @@ Vue.component('section3', {
         }
     },
     template: `<div class="inputs">
-                    <div class="section-header">
-                        <p class="section-title">Logistics</p>
-                        <button class="drop-down" v-on:click="isVisible=!isVisible">
-                            <i class="material-icons">keyboard_arrow_down</i>
-                        </button>
-                    </div>
-                    <div v-if="isVisible" class="inputs">
-                        <form>
-                            <label for="date">Date</label>
-                            <input id="date" type="date"><br>
-                            <label for="time">Time</label>
-                            <input id="time" type="time"><br>
-                            <label for="place">Location</label>
-                            <input id="place" type="text"><br>
-                            <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
-                            <br>
-                            <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
-                            <br>
-                            <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
-                            <br>
-                            <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
-                            <br>
-                            <input id="submit3" class="save btn btn-light" type="submit" v-on:click="updateEvent" value="Save">
-                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
-                        </form>
-                    </div>
+                    <form>
+                        <label for="date">Date</label>
+                        <input id="date" type="date"><br>
+                        <label for="time">Time</label>
+                        <input id="time" type="time"><br>
+                        <label for="place">Location</label>
+                        <input id="place" type="text"><br>
+                        <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank">Supplies List</a>
+                        <br>
+                        <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank">Event Sign-In Form</a>
+                        <br>
+                        <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank">Volunteers Form</a>
+                        <br>
+                        <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
+                        <br>
+                        <input id="submit3" class="save btn btn-light" type="submit" v-on:click="updateEvent" value="Save">
+                        <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </form>
                 </div>`
 })
 
