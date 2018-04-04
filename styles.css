@@ -194,6 +194,11 @@ input, textarea
     display: none;
 }
 
+#login-error, #event-error
+{
+    color: red;
+}
+
 .collapsible {
     background-color: #3f7ea6;
     color: white;

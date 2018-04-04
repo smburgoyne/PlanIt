@@ -98,6 +98,10 @@
 					$('#login').hide();
 					$('#app').show();
 				}
+				else
+				{
+					$('#login-error').text("Invalid username/password. Please try again.")
+				}
 			});
 
 		})
@@ -115,6 +119,7 @@
 				<label for="psw" class="w3-text-teal"><b>Password</b></label>
 				<input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
 				<br>
+				<p><span id="login-error"></span></p>
 				<input id="login-submit" class="save btn btn-light" type="submit" value="Login">
 			</div>
 	</div>
