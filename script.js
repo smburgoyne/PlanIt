@@ -29,7 +29,7 @@ Vue.component('event-table', {
             events: eventList
         }
     },
-    template: `<table id=event-table>
+    template: `<table>
                     <tr>
                         <th>Event Name</th>
                         <th>Date</th>
@@ -105,8 +105,8 @@ Vue.component('section1', {
                             <textarea id="about"></textarea><br>
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
-                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <input id="submit1" class="save btn btn-light" type="submit" v-on:click="addEvent" value="Save"> 
+                            <input id="submit1" class="save btn btn-light" type="submit" v-on:click="addEvent" value="Save">
+                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button> 
                         </form>
                     
                 </div>`
@@ -165,8 +165,8 @@ Vue.component('section3', {
                             <br>
                             <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                             <br>
-                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <input id="submit3" class="save btn btn-light" type="submit" v-on:click="" value="Save">
+                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
                 </div>`
@@ -214,8 +214,8 @@ Vue.component('section5', {
                                 and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                             </p>
                             <br>
-                            <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <input id="submit5" class="save btn btn-light" type="submit" v-on:click="" value="Save">
+                            <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
                 </div>`
@@ -242,7 +242,7 @@ new Vue({
 
 var currentOrg = "SWE"; 
 $(document).ready(function(){
-    var eventTable = $("#event-table");
+    var eventTable = $("#upcomingEventTable");
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.once('value').then(snap => {
         snap.forEach(childsnap => {
@@ -252,8 +252,9 @@ $(document).ready(function(){
             var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
             eventRow.append(nameColumn,dateColumn,statusColumn);
+            link.append(eventRow);
             console.log(eventTable);
-            eventTable.append(eventRow);
+            eventTable.append(link);
         });
     });
 });
