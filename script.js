@@ -223,6 +223,7 @@ const app = new Vue({
             }
             else
             {
+                $('#event-error').text("");
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
                     Date:$('#date').val(),
                     Description:$('#about').val(),
@@ -298,6 +299,7 @@ $(document).ready(function(){
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
+                var statusTemp = "";
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
                     var name = $('#name').val(eventName);
                     var date = $('#date').val(snap.child("Date").val());
@@ -308,13 +310,28 @@ $(document).ready(function(){
                     $('#time2').val(snap.child("Time").val());
                     $("#notes").val(snap.child("Notes").val());
                     var location = $('#place').val(snap.child("Location").val());
-                    $('#planner').val(snap.child("Planner").val())
-
+                    $('#planner').val(snap.child("Planner").val());
+                    statusTemp = snap.child("Status").val();
+                    if(statusTemp === "Completed")
+                    {
+                        $('#name').prop('disabled', true);
+                        $('#date').prop('disabled', true);
+                        $('#time').prop('disabled', true);
+                        $('#date2').prop('disabled', true);
+                        $('#place2').prop('disabled', true);
+                        $('#about').prop('disabled', true);
+                        $('#time2').prop('disabled', true);
+                        $('#notes').prop('disabled', true);
+                        $('#planner').prop('disabled', true);
+                        $('#place').prop('disabled', true);
+                    }
                 })
                 $('#home').hide();
                 $('#details').show();
                 $('#upcoming').hide();
                 $('#past').hide();
+
+                
 
             });
             if(statusColumn.text() == "Ongoing") {
