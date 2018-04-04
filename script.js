@@ -1,6 +1,7 @@
 var eventName = "New Event";
 var isNew = true;
 var currentOrg = "SWE"; 
+var completion = 0;
 
 Vue.component('tab-details', {
   
@@ -255,6 +256,12 @@ function enableInputs() {
             var date = $('#date').val();
             var time = $('#time').val();
             var location = $('#place').val();
+            if(completion < 10) {
+                completion +=10; 
+                $('#progressbar > div').css('width', completion+'%');
+
+            } 
+
             if(name === "" || date === "" || time === "" || location === "")
             {
                 $('#event-error').text("Please enter a valid value for event name, date, time, and/or location.");
@@ -269,7 +276,8 @@ function enableInputs() {
                     Notes:"",
                     Planner:$('#planner').val(),
                     Time:$('#time').val(),
-                    Status:"Ongoing"
+                    Status:"Ongoing",
+                    Completion: completion
                 });
                 eventName = $('#name').val();
                 newEventName = $('#name').val();
@@ -278,7 +286,57 @@ function enableInputs() {
                 $('#time2').val($('#time').val());
                 enableInputs();
             }
+
         }
+
+function requiredBudget() {
+    if(completion < 20) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function suppliesList() {
+    if(completion < 30) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function reimbursementForm() {
+    if(completion < 40) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
+function suppliesList2() {
+    if(completion < 50) {
+        completion +=10; 
+        $('#progressbar > div').css('width', completion+'%');
+
+    } 
+    firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+        Completion: completion
+    });
+
+}
+
 function updateEvent() {
     firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
                 Date:$('#date2').val(),
@@ -294,21 +352,73 @@ function addNotes() {
             });
 }
 
+function completeSignin() {
+    if(completion < 60) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeVolunteer() {
+    if(completion < 70) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeCarpool() {
+    if(completion < 80) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeAdvertise() {
+    if(completion < 90) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
+
+function completeReimburse() {
+    if(completion < 100) {
+        completion += 10;
+        $('#progressbar > div').css('width', completion+'%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Completion:completion
+            });
+    }
+}
 
 function clearForms() {
      var name = $('#name').val("");
-    var date = $('#date').val("");
-    var time = $('#time').val("");
-    $('#date2').val("");
-    $('#place2').val("");
-    $('#about').val("")
-    $('#time2').val("");
-    $("#notes").val("");
-    var location = $('#place').val("");
-    $('#planner').val("");
-
-    enableInputs();
+                    var date = $('#date').val("");
+                    var time = $('#time').val("");
+                    $('#date2').val("");
+                    $('#place2').val("");
+                    $('#about').val("")
+                    $('#time2').val("");
+                    $("#notes").val("");
+                    var location = $('#place').val("");
+                    $('#planner').val("");
+                    $('#progressbar > div').css('width', '0%');
+                    completion = 0;
+                    enableInputs();
 }
+
+
 
 $(document).ready(function(){
     var upcomingEventTable = $("#upcomingEventTable");
@@ -355,6 +465,8 @@ $(document).ready(function(){
                     $("#notes").val(snap.child("Notes").val());
                     var location = $('#place').val(snap.child("Location").val());
                     $('#planner').val(snap.child("Planner").val());
+                    completion = snap.child("Completion").val()
+                    $('#progressbar > div').css('width', completion +'%');
                     statusTemp = snap.child("Status").val();
                     if(statusTemp === "Completed")
                     {
