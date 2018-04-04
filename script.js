@@ -105,8 +105,8 @@ Vue.component('section1', {
                             <textarea id="about"></textarea><br>
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
-                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
+                            <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
                 </div>`
@@ -165,8 +165,8 @@ Vue.component('section3', {
                             <br>
                             <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                             <br>
-                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit3" type="button" class="save btn btn-light">Save</button>
+                            <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
                 </div>`
@@ -214,8 +214,8 @@ Vue.component('section5', {
                                 and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                             </p>
                             <br>
-                            <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                             <button id="submit5" type="button" class="save btn btn-light">Save</button>
+                            <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                         </form>
                     
                 </div>`
