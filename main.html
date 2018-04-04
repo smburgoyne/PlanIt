@@ -129,8 +129,8 @@
 	<div id="app">
 		<div class="navbar">
 			<img src="./logo2.png">
-			<button id="button4" type="button" class="navbartab btn">Past Events</button>
-			<button id="button3" type="button" class="navbartab btn">Upcoming Events</button>
+			<button id="button4" type="button" class="navbartab btn">Completed Events</button>
+			<button id="button3" type="button" class="navbartab btn">Ongoing Events</button>
 			<button id="button2" type="button" class="navbartab btn">Create New Event</button>
 			<button id="button1" type="button" class="navbartab btn">Home</button>
 		</div>
@@ -148,8 +148,8 @@
 				<button id="new-event-button" type="button" class="new-event btn btn-light">Create a New Event</button>
 			</div>
 			<div>
-				<button id="upcoming-button" type="button" class="btn btn-secondary"> Upcoming Events</button>
-				<button id="past-button" type="button" class="btn btn-secondary">Past Events</button>
+				<button id="upcoming-button" type="button" class="btn btn-secondary"> Ongoing Events</button>
+				<button id="past-button" type="button" class="btn btn-secondary">Completed Events</button>
 			</div>
 		</div>
 
@@ -208,12 +208,14 @@
 		</div>
 
 		<div id="upcoming" class="page">
-			<h1>Upcoming Events</h1>
+			<h1>Ongoing Events</h1>
+			<p>These events are all of those that are still in progress. This includes events that have yet to happen and events that still need to be followed up on.</p>
 			<event-table id="upcomingEventTable"></event-table>
 		</div>
 
 		<div id="past" class="page">
-			<h1>Past Events</h1>
+			<h1>Completed Events</h1>
+			<p>These events are all of those that are completed, which are events that have already past and all follow-up has been completed</p>
 			<event-table id = "pastEventTable"></event-table>
 		</div>
 
