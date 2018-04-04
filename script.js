@@ -264,6 +264,11 @@ function enableInputs() {
             }
             else
             {
+                if(completion < 10) {
+                    completion +=10; 
+                    $('#progressbar > div').css('width', completion+'%');
+    
+                } 
                 $('#event-error').text("");
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
                     Date:$('#date').val(),
@@ -282,11 +287,7 @@ function enableInputs() {
                 $('#time2').val($('#time').val());
                 enableInputs();
 
-                if(completion < 10) {
-                    completion +=10; 
-                    $('#progressbar > div').css('width', completion+'%');
-    
-                } 
+                
             }
 
         }
