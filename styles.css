@@ -284,3 +284,5 @@ label
     font-size: 16px;
     display: inline-block;
 }
+
+.w3-hover-light-blue:hover{color:#000!important;background-color:#87CEEB!important}
