@@ -88,11 +88,6 @@ Vue.component('event-table', {
                         <th>Date</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
-                        <td>Test event</td>
-                        <td>03/01/2018</td>
-                        <td>Completed</td>
-                    </tr>
                     <event-row
                         v-for="event in events"
                         v-bind:name="event.name"
