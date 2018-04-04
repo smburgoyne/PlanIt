@@ -94,19 +94,19 @@ Vue.component('section1', {
     template: `<div class="inputs">
                         <form>
                             <label for="name">Event Name</label>
-                            <input id="name" type="text"><br>
+                            <input id="name" type="text" required><br>
                             <label for="date">Date</label>
-                            <input id="date" type="date"><br>
+                            <input id="date" type="date" required><br>
                             <label for="time">Time</label>
-                            <input id="time" type="time"><br>
+                            <input id="time" type="time" required><br>
                             <label for="place">Location</label>
-                            <input id="place" type="text"><br>
+                            <input id="place" type="text" required><br>
                             <label for="about">Event Description</label>
                             <textarea id="about"></textarea><br>
                             <label for="planner">Primary Event Planner</label>
                             <input id="planner" type="text"><br>
                             <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit1" type="button" class="save btn btn-light" v-on:click="addEvent">Save</button>
+                            <input id="submit1" class="save btn btn-light" type="submit" v-on:click="addEvent" value="Save"> 
                         </form>
                     
                 </div>`
@@ -166,7 +166,7 @@ Vue.component('section3', {
                             <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank">Carpool Form</a>
                             <br>
                             <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit3" type="button" class="save btn btn-light">Save</button>
+                            <input id="submit3" class="save btn btn-light" type="submit" v-on:click="" value="Save">
                         </form>
                     
                 </div>`
@@ -215,7 +215,7 @@ Vue.component('section5', {
                             </p>
                             <br>
                             <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
-                            <button id="submit5" type="button" class="save btn btn-light">Save</button>
+                            <input id="submit5" class="save btn btn-light" type="submit" v-on:click="" value="Save">
                         </form>
                     
                 </div>`
