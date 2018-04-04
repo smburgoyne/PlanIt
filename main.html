@@ -6,6 +6,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			var isNew = true;
+
 			$("#button1").click(function () {
 				$('#home').show();
 				$('#details').hide();
@@ -14,8 +16,9 @@
 			});
 
 			$("#button2").click(function () {
-				$("#detailHeader").text("New Event");
+				$("#detailHeader").text("Create New Event");
 				clearForms();
+				disableInputs();
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -37,8 +40,9 @@
 			});
 
 			$("#new-event-button").click(function () {
-				$("#detailHeader").text("New Event");
+				$("#detailHeader").text("Create New Event");
 				clearForms();
+				disableInputs();
 				$('#home').hide();
 				$('#details').show();
 				$('#upcoming').hide();
@@ -59,6 +63,17 @@
 				$('#past').show();
 			});
 
+			var disableInputs = function() {
+				$('#date2').prop('disabled', true);
+				$('#place2').prop('disabled', true);
+				$('#time2').prop('disabled', true);
+				$('#notes').prop('disabled', true);
+				$('#submit3').prop('disabled', true);
+				$('#cancel3').prop('disabled', true);
+				$('#submit5').prop('disabled', true);
+				$('#cancel5').prop('disabled', true);
+				$('#submit').prop('disabled', true);
+			}
 
 			var coll = document.getElementsByClassName("collapsible");
 			var i;
@@ -149,7 +164,7 @@
 				be able to track the progress of every task. In a world of event planning tasks, all you need to do is visit PlanIt!
 			</p>
 			<div>
-				<button id="new-event-button" type="button" class="new-event btn btn-light">Create a New Event</button>
+				<button id="new-event-button" type="button" class="new-event btn btn-light">Create New Event</button>
 			</div>
 			<div>
 				<button id="upcoming-button" type="button" class="btn btn-secondary"> Ongoing Events</button>
@@ -158,7 +173,7 @@
 		</div>
 
 		<div id="details" class="page">
-			<h1 id= "detailHeader">New Event</h1>
+			<h1 id="detailHeader">Create New Event</h1>
 			<div id="progressbar">
 				<div></div>
 			</div>
@@ -168,7 +183,7 @@
 			<br>
 			<div class="collapsing-menu">
 				<button class="collapsible collapsible-top">What is this Event?
-					<i class="material-icons">done</i>
+					<!-- <i class="material-icons">done</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
@@ -192,21 +207,21 @@
 				</div>
 
 				<button class="collapsible">Finances
-					<i class="material-icons">done</i>
+					<!-- <i class="material-icons">done</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <a id="budget" class="btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank" onclick="requiredBudget()">Required Budget</a>
+	                    <a id="budget" class="form-link btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank" onclick="requiredBudget()">Required Budget</a>
 	                    <br>
-	                    <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList()">Supplies List</a>
+	                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList()">Supplies List</a>
 	                    <br>
-	                    <a id="reimbursement" class="btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank" onclick="reimbursementForm()">Reimbursement Form</a>
+	                    <a id="reimbursement" class="form-link btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank" onclick="reimbursementForm()">Reimbursement Form</a>
                 	</div>
 				</div>
 
 				<button class="collapsible">Logistics
-					<i class="material-icons">query_builder</i>
+					<!-- <i class="material-icons">query_builder</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
@@ -217,13 +232,13 @@
 	                    <input id="time2" type="time"><br>
 	                    <label for="place">Location</label>
 	                    <input id="place2" type="text"><br>
-	                    <a id="list" class="btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
+	                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
 	                    <br>
-	                    <a id="signin" class="btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank" onclick="completeSignin()">Event Sign-In Form</a>
+	                    <a id="signin" class="form-link btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank" onclick="completeSignin()">Event Sign-In Form</a>
 	                    <br>
-	                    <a id="volunteers" class="btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank" onclick="completeVolunteer()">Volunteers Form</a>
+	                    <a id="volunteers" class="form-link btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank" onclick="completeVolunteer()">Volunteers Form</a>
 	                    <br>
-	                    <a id="carpool" class="btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank" onclick="completeCarpool()">Carpool Form</a>
+	                    <a id="carpool" class="form-link btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank" onclick="completeCarpool()">Carpool Form</a>
 	                    <br>
 	                    <input id="submit3" class="save btn btn-light" type="submit" onclick="updateEvent()" value="Save">
 	                    <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
@@ -231,28 +246,28 @@
 				</div>
 
 				<button class="collapsible">Marketing
-					<i class="material-icons">query_builder</i>
+					<!-- <i class="material-icons">query_builder</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <a id="advertise" class="btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank" onclick="completeAdvertise()">Request to Advertise</a>
+	                    <a id="advertise" class="form-link btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank" onclick="completeAdvertise()">Request to Advertise</a>
 	                    <br>
-	                    <p>response from advertisor</p>
+	                    <!-- <p>response from advertisor</p> -->
                		</div>
 				</div>
 
 				<button class="collapsible collapsible-bottom">Post Event Details
-					<i class="material-icons">clear</i>
+					<!-- <i class="material-icons">clear</i> -->
 					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
 				</button>
 				<div class="content">
 					<div class="inputs">
-	                    <a id="feedback" class="btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank" onclick="completeReimburse()">Reimbursement Form</a>
+	                    <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank" onclick="completeReimburse()">Reimbursement Form</a>
 	                    <br>
 	                    <label for="about">Anything else you want to say about this event?</label>
 	                    <textarea id="notes"></textarea><br>
-	                    <p>
+	                    <p class="form">
 	                        Remember to do anything else your organization requires you to do, such as
 	                        sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
 	                        and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
@@ -263,7 +278,8 @@
                 	</div>
 				</div>
 
-				<button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+				<!-- <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button> -->
+				<finishedbutton></finishedbutton>
 			</div>
 		</div>
 
