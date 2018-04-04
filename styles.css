@@ -226,13 +226,16 @@ input, textarea
 {
     margin: 10px 20px;
     text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .btn-secondary
 {
     background-color: grey;
     color: #FFF;
-    width: 120px;
+    width: 12%;
     height: 40px;
     margin: 10px;
     font-size: 16px;
