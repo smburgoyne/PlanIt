@@ -198,6 +198,14 @@ input, textarea
 #login-error, #event-error
 {
     color: red;
+    text-align: left;
+}
+
+#tip
+{
+    text-align: left;
+    color: gray;
+    margin-left: 15px;
 }
 
 .collapsing-menu
