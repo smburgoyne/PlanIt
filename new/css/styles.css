@@ -101,7 +101,7 @@ tr:nth-child(even)
 
 /* error CSS
 */
-#login-error, #event-error
+#login-error, #event-error, #event-error1, #event-error2
 {
     color: red;
     text-align: left;

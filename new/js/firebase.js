@@ -3,6 +3,7 @@
 * For firebase functions
 *
 */
+
 // "Global" variables
 var currentUser = "";
 var currentOrg = "SWE";
@@ -26,7 +27,7 @@ $(document).ready(function () {
             var dbref = firebase.database().ref('/Users/' + username);
             dbref.once('value').then(snap => {
                 if (snap.child("password").val() === password) {
-                    console.log("Username and password is valid");
+                    // console.log("Username and password is valid");
                     currentUser = username;
                     currentOrg = snap.child("organization").val();
                     $('#home-title').text(snap.child("name").val() + "'s PlanIt");
@@ -35,7 +36,7 @@ $(document).ready(function () {
                     $('#main-app').show();
                 }
                 else {
-                    console.log("Username and password not valid");
+                    // console.log("Username and password not valid");
                     $('#login-error').text("Invalid username/password. Please try again.");
                 }
             });
@@ -142,26 +143,138 @@ $(document).ready(function () {
             // go to event details page
             eventRow.click(function () {
                 eventName = nameColumn.text();
-                $("#detailHeader").text(eventName);
-                console.log(eventName);
                 $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
                     var name = $('#name').val(eventName);
                     var date = $('#date').val(snap.child("Date").val());
                     var time = $('#time').val(snap.child("Time").val());
+                    currentLocation = snap.child("Location").val();
+                    if(currentLocation === "On")
+                    {
+                        $('#location-details').show();
+                        $('#location-details1').show();
+                        $('#location-type').text("On-Campus");
+                        $('#location-details2').show();
+                        $('#location-details3').show();
+                        $('#location-type1').text("On-Campus");
+                        currentLocation = "On";
+                    }
+                    else if(currentLocation === "Off")
+                    {
+                        $('#location-details').hide();
+                        $('#location-details1').show();
+                        $('#location-type').text("Off-Campus");
+                        $('#location-details2').hide();
+                        $('#location-details3').show();
+                        $('#location-type1').text("Off-Campus");
+                        currentLocation = "Off";
+                    }
+                    else if(currentLocation === "Tbd")
+                    {
+                        $('#location-details').hide();
+                        $('#location-details1').hide();
+                        $('#location-type').text("TBD");
+                        $('#location-details2').hide();
+                        $('#location-details3').hide();
+                        $('#location-type1').text("TBD");
+                        currentLocation = "Tbd";
+                    }
+                    $('#place').val(snap.child("Address").val());
+                    $('#about').val(snap.child("Description").val());
+                    $('#planner').val(snap.child("Planner").val());
+
+                    if((currentLocation === "On" || currentLocation === "Off") && $('#about').val() && $('#planner').val())
+                    {
+                        $('#pi1').text('done');
+                    }
+                    else
+                    {
+                        $('#pi1').text('query_builder');
+                    }
+
+                    currentIsFree = snap.child("IsFree").val();
+                    currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentIsFree === "Yes")
+                    {
+                        $('#paid-event-details').hide();
+                        $('#budget-type').text("Yes");
+                        currentIsFree = "Yes";
+                        $('#pi2').text("done");
+                    }
+                    else if (currentIsFree === "No")
+                    {
+                        $('#paid-event-details').show();
+                        $('#budget-type').text("No");
+                        currentIsFree = "No";
+                        $('#list-link').val(snap.child("ListLink").val());
+                        if(currentBudgetStatus === "Approved" && $('#list-link').val())
+                        {
+                            $('#pi2').text('done');
+                        }
+                        else
+                        {
+                            $('#pi2').text('query_builder');
+                        }
+                    }
+                    else
+                    {
+                        $('#paid-event-details').hide();
+                        $('#budget-type').text("Choose an option");
+                        $('#pi2').text('clear');
+                    }
+                    $('#list-link').val(snap.child("ListLink").val());
+
                     $('#date2').val(snap.child("Date").val());
                     $('#place2').val(snap.child("Location").val());
-                    $('#about').val(snap.child("Description").val())
                     $('#time2').val(snap.child("Time").val());
+                    $('#list-link2').val(snap.child("ListLink").val());
+                    $('#signin-link').val(snap.child("SigninLink").val());
+                    $('#volunteer-link').val(snap.child("VolLink").val());
+                    $('#carpool-link').val(snap.child("CarpoolLink").val());
+                    if($('#signin-link').val() && $('#volunteer-link').val() && $('#carpool-link').val())
+                    {
+                        $('#pi3').text('done');
+                    }
+                    else
+                    {
+                        $('#pi3').text('query_builder');
+                    }
+
+                    currentAdStatus = snap.child("AdStatus").val();
+                    if(currentAdStatus === "")
+                    {
+                        $('#pi4').text('clear');
+                    }
+                    else if (currentAdStatus === "Pending")
+                    {
+                        $('#pi4').text('query_builder');
+                    }
+                    else if(currentAdStatus === "Approved")
+                    {
+                        $('#pi4').text('done');
+                    }
+
                     $("#notes").val(snap.child("Notes").val());
-                    var location = $('#place').val(snap.child("Location").val());
-                    $('#planner').val(snap.child("Planner").val());
+                    if($('#notes').val())
+                    {
+                        $('#pi5').text('done');
+                    }
+                    else
+                    {
+                        $('#pi5').text('clear');
+                    }
+
                     completion = snap.child("Completion").val()
                     $('#progressbar > div').css('width', completion + '%');
                     statusTemp = snap.child("Status").val();
                     if (statusTemp === "Completed") {
                         disableAllInputs();
+                        $('#pi1').text('done');
+                        $('#pi2').text('done');
+                        $('#pi3').text('done');
+                        $('#pi4').text('done');
+                        $('#pi5').text('done');
                     }
                     else {
                         enableAllInputs();
@@ -174,26 +287,138 @@ $(document).ready(function () {
             });
             eventRow1.click(function () {
                 eventName = nameColumn.text();
-                $("#detailHeader").text(eventName);
-                console.log(eventName);
                 $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
                     var name = $('#name').val(eventName);
                     var date = $('#date').val(snap.child("Date").val());
                     var time = $('#time').val(snap.child("Time").val());
+                    currentLocation = snap.child("Location").val();
+                    if(currentLocation === "On")
+                    {
+                        $('#location-details').show();
+                        $('#location-details1').show();
+                        $('#location-type').text("On-Campus");
+                        $('#location-details2').show();
+                        $('#location-details3').show();
+                        $('#location-type1').text("On-Campus");
+                        currentLocation = "On";
+                    }
+                    else if(currentLocation === "Off")
+                    {
+                        $('#location-details').hide();
+                        $('#location-details1').show();
+                        $('#location-type').text("Off-Campus");
+                        $('#location-details2').hide();
+                        $('#location-details3').show();
+                        $('#location-type1').text("Off-Campus");
+                        currentLocation = "Off";
+                    }
+                    else if(currentLocation === "Tbd")
+                    {
+                        $('#location-details').hide();
+                        $('#location-details1').hide();
+                        $('#location-type').text("TBD");
+                        $('#location-details2').hide();
+                        $('#location-details3').hide();
+                        $('#location-type1').text("TBD");
+                        currentLocation = "Tbd";
+                    }
+                    $('#place').val(snap.child("Address").val());
+                    $('#about').val(snap.child("Description").val());
+                    $('#planner').val(snap.child("Planner").val());
+
+                    if((currentLocation === "On" || currentLocation === "Off") && $('#about').val() && $('#planner').val())
+                    {
+                        $('#pi1').text('done');
+                    }
+                    else
+                    {
+                        $('#pi1').text('query_builder');
+                    }
+
+                    currentIsFree = snap.child("IsFree").val();
+                    currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentIsFree === "Yes")
+                    {
+                        $('#paid-event-details').hide();
+                        $('#budget-type').text("Yes");
+                        currentIsFree = "Yes";
+                        $('#pi2').text("done");
+                    }
+                    else if (currentIsFree === "No")
+                    {
+                        $('#paid-event-details').show();
+                        $('#budget-type').text("No");
+                        currentIsFree = "No";
+                        $('#list-link').val(snap.child("ListLink").val());
+                        if(currentBudgetStatus === "Approved" && $('#list-link').val())
+                        {
+                            $('#pi2').text('done');
+                        }
+                        else
+                        {
+                            $('#pi2').text('query_builder');
+                        }
+                    }
+                    else
+                    {
+                        $('#paid-event-details').hide();
+                        $('#budget-type').text("Choose an option");
+                        $('#pi2').text('clear');
+                    }
+                    $('#list-link').val(snap.child("ListLink").val());
+
                     $('#date2').val(snap.child("Date").val());
                     $('#place2').val(snap.child("Location").val());
-                    $('#about').val(snap.child("Description").val())
                     $('#time2').val(snap.child("Time").val());
+                    $('#list-link2').val(snap.child("ListLink").val());
+                    $('#signin-link').val(snap.child("SigninLink").val());
+                    $('#volunteer-link').val(snap.child("VolLink").val());
+                    $('#carpool-link').val(snap.child("CarpoolLink").val());
+                    if($('#signin-link').val() && $('#volunteer-link').val() && $('#carpool-link').val())
+                    {
+                        $('#pi3').text('done');
+                    }
+                    else
+                    {
+                        $('#pi3').text('query_builder');
+                    }
+
+                    currentAdStatus = snap.child("AdStatus").val();
+                    if(currentAdStatus === "")
+                    {
+                        $('#pi4').text('clear');
+                    }
+                    else if (currentAdStatus === "Pending")
+                    {
+                        $('#pi4').text('query_builder');
+                    }
+                    else if(currentAdStatus === "Approved")
+                    {
+                        $('#pi4').text('done');
+                    }
+
                     $("#notes").val(snap.child("Notes").val());
-                    var location = $('#place').val(snap.child("Location").val());
-                    $('#planner').val(snap.child("Planner").val());
+                    if($('#notes').val())
+                    {
+                        $('#pi5').text('done');
+                    }
+                    else
+                    {
+                        $('#pi5').text('clear');
+                    }
+
                     completion = snap.child("Completion").val()
                     $('#progressbar > div').css('width', completion + '%');
                     statusTemp = snap.child("Status").val();
                     if (statusTemp === "Completed") {
                         disableAllInputs();
+                        $('#pi1').text('done');
+                        $('#pi2').text('done');
+                        $('#pi3').text('done');
+                        $('#pi4').text('done');
+                        $('#pi5').text('done');
                     }
                     else {
                         enableAllInputs();
@@ -216,14 +441,14 @@ $(document).ready(function () {
             // add to upcoming table if within next 2 weeks
             var tempDate = new Date(Date.parse(childsnap.child("Date").val()));
             var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
-            console.log(timeDiff);
+            // console.log(timeDiff);
             if (timeDiff < 2 && timeDiff >= 0) {
                 upcomingEventTable.append(eventRow1);
             }
         });
     });
 
-    // Forms
+    // Form inputs
     $('#on-campus').click(function () {
         $('#location-details').show();
         $('#location-details1').show();
@@ -296,7 +521,7 @@ $(document).ready(function () {
         currentIsFree = "No";
     })
 
-    // Save Buttons
+    // Form Buttons
     $('#submit1').click(function () {
         // Add or update event
         var name = $('#name').val();
@@ -340,6 +565,20 @@ $(document).ready(function () {
                     Completion: completion,
                     VolLink: ""
                 });
+
+                if((currentLocation === "On" || currentLocation === "Off") && $('#about').val() && $('#planner').val())
+                {
+                    $('#pi1').text('done');
+                }
+                else
+                {
+                    $('#pi1').text('query_builder');
+                }
+
+                $('#pi2').text('clear');
+                $('#pi3').text('query_builder');
+                $('#pi4').text('clear');
+                $('#pi5').text('clear');
             }
             else
             {
@@ -352,6 +591,11 @@ $(document).ready(function () {
                     Time: $('#time').val(),
                     Completion: completion
                 });
+
+                if((currentLocation === "On" || currentLocation === "Off") && $('#about').val() && $('#planner').val())
+                {
+                    $('#pi1').text('done');
+                }
             }
             eventName = $('#name').val();
             $('#date2').val($('#date').val());
@@ -363,14 +607,16 @@ $(document).ready(function () {
 
     $('#request-budget-button').click(function() {
         // send request
-
         if(completion < 50)
         {
             completion += 15;
             $('#progressbar > div').css('width', completion + '%');
         }
 
-        currentBudgetStatus = "Pending";
+        if(currentBudgetStatus !== "Approved")
+        {
+            currentBudgetStatus = "Pending";
+        }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
             BudgetStatus: currentBudgetStatus,
@@ -388,7 +634,7 @@ $(document).ready(function () {
         {
             if(completion < 50)
             {
-                if(currentIsFree)
+                if(currentIsFree === "Yes")
                 {
                     completion += 30;
                 }
@@ -407,6 +653,22 @@ $(document).ready(function () {
             });
             
             $('#list-link2').val($('#list-link').val());
+
+            if(currentIsFree === "Yes")
+            {
+                $('#pi2').text('done');
+            }
+            else
+            {
+                if(completion >= 45)
+                {
+                    $('#pi2').text('done');
+                }
+                else
+                {
+                    $('#pi2').text('query_builder');
+                }
+            }
         }
     });
 
@@ -452,6 +714,11 @@ $(document).ready(function () {
             $('#time').val($('#time2').val());
             $('#place').val($('#place2').val());
             $('#list-link').val($('#list-link2').val());
+
+            if($('#signin-link').val() && $('#volunteer-link').val() && $('#carpool-link').val())
+            {
+                $('#pi3').text('done');
+            }
         }
     });
 
@@ -462,7 +729,10 @@ $(document).ready(function () {
             $('#progressbar > div').css('width', completion + '%');
         }
 
-        currentAdStatus = "Pending";
+        if(currentAdStatus !== "Approved")
+        {
+            currentAdStatus = "Pending";
+        }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
             Completion: completion,
@@ -475,6 +745,15 @@ $(document).ready(function () {
             Completion: completion,
             AdStatus: currentAdStatus
         });
+
+        if(currentAdStatus === "Approved")
+        {
+            $('#pi4').text('done');
+        }
+        else if(currentAdStatus === "Pending")
+        {
+            $('#pi4').text('query_builder');
+        }
     });
 
     $('#feedback-form-button').click(function () {
@@ -482,6 +761,7 @@ $(document).ready(function () {
         var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
         if (timeDiff < 0) {
             completion = 95;
+            $('#progressbar > div').css('width', completion + '%');
         }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -493,6 +773,8 @@ $(document).ready(function () {
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
             Notes: $('#notes').val()
         });
+
+        $('#pi5').text('done');
     });
 
     $('#submit').click(function() {
@@ -502,6 +784,12 @@ $(document).ready(function () {
             Status:'Completed',
             Completion: completion
         });
+
+        $('#pi1').text('done');
+        $('#pi2').text('done');
+        $('#pi3').text('done');
+        $('#pi4').text('done');
+        $('#pi5').text('done');
 
         disableAllInputs();
     });
@@ -556,6 +844,12 @@ function enableAllInputs() {
 
 // Reset inputs for new event page
 function resetNewEventPage() {
+    $('#pi1').text("");
+    $('#pi2').text("");
+    $('#pi3').text("");
+    $('#pi4').text("");
+    $('#pi5').text("");
+
     var name = $('#name').val("");
     var date = $('#date').val("");
     var time = $('#time').val("");
