@@ -113,3 +113,8 @@ tr:nth-child(even)
 {
     display: none;
 }
+
+.home-img
+{
+    height: 250px;
+}
