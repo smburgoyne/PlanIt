@@ -5,7 +5,7 @@
 */
 
 var currentUser = "";
-var currentOrg = "";
+var currentOrg = "SWE";
 
 $(document).ready(function () {
     // Authenticate user
