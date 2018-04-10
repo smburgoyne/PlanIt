@@ -4,6 +4,8 @@
 *
 */
 
+/* Login CSS
+*/
 #login
 {
     display: block;
@@ -15,3 +17,59 @@
 {
     display: none;
 }
+
+/* Navbar CSS
+*/
+#navbar
+{
+    height: 70px;
+    margin: 10px;
+    border-bottom: 3px solid #df5a00;
+}
+
+#navbar-logo
+{
+    height: 50px;
+    margin: 10px 20px;
+    position: absolute;
+    left: 50%;
+}
+
+.navbar-tab
+{
+    float: left;
+    height: 50px;
+    border: none;
+    color: #000;
+    background-color: #FFF;
+}
+
+.navbar-icon
+{
+    float: right;
+    height: 50px;
+}
+
+.btn
+{
+    margin: 10px 20px;
+    text-align: center;
+}
+
+#home
+{
+    display: block;
+}
+
+#event-details
+{
+    display: none;
+}
+
+#all-events
+{
+    display: none;
+}
+
+/* 
+*/

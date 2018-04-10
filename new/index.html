@@ -3,9 +3,13 @@
 
 <head>
     <title>PlanIt - An Event Planning Tool</title>
+
+    <!-- Styling -->
     <link rel="stylesheet" href="./css/collapsible.css">
     <link rel="stylesheet" href="./css/progress-icons.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +29,30 @@
     </div>
 
     <div id="main-app">
-        <p>test</p>
+        <div id="navbar">
+            <button id="home-tab-button" type="button" class="navbar-tab btn">Home</button>
+            <button id="new-tab-button" type="button" class="navbar-tab btn">Create New Event</button>
+            <button id="all-tab-button" type="button" class="navbar-tab btn">All Events</button>
+            <img id="navbar-logo" src="./img/logo2.png">
+            <button id="user-button" type="button" class="navbar-icon btn">
+                <i class="material-icons">person</i>
+            </button>
+            <button id="notification-button" type="button" class="navbar-icon btn">
+                <i class="material-icons">notifications</i>
+            </button>
+        </div>
+
+        <div id="home" class="page">
+            <p>home</p>
+        </div>
+
+        <div id="event-details" class="page">
+            <p>new event/event details</p>
+        </div>
+
+        <div id="all-events" class="page">
+            <p>all events</p>
+        </div>
     </div>
 
 	<!-- Firebase stuff -->
