@@ -8,24 +8,34 @@
     <link rel="stylesheet" href="./css/collapsible.css">
     <link rel="stylesheet" href="./css/progress-icons.css">
     <link rel="stylesheet" href="./css/styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
 </head>
 
 <body>
     <div id="login">
-            <h1>PlanIt</h1>
-            <img src="./img/logo2.png" class="home-img">
-            <div>
-                <label for="uname" class="w3-text-teal"><b>Username</b></label>
-                <input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
-                <br>
-                <label for="psw" class="w3-text-teal"><b>Password</b></label>
-                <input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
-                <br>
-                <p><span id="login-error"></span></p>
-                <input id="login-submit" class="save btn btn-light" type="submit" value="Login">
-            </div>
+        <h1>PlanIt</h1>
+        <img src="./img/logo2.png" class="home-img">
+        <div>
+            <label for="uname" class="w3-text-teal">
+                <b>Username</b>
+            </label>
+            <input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
+            <br>
+            <label for="psw" class="w3-text-teal">
+                <b>Password</b>
+            </label>
+            <input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
+            <br>
+            <p>
+                <span id="login-error"></span>
+            </p>
+            <input id="login-submit" class="save btn btn-light" type="submit" value="Login">
+        </div>
     </div>
 
     <div id="main-app">
@@ -43,7 +53,24 @@
         </div>
 
         <div id="home" class="page">
-            <h1><span id="home-title"></span></h1>
+            <h1>
+                <span id="home-title"></span>
+            </h1>
+
+            <div class="col-md-9">
+                <h2>
+                    Notifications
+                </h2>
+            </div>
+
+            <div class="col-md-3">
+                <button id="new-event-button" type="button" class="btn btn-primary">Create New Event</button>
+                <button id="all-events-button" type="button" class="btn btn-secondary">View All Events</button>
+            </div>
+
+            <div>
+                <h2>Upcoming Events</h2>
+            </div>
         </div>
 
         <div id="event-details" class="page">
@@ -55,24 +82,26 @@
         </div>
     </div>
 
-	<!-- Firebase stuff -->
-	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
-			authDomain: "planit-e0809.firebaseapp.com",
-			databaseURL: "https://planit-e0809.firebaseio.com",
-			projectId: "planit-e0809",
-			storageBucket: "planit-e0809.appspot.com",
-			messagingSenderId: "956681008314"
-		};
-		firebase.initializeApp(config);
-	</script>
+    <!-- Firebase stuff -->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
+            authDomain: "planit-e0809.firebaseapp.com",
+            databaseURL: "https://planit-e0809.firebaseio.com",
+            projectId: "planit-e0809",
+            storageBucket: "planit-e0809.appspot.com",
+            messagingSenderId: "956681008314"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/firebase.js"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

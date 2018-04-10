@@ -4,6 +4,9 @@
 *
 */
 
+var currentUser = "";
+var currentOrg = "";
+
 $(document).ready(function () {
     // Authenticate user
     $('#login-submit').click(function () {
@@ -14,6 +17,8 @@ $(document).ready(function () {
             dbref.once('value').then(snap => {
                 if (snap.child("password").val() === password) {
                     console.log("Username and password is valid");
+                    currentUser = username;
+                    currentOrg = snap.child("organization").val();
                     $('#home-title').text(snap.child("name").val() + "'s PlanIt");
                     $('#login').hide();
                     $('#main-app').show();
