@@ -39,6 +39,16 @@ $(document).ready(function () {
         $('#location-details1').hide();
         $('#location-type').text("TBD");
     });
+
+    $('#free-event').click(function() {
+        $('#paid-event-details').hide();
+        $('#budget-type').text("Yes");
+    })
+
+    $('#paid-event').click(function() {
+        $('#paid-event-details').show();
+        $('#budget-type').text("No");
+    })
 })
 
 // Enable all new event inputs
@@ -91,6 +101,8 @@ function resetNewEventPage()
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
     $('#location-details1').hide();
+    $('#paid-event-details').hide();
+    $('#budget-type').text("Choose an option");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);

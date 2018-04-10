@@ -220,6 +220,8 @@ function resetNewEventPage()
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
     $('#location-details1').hide();
+    $('#paid-event-details').hide();
+    $('#budget-type').text("Choose an option");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);

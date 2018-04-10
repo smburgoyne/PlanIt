@@ -120,14 +120,14 @@
                     <div class="inputs">
                         <label for="name">Event Name*</label>
                         <input id="name" type="text" required>
-                        <br>
+                            <br>
                         <label for="date">Date*</label>
                         <input id="date" type="date" required>
-                        <br>
+                            <br>
                         <label for="time">Time*</label>
                         <input id="time" type="time" required>
-                        <br>
-                        <label for="place">Location*</label>
+                            <br>
+                        <label for="location">Location*</label>
                         <div class="dropdown">
                             <button id="location-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span id="location-type">Where is the event happening?</span>
@@ -152,21 +152,21 @@
                             </p>
                         </div>
                         <div id="location-details1">
-                            <label for="address">Address</label>
-                            <input id="address" type="text" required>
+                            <label for="place">Address</label>
+                            <input id="place" type="text" required>
                         </div>
-                        <br>
+                            <br>
                         <label for="about">Event Description</label>
                         <textarea id="about"></textarea>
-                        <br>
+                            <br>
                         <label for="planner">Primary Event Planner</label>
                         <input id="planner" type="text">
-                        <br>
+                            <br>
                         <p>
                             <span id="event-error"></span>
                         </p>
                         <p id="tip">*Required inputs</p>
-                        <input id="submit1" class="save btn btn-light" type="submit" onclick="addEvent()" value="Save">
+                        <button id="submit1" class="save btn btn-light" type="button">Save</button>
                         <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -177,13 +177,34 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <a id="budget" class="form-link btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank"
-                            onclick="requiredBudget()">Required Budget</a>
-                        <br>
-                        <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList()">Supplies List</a>
-                        <br>
-                        <a id="reimbursement" class="form-link btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank"
-                            onclick="reimbursementForm()">Reimbursement Form</a>
+                        <label for="place">Is this a free event?*</label>
+                        <div class="dropdown">
+                            <button id="budget-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="budget-type">Choose an option</span>
+                                <i class="material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="free-event" role="presentation">
+                                    <a role="menuitem" href="#">Yes</a>
+                                </li>
+                                <li id="paid-event" role="presentation">
+                                    <a role="menuitem" href="#">No</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="paid-event-details">
+                            <button id="request-budget-button" type="button" class="btn btn-primary">Request Budget</button>
+                                <br>
+                            <button id="supplies-list-button" type="button" class="btn btn-primary">Create Itemized Supplies List</button>
+                            <br>
+                            <label for="list-link">Link to itemized supplies list</label>
+                            <input id="list-link" type="url">
+                                <br>
+                            <button id="request-reimbursement-button" type="button" class="btn btn-primary">Request Reimbursement</button>
+                        </div>
+                        <p id="tip">*Required inputs</p>
+                        <button id="submit2" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel2" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
 
@@ -193,27 +214,36 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <label for="date">Date</label>
+                        <label for="date2">Date*</label>
                         <input id="date2" type="date">
-                        <br>
-                        <label for="time">Time</label>
+                            <br>
+                        <label for="time2">Time*</label>
                         <input id="time2" type="time">
-                        <br>
-                        <label for="place">Location</label>
+                            <br>
+                        <label for="place2">Location*</label>
                         <input id="place2" type="text">
+                            <br>
+                        <button id="supplies-list-button" type="button" class="btn btn-primary">Create Itemized Supplies List</button>
                         <br>
-                        <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
+                        <label for="list-link2">Link to itemized supplies list</label>
+                        <input id="list-link2" type="url">
+                            <br>
+                        <button id="signin-form-button" type="button" class="btn btn-primary">Create Event Sign-In Form</button>
                         <br>
-                        <a id="signin" class="form-link btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank"
-                            onclick="completeSignin()">Event Sign-In Form</a>
+                        <label for="signin-link">Link to Event Sign-In</label>
+                        <input id="signin-link" type="url">
+                            <br>
+                        <button id="volunteer-form-button" type="button" class="btn btn-primary">Create Volunteer Sign-Up</button>
                         <br>
-                        <a id="volunteers" class="form-link btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank"
-                            onclick="completeVolunteer()">Volunteers Form</a>
+                        <label for="volunteer-link">Link to Volunteer Sign-Up</label>
+                        <input id="volunteer-link" type="url">
+                            <br>
+                        <button id="carpool-form-button" type="button" class="btn btn-primary">Create Carpool Form</button>
                         <br>
-                        <a id="carpool" class="form-link btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank"
-                            onclick="completeCarpool()">Carpool Form</a>
-                        <br>
-                        <input id="submit3" class="save btn btn-light" type="submit" onclick="updateEvent()" value="Save">
+                        <label for="carpool-link">Link to Carpool Form</label>
+                        <input id="carpool-link" type="url">
+                            <br>
+                        <button id="submit3" class="save btn btn-light" type="button">Save</button>
                         <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -224,10 +254,10 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <a id="advertise" class="form-link btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank"
-                            onclick="completeAdvertise()">Request to Advertise</a>
-                        <br>
-                        <!-- <p>response from advertisor</p> -->
+                        <button id="request-ad-button" type="button" class="btn btn-primary">Request Advertising</button>
+                            <br>
+                        <button id="submit4" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel4" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
 
@@ -237,19 +267,18 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank"
-                            onclick="completeReimburse()">Reimbursement Form</a>
-                        <br>
+                        <button id="feedback-form-button" type="button" class="btn btn-primary">Complete Feedback Form</button>
+                            <br>
                         <label for="about">Anything else you want to say about this event?</label>
                         <textarea id="notes"></textarea>
-                        <br>
+                            <br>
                         <p class="form">
                             Remember to do anything else your organization requires you to do, such as sending in attendance, completeing
                             <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>, and filling out
                             <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                         </p>
-                        <br>
-                        <input id="submit5" class="save btn btn-light" type="submit" onclick="addNotes()" value="Save">
+                            <br>
+                        <button id="submit5" class="save btn btn-light" type="button">Save</button>
                         <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>

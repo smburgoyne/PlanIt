@@ -62,12 +62,7 @@
     display: block;
 }
 
-#event-details
-{
-    display: none;
-}
-
-#all-events
+#event-details, #all-events
 {
     display: none;
 }
@@ -114,7 +109,7 @@ tr:nth-child(even)
 
 /* form CSS
 */
-#location-details, #location-details1
+#location-details, #location-details1, #paid-event-details
 {
     display: none;
 }
