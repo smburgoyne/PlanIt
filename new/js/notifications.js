@@ -5,10 +5,12 @@
 */
 
 $(document).ready(function () {
-    var notificationsTable = $("#notifications-table");
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.on('value', snap => {
+        var notificationsTable = $("#notifications-table");
+        var notificationsDropdown = $('#notification-dropdown-menu');
         notificationsTable.empty();
+        notificationsDropdown.empty();
         snap.forEach(child => {
             if (child.child("Status").val() == "Ongoing")
             {
@@ -19,10 +21,7 @@ $(document).ready(function () {
                 if(child.child("IsFree").val() == "" && createTimeDiff > 3)
                 {
                     // note - establish budget
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Is your event free? Remember to complete the Finances section for " + eventName);
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Is your event free? Remember to complete the Finances section for " + eventName);
                     console.log("note - establish budget");
                 }
 
@@ -31,19 +30,13 @@ $(document).ready(function () {
                     if(child.child("BudgetStatus").val() == "")
                     {
                         // note - request a budget
-                        var notificationRow = $("<tr></tr>");
-                        var noteColumn = $("<td></td>").text("Remember to request a budget from your Treasurer for " + eventName);
-                        notificationRow.append(noteColumn);
-                        notificationsTable.append(notificationRow);
+                        addNotification("Remember to request a budget from your Treasurer for " + eventName);
                         console.log("note - request budget");
                     }
                     if(child.child('BudgetStatus').val() == "Pending")
                     {
                         // note - check with treasurer
-                        var notificationRow = $("<tr></tr>");
-                        var noteColumn = $("<td></td>").text("We see that you have requested a budget for " + eventName + ". Make sure to follow up with your Treasurer!");
-                        notificationRow.append(noteColumn);
-                        notificationsTable.append(notificationRow);
+                        addNotification("We see that you have requested a budget for " + eventName + ". Make sure to follow up with your Treasurer!");
                         console.log("note - check with treasurer");
                     }
                 }
@@ -54,33 +47,24 @@ $(document).ready(function () {
                 if(child.child('Location').val() == "Tbd" && (eventTimeDiff < 14 && eventTimeDiff >= 0))
                 {
                     // note - choose a location
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Where is your event? Remember to choose a location for " + eventName);
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Where is your event? Remember to choose a location for " + eventName);
                     console.log("note - choose location");
                 }
                 if(child.child('Location').val() == "On" || child.child('Location').val() == "Off")
                 {
                     // note - enter an address
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Do you have an address for your event? Make sure to enter an address for " + eventName);
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Do you have an address for your event? Make sure to enter an address for " + eventName);
                     console.log("note - enter address");
                 }
 
                 // check for forms
-                if(child.child('CarpoolLink').val() &&
-                    child.child('VolLink').val() &&
-                    child.child('SigninLink').val() &&
+                if((child.child('CarpoolLink').val() == "" ||
+                    child.child('VolLink').val() == "" ||
+                    child.child('SigninLink').val() == "") &&
                     (eventTimeDiff < 7 && eventTimeDiff >= 0))
                 {
                     //note - courtesy reminder of these forms
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Just a friendly reminder that " + eventName + " is in 1 week, so make sure to create sign-in, volunteer, and carpool forms!");
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Just a friendly reminder that " + eventName + " is in 1 week, so make sure to create sign-in, volunteer, and carpool forms!");
                     console.log("note - friendly reminder to create forms");
                 }
 
@@ -88,19 +72,13 @@ $(document).ready(function () {
                 if(child.child('AdStatus') == "" && (eventTimeDiff < 14 && eventTimeDiff >= 0))
                 {
                     // note - request for advertising
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Have you planned how to market your event? Remember to request advertising for " + eventName);
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Have you planned how to market your event? Remember to request advertising for " + eventName);
                     console.log("note - request advertising");
                 }
                 if(child.child('AdStatus') == "Pending" && (eventTimeDiff < 14 && eventTimeDiff >= 0))
                 {
                     // note - check with advertiser
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("We see that you've requested to advertise " + eventName + ". Make sure to follow up with your Advertising Chair!");
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("We see that you've requested to advertise " + eventName + ". Make sure to follow up with your Advertising Chair!");
                     console.log("note - check with advertiser");
                 }
 
@@ -108,22 +86,35 @@ $(document).ready(function () {
                 if(eventTimeDiff <= 0 && eventTimeDiff > -2)
                 {
                     // note - reminder to complete event
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Remember to fill out feedback forms and any reimbursement forms for " + eventName + ". Also, remember to complete the event!");
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Remember to fill out feedback forms and any reimbursement forms for " + eventName + ". Also, remember to complete the event!");
                     console.log("note - complete event");
                 }
                 if(eventTimeDiff >= -7 && eventTimeDiff < -2)
                 {
                     // note - final reminder
-                    var notificationRow = $("<tr></tr>");
-                    var noteColumn = $("<td></td>").text("Here is your final reminder to fill out feedback forms and any reimbursement forms for" + eventName + ". Also, remember to complete the event!");
-                    notificationRow.append(noteColumn);
-                    notificationsTable.append(notificationRow);
+                    addNotification("Here is your final reminder to fill out feedback forms and any reimbursement forms for" + eventName + ". Also, remember to complete the event!");
                     console.log("note - (final) complete event");
                 }
             }
         });
     });
 });
+
+function addNotification(notificationString)
+{
+    let notificationsTable = $("#notifications-table");
+    let notificationsDropdown = $('#notification-dropdown-menu');
+
+    let notificationRow = $("<tr></tr>");
+    let noteColumn = $("<td></td>").text(notificationString);
+    notificationRow.append(noteColumn);
+    notificationsTable.append(notificationRow);
+
+    let notificationLi = $("<li></li>");
+    notificationLi.attr("role", "presentation");
+    let notificationA = $("<a></a>").text(notificationString);
+    notificationA.attr("role", "menuitem");
+    notificationA.attr("href", "#");
+    notificationLi.append(notificationA);
+    notificationsDropdown.append(notificationLi);
+}

@@ -103,6 +103,7 @@ $(document).ready(function () {
     var upcomingEventTable = $('#upcoming-events-table');
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.on('value', snap => {
+        var upcomingCount = 0;
         ongoingEventTable.empty();
         completedEventTable.empty();
         upcomingEventTable.empty();
@@ -444,8 +445,15 @@ $(document).ready(function () {
             // console.log(timeDiff);
             if (timeDiff < 2 && timeDiff >= 0 && statusColumn1.text() == "Ongoing") {
                 upcomingEventTable.append(eventRow1);
+                upcomingCount += 1;
             }
         });
+
+        if(upcomingCount == 0)
+        {
+            upcomingEventTable.empty();
+            $('#upcoming-tip').text("You have no events in the next two weeks, but make sure to check your notifications and ongoing events!");
+        }
     });
 
     // Form inputs
