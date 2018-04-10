@@ -61,6 +61,7 @@
                 <h2>
                     Notifications
                 </h2>
+                <!-- notification table -->
             </div>
 
             <div class="col-md-3">
@@ -70,6 +71,7 @@
 
             <div>
                 <h2>Upcoming Events</h2>
+                <!-- upcoming events table -->
             </div>
         </div>
 
@@ -78,7 +80,31 @@
         </div>
 
         <div id="all-events" class="page">
-            <p>all events</p>
+            <h1>
+                <span id="all-events-title"></span>
+            </h1>
+
+            <div>
+                <h2>Ongoing Events</h2>
+                <table id="ongoing-events-table">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <h2>Completed Events</h2>
+                <table id="completed-events-table">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -97,9 +123,9 @@
         firebase.initializeApp(config);
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./js/firebase.js"></script>
-    <script src="./js/navigation.js"></script>
-    <script src="./js/script.js"></script>
+    <script type="text/javascript" src="./js/firebase.js"></script>
+    <script type="text/javascript" src="./js/navigation.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 </body>

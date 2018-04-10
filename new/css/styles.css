@@ -82,3 +82,24 @@ h1
     font-size: 80px;
     color: black;
 }
+
+/* tables
+*/
+table 
+{
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0px auto;
+}
+
+td, th 
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) 
+{
+    background-color: #dddddd;
+}
