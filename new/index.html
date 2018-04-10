@@ -26,7 +26,7 @@
             </label>
             <input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
             <br>
-            <label for="psw" class="w3-text-teal">
+            <label for="password" class="w3-text-teal">
                 <b>Password</b>
             </label>
             <input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
@@ -44,12 +44,24 @@
             <button id="new-tab-button" type="button" class="navbar-tab btn">Create New Event</button>
             <button id="all-tab-button" type="button" class="navbar-tab btn">All Events</button>
             <img id="navbar-logo" src="./img/logo2.png">
-            <button id="user-button" type="button" class="navbar-icon btn">
-                <i class="material-icons">person</i>
-            </button>
-            <button id="notification-button" type="button" class="navbar-icon btn">
-                <i class="material-icons">notifications</i>
-            </button>
+            <div class="dropdown">
+                <button id="user-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="material-icons">person</i>
+                </button>
+                <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                    <li id="logout" role="presentation"><a role="menuitem" href="#">Logout</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button id="notification-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="material-icons">notifications</i>
+                </button>
+                <ul id="notification-dropdown-menu" class="dropdown-menu" role="menu">
+                    <li role="presentation"><a role="menuitem" href="#">Notification 1</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">Notification 2</a></li>
+                    <li role="presentation"><a role="menuitem" href="#">Notification 3</a></li>
+                </ul>
+            </div>
         </div>
 
         <div id="home" class="page">
@@ -71,6 +83,7 @@
 
             <div>
                 <h2>Upcoming Events</h2>
+                <p>Remember to check on these events! They're coming up in less than two weeks.</p>
                 <table id="upcoming-events-table">
                     <tr>
                         <th>Event Name</th>
@@ -82,7 +95,9 @@
         </div>
 
         <div id="event-details" class="page">
-            <h1 id="event-detail-header">Create New Event</h1>
+            <h1 id="event-detail-header">
+                <span id="detail-title"></span>
+            </h1>
             <div id="progressbar">
                 <div></div>
             </div>
@@ -196,9 +211,8 @@
                         <br>
                         <p class="form">
                             Remember to do anything else your organization requires you to do, such as sending in attendance, completeing
-                            <a
-                                href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>, and filling out
-                                <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
+                            <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>, and filling out
+                            <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
                         </p>
                         <br>
                         <input id="submit5" class="save btn btn-light" type="submit" onclick="addNotes()" value="Save">
@@ -217,6 +231,8 @@
 
             <div>
                 <h2>Ongoing Events</h2>
+                <p>These events are all of those that are still in progress. This includes events that have yet to happen and
+                    events that still need to be followed up on.</p>
                 <table id="ongoing-events-table">
                     <tr>
                         <th>Event Name</th>
@@ -228,6 +244,8 @@
 
             <div>
                 <h2>Completed Events</h2>
+                <p>These events are all of those that are completed, which are events that have already past and all follow-up
+                    has been completed.</p>
                 <table id="completed-events-table">
                     <tr>
                         <th>Event Name</th>
@@ -259,6 +277,10 @@
     <script type="text/javascript" src="./js/script.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

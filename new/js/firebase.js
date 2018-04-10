@@ -87,6 +87,7 @@ $(document).ready(function () {
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
+                $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
                     var name = $('#name').val(eventName);
@@ -119,6 +120,7 @@ $(document).ready(function () {
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
+                $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
                 firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
                     var name = $('#name').val(eventName);
@@ -213,6 +215,8 @@ function resetNewEventPage()
     $('#planner').val("");
     $('#progressbar > div').css('width', '0%');
     completion = 0;
+
+    $('#detail-title').text("Create New Event");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);

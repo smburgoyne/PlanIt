@@ -20,6 +20,10 @@ $(document).ready(function () {
             }
         });
     }
+
+    // dropdown menus
+    // $('#user-button').dropdown();
+    // $('#notification-button').dropdown();
 })
 
 // Enable all new event inputs
@@ -67,6 +71,8 @@ function resetNewEventPage()
     $('#planner').val("");
     $('#progressbar > div').css('width', '0%');
     completion = 0;
+
+    $('#detail-title').text("Create New Event");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);

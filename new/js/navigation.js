@@ -14,7 +14,7 @@ $(document).ready(function ()
 
     $("#new-tab-button").click(function () {
         resetNewEventPage();
-        
+
         $('#home').hide();
         $('#event-details').show();
         $('#all-events').hide();
@@ -24,6 +24,35 @@ $(document).ready(function ()
         $('#home').hide();
         $('#event-details').hide();
         $('#all-events').show();
+    });
+
+    $('#new-event-button').click(function() {
+        resetNewEventPage();
+
+        $('#home').hide();
+        $('#event-details').show();
+        $('#all-events').hide();
+    });
+
+    $("#all-events-button").click(function () {
+        $('#home').hide();
+        $('#event-details').hide();
+        $('#all-events').show();
+    }); 
+
+    $('#logout').click(function() {
+        // reset pages
+        $('#home').show();
+        $('#event-details').hide();
+        $('#all-events').hide();
+        resetNewEventPage();
+
+        $('#uname').val("");
+        $('#password').val("");
+        $('#login-error').text("");
+
+        $('#login').show();
+        $('#main-app').hide();
     });
 })
 
@@ -72,6 +101,8 @@ function resetNewEventPage()
     $('#planner').val("");
     $('#progressbar > div').css('width', '0%');
     completion = 0;
+
+    $('#detail-title').text("Create New Event");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);
