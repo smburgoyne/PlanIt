@@ -1,6 +1,6 @@
 /*
 *
-* For firebase functions
+* For event-related functions
 *
 */
 
@@ -442,7 +442,7 @@ $(document).ready(function () {
             var tempDate = new Date(Date.parse(childsnap.child("Date").val()));
             var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
             // console.log(timeDiff);
-            if (timeDiff < 2 && timeDiff >= 0) {
+            if (timeDiff < 2 && timeDiff >= 0 && statusColumn1.text() == "Ongoing") {
                 upcomingEventTable.append(eventRow1);
             }
         });
@@ -563,7 +563,8 @@ $(document).ready(function () {
                     Time: $('#time').val(),
                     Status: "Ongoing",
                     Completion: completion,
-                    VolLink: ""
+                    VolLink: "",
+                    Created: Date.now()
                 });
 
                 if((currentLocation === "On" || currentLocation === "Off") && $('#about').val() && $('#planner').val())
