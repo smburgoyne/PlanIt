@@ -220,8 +220,34 @@
                         <label for="time2">Time*</label>
                         <input id="time2" type="time">
                             <br>
-                        <label for="place2">Location*</label>
-                        <input id="place2" type="text">
+                        <label for="location">Location*</label>
+                        <div class="dropdown">
+                            <button id="location-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="location-type1">Where is the event happening?</span>
+                                <i class="material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="on-campus1" role="presentation">
+                                    <a role="menuitem" href="#">On-Campus</a>
+                                </li>
+                                <li id="off-campus1" role="presentation">
+                                    <a role="menuitem" href="#">Off-Campus</a>
+                                </li>
+                                <li id="tbd1" role="presentation">
+                                    <a role="menuitem" href="#">TBD</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="location-details2">
+                            <p>
+                                <a href="https://virtualems.union.ufl.edu/">Click here</a> to request a room on UF campus. 
+                                <a href="https://stars.facilities.ufl.edu/class/#/reserve">Click here</a> to request a room at the Reitz Union.
+                            </p>
+                        </div>
+                        <div id="location-details3">
+                            <label for="place2">Address</label>
+                            <input id="place2" type="text" required>
+                        </div>
                             <br>
                         <button id="supplies-list-button" type="button" class="btn btn-primary">Create Itemized Supplies List</button>
                         <br>

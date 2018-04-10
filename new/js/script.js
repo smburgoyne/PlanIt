@@ -26,18 +26,54 @@ $(document).ready(function () {
         $('#location-details').show();
         $('#location-details1').show();
         $('#location-type').text("On-Campus");
+        $('#location-details2').show();
+        $('#location-details3').show();
+        $('#location-type1').text("On-Campus");
     });
     
     $('#off-campus').click(function () {
         $('#location-details').hide();
         $('#location-details1').show();
         $('#location-type').text("Off-Campus");
+        $('#location-details2').hide();
+        $('#location-details3').show();
+        $('#location-type1').text("Off-Campus");
     });
 
     $('#tbd').click(function () {
         $('#location-details').hide();
         $('#location-details1').hide();
         $('#location-type').text("TBD");
+        $('#location-details2').hide();
+        $('#location-details3').hide();
+        $('#location-type1').text("TBD");
+    });
+
+    $('#on-campus1').click(function () {
+        $('#location-details').show();
+        $('#location-details1').show();
+        $('#location-type').text("On-Campus");
+        $('#location-details2').show();
+        $('#location-details3').show();
+        $('#location-type1').text("On-Campus");
+    });
+    
+    $('#off-campus1').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').show();
+        $('#location-type').text("Off-Campus");
+        $('#location-details2').hide();
+        $('#location-details3').show();
+        $('#location-type1').text("Off-Campus");
+    });
+
+    $('#tbd1').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').hide();
+        $('#location-type').text("TBD");
+        $('#location-details2').hide();
+        $('#location-details3').hide();
+        $('#location-type1').text("TBD");
     });
 
     $('#free-event').click(function() {
@@ -101,6 +137,9 @@ function resetNewEventPage()
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
     $('#location-details1').hide();
+    $('#location-details2').hide();
+    $('#location-details3').hide();
+    $('#location-type1').text("Where is the event happening?");
     $('#paid-event-details').hide();
     $('#budget-type').text("Choose an option");
 

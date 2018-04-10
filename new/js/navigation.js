@@ -106,6 +106,9 @@ function resetNewEventPage()
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
     $('#location-details1').hide();
+    $('#location-details2').hide();
+    $('#location-details3').hide();
+    $('#location-type1').text("Where is the event happening?");
     $('#paid-event-details').hide();
     $('#budget-type').text("Choose an option");
 
