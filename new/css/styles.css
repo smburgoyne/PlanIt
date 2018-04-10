@@ -49,6 +49,7 @@
 {
     float: right;
     height: 50px;
+    background-color: white;
 }
 
 .btn
@@ -154,9 +155,9 @@ tr:nth-child(even)
 .scrollable
 {
     height: 150px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 15px 0px;
-    width: 80%;
+    width: 90%;
 }
 
 #notifications-table

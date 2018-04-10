@@ -4,26 +4,23 @@
 *
 */
 
-*.icon-blue {color: #0088cc}
-*.icon-grey {color: grey}
-i {   
-    width:100px;
-    text-align:center;
-    vertical-align:middle;
-    position: relative;
+.navbar-icon-img
+{
+    width: 35px;
+    font-size: 35px;
 }
-.badge:after{
-    content:"2";
-    position: absolute;
-    background: rgba(0,0,255,1);
-    height:2rem;
-    top:1rem;
-    right:1.5rem;
-    width:2rem;
+
+#badge
+{
+    background: #023059;
     text-align: center;
-    line-height: 2rem;;
-    font-size: 1rem;
     border-radius: 50%;
-    color:white;
-    border:1px solid blue;
+    border: 3px solid #023059;
+    color: white;
+}
+
+li
+{
+    padding: 10px;
+    border-bottom: 1px solid black;
 }

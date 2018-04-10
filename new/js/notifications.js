@@ -5,9 +5,10 @@
 */
 
 $(document).ready(function () {
-    var noteCount = 0;
+    
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.on('value', snap => {
+        var noteCount = 0;
         var notificationsTable = $("#notifications-table");
         var notificationsDropdown = $('#notification-dropdown-menu');
         notificationsTable.empty();
@@ -109,6 +110,19 @@ $(document).ready(function () {
             }
         });
         $('#badge').text(noteCount);
+
+        if(noteCount == 0)
+        {
+            let notificationLi = $("<li></li>");
+            notificationLi.attr("role", "presentation");
+            let notificationA = $("<a></a>").text("You have no new notifications. Make sure to check on any ongoing events!");
+            notificationA.attr("role", "menuitem");
+            notificationA.attr("href", "#");
+            notificationLi.append(notificationA);
+            notificationsDropdown.append(notificationLi);
+            
+            $('.note-span').text("You have no new notifications. Make sure to check on any ongoing events!");
+        }
     });
 });
 

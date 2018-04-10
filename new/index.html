@@ -11,6 +11,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="./css/collapsible.css">
     <link rel="stylesheet" href="./css/notifications.css">
     <link rel="stylesheet" href="./css/styles.css">
@@ -21,15 +22,15 @@
         <h1>PlanIt</h1>
         <img src="./img/logo2.png" class="home-img">
         <div>
-            <label for="uname" class="w3-text-teal">
+            <label for="uname">
                 <b>Username</b>
             </label>
-            <input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
+            <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
             <br>
-            <label for="password" class="w3-text-teal">
+            <label for="password">
                 <b>Password</b>
             </label>
-            <input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
+            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
             <br>
             <p>
                 <span id="login-error"></span>
@@ -46,7 +47,7 @@
             <img id="navbar-logo" src="./img/logo2.png">
             <div class="dropdown">
                 <button id="user-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
-                    <i class="material-icons">person</i>
+                    <i class="navbar-icon-img material-icons">person</i>
                 </button>
                 <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
                     <li id="logout" role="presentation">
@@ -56,7 +57,7 @@
             </div>
             <div class="dropdown">
                 <button id="notification-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
-                        <span id="badge" class="w3-badge"></span><i class="material-icons">notifications</i>
+                        <span id="badge" class="w3-badge"></span><i class="navbar-icon-img material-icons">notifications</i>
                 </button>
                 <ul id="notification-dropdown-menu" class="dropdown-menu" role="menu">
                     <li role="presentation">
@@ -79,17 +80,18 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-8">
                         <h2>
                             Notifications
                         </h2>
+                        <p id="note-p"><span class="note-span"></span></p>
                         <div class="scrollable">
                             <table id="notifications-table">
                             </table>
                         </div>
                     </div>
 
-                    <div id="home-buttons" class="col-lg-3">
+                    <div id="home-buttons" class="col-lg-4">
                         <button id="new-event-button" type="button" class="new-event-button btn btn-secondary">Create New Event</button>
                         <button id="all-events-button" type="button" class="all-events-button btn btn-secondary">View All Events</button>
                     </div>
