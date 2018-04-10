@@ -42,30 +42,45 @@ $(document).ready(function () {
     // populate tables
     var ongoingEventTable = $("#ongoing-events-table");
     var completedEventTable = $("#completed-events-table");
+    var upcomingEventTable = $('#upcoming-events-table');
     var dbref = firebase.database().ref('/Organizations/' + currentOrg + "/Events/");
     dbref.on('value', snap => {
         ongoingEventTable.empty();
         completedEventTable.empty();
+        upcomingEventTable.empty();
         var titleRow = $("<tr></tr>");
         var titleRow2 = $("<tr></tr>");
+        var titleRow3 = $("<tr></tr>");
         var name = $("<th></th>").text("Event Name");
         var date = $("<th></th>").text("Date");
         var status = $("<th></th>").text("Status");
         var name2 = $("<th></th>").text("Event Name");
         var date2 = $("<th></th>").text("Date");
         var status2 = $("<th></th>").text("Status");
+        var name3 = $("<th></th>").text("Event Name");
+        var date3 = $("<th></th>").text("Date");
+        var status3 = $("<th></th>").text("Status");
         titleRow.append(name,date,status);
         titleRow2.append(name2,date2,status2);
+        titleRow3.append(name3,date3,status3);
         completedEventTable.append(titleRow);
         ongoingEventTable.append(titleRow2);
+        upcomingEventTable.append(titleRow3);
         snap.forEach(childsnap => {
             var eventRow = $("<tr></tr>");
             var nameColumn = $("<td></td>").text(childsnap.key);
             var dateColumn = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn = $("<td></td>").text(childsnap.child("Status").val());
+            var eventRow1 = $("<tr></tr>");
+            var nameColumn1 = $("<td></td>").text(childsnap.key);
+            var dateColumn1 = $("<td></td>").text(childsnap.child("Date").val());
+            var statusColumn1 = $("<td></td>").text(childsnap.child("Status").val());
             eventRow.append(nameColumn,dateColumn,statusColumn);
             eventRow.css("cursor", "pointer");
             eventRow.addClass("w3-hover-light-blue");
+            eventRow1.append(nameColumn1,dateColumn1,statusColumn1);
+            eventRow1.css("cursor", "pointer");
+            eventRow1.addClass("w3-hover-light-blue");
 
             // go to event details page
             eventRow.click(function() {
@@ -100,17 +115,55 @@ $(document).ready(function () {
                 $('#event-details').show();
                 $('#all-events').hide();
             });
+            eventRow1.click(function() {
+                eventName = nameColumn.text();
+                $("#detailHeader").text(eventName);
+                console.log(eventName);
+                var statusTemp = "";
+                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).once('value').then(snap => {
+                    var name = $('#name').val(eventName);
+                    var date = $('#date').val(snap.child("Date").val());
+                    var time = $('#time').val(snap.child("Time").val());
+                    $('#date2').val(snap.child("Date").val());
+                    $('#place2').val(snap.child("Location").val());
+                    $('#about').val(snap.child("Description").val())
+                    $('#time2').val(snap.child("Time").val());
+                    $("#notes").val(snap.child("Notes").val());
+                    var location = $('#place').val(snap.child("Location").val());
+                    $('#planner').val(snap.child("Planner").val());
+                    completion = snap.child("Completion").val()
+                    $('#progressbar > div').css('width', completion +'%');
+                    statusTemp = snap.child("Status").val();
+                    if(statusTemp === "Completed")
+                    {
+                        disableAllInputs();
+                    }
+                    else
+                    {
+                        enableAllInputs();
+                    }
+                })
+                $('#home').hide();
+                $('#event-details').show();
+                $('#all-events').hide();
+            });
 
-            // add to correct table
+            // add to correct table on all events page
             if(statusColumn.text() == "Ongoing") {
-                    ongoingEventTable.append(eventRow);
-                    console.log("ongoing event");
+                ongoingEventTable.append(eventRow);
             }
             else {
                 completedEventTable.append(eventRow);
-                console.log("past event");
             }
-            
+
+            // add to upcoming table if within next 2 weeks
+            var tempDate = new Date(Date.parse(childsnap.child("Date").val()));
+            var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
+            console.log(timeDiff);
+            if(timeDiff < 2 && timeDiff >= 0)
+            {
+                upcomingEventTable.append(eventRow1);
+            }
         });
     });
 });
