@@ -10,10 +10,11 @@ $(document).ready(function () {
         var username = $("#uname").val();
         var password = $("#password").val();
         if (username && password) {
-            var dbref = firebase.database().ref('/Users/' + username + "/password");
+            var dbref = firebase.database().ref('/Users/' + username);
             dbref.once('value').then(snap => {
-                if (snap.val() == password) {
+                if (snap.child("password").val() === password) {
                     console.log("Username and password is valid");
+                    $('#home-title').text(snap.child("name").val() + "'s PlanIt");
                     $('#login').hide();
                     $('#main-app').show();
                 }
