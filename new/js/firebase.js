@@ -3,14 +3,21 @@
 * For firebase functions
 *
 */
+// "Global" variables
+var currentUser = "";
+var currentOrg = "SWE";
+var progress = 0;
+var completion = 0;
+var currentLocation = "";
+var currentIsFree = "";
+var currentAdStatus = "";
+var currentBudgetStatus = "";
+var eventName = "";
+var isNewEvent = true;
+
 $(document).ready(function () {
-    // "Global" variables
-    var currentUser = "";
-    var currentOrg = "SWE";
-    var progress = 0;
-    var completion = 0;
     resetNewEventPage();
-    
+
     // Authenticate user
     $('#login-submit').click(function () {
         var username = $("#uname").val();
@@ -39,6 +46,56 @@ $(document).ready(function () {
         }
     });
 
+    // navigate the app
+    $("#home-tab-button").click(function () {
+        $('#home').show();
+        $('#event-details').hide();
+        $('#all-events').hide();
+    });
+
+    $("#new-tab-button").click(function () {
+        resetNewEventPage();
+
+        $('#home').hide();
+        $('#event-details').show();
+        $('#all-events').hide();
+    });
+
+    $("#all-tab-button").click(function () {
+        $('#home').hide();
+        $('#event-details').hide();
+        $('#all-events').show();
+    });
+
+    $('#new-event-button').click(function() {
+        resetNewEventPage();
+
+        $('#home').hide();
+        $('#event-details').show();
+        $('#all-events').hide();
+    });
+
+    $("#all-events-button").click(function () {
+        $('#home').hide();
+        $('#event-details').hide();
+        $('#all-events').show();
+    }); 
+
+    $('#logout').click(function() {
+        // reset pages
+        $('#home').show();
+        $('#event-details').hide();
+        $('#all-events').hide();
+        resetNewEventPage();
+
+        $('#uname').val("");
+        $('#password').val("");
+        $('#login-error').text("");
+
+        $('#login').show();
+        $('#main-app').hide();
+    });
+
     // populate tables
     var ongoingEventTable = $("#ongoing-events-table");
     var completedEventTable = $("#completed-events-table");
@@ -60,9 +117,9 @@ $(document).ready(function () {
         var name3 = $("<th></th>").text("Event Name");
         var date3 = $("<th></th>").text("Date");
         var status3 = $("<th></th>").text("Status");
-        titleRow.append(name,date,status);
-        titleRow2.append(name2,date2,status2);
-        titleRow3.append(name3,date3,status3);
+        titleRow.append(name, date, status);
+        titleRow2.append(name2, date2, status2);
+        titleRow3.append(name3, date3, status3);
         completedEventTable.append(titleRow);
         ongoingEventTable.append(titleRow2);
         upcomingEventTable.append(titleRow3);
@@ -75,15 +132,15 @@ $(document).ready(function () {
             var nameColumn1 = $("<td></td>").text(childsnap.key);
             var dateColumn1 = $("<td></td>").text(childsnap.child("Date").val());
             var statusColumn1 = $("<td></td>").text(childsnap.child("Status").val());
-            eventRow.append(nameColumn,dateColumn,statusColumn);
+            eventRow.append(nameColumn, dateColumn, statusColumn);
             eventRow.css("cursor", "pointer");
             eventRow.addClass("w3-hover-light-blue");
-            eventRow1.append(nameColumn1,dateColumn1,statusColumn1);
+            eventRow1.append(nameColumn1, dateColumn1, statusColumn1);
             eventRow1.css("cursor", "pointer");
             eventRow1.addClass("w3-hover-light-blue");
 
             // go to event details page
-            eventRow.click(function() {
+            eventRow.click(function () {
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
@@ -101,22 +158,21 @@ $(document).ready(function () {
                     var location = $('#place').val(snap.child("Location").val());
                     $('#planner').val(snap.child("Planner").val());
                     completion = snap.child("Completion").val()
-                    $('#progressbar > div').css('width', completion +'%');
+                    $('#progressbar > div').css('width', completion + '%');
                     statusTemp = snap.child("Status").val();
-                    if(statusTemp === "Completed")
-                    {
+                    if (statusTemp === "Completed") {
                         disableAllInputs();
                     }
-                    else
-                    {
+                    else {
                         enableAllInputs();
                     }
                 })
                 $('#home').hide();
                 $('#event-details').show();
                 $('#all-events').hide();
+                isNewEvent = false;
             });
-            eventRow1.click(function() {
+            eventRow1.click(function () {
                 eventName = nameColumn.text();
                 $("#detailHeader").text(eventName);
                 console.log(eventName);
@@ -134,24 +190,23 @@ $(document).ready(function () {
                     var location = $('#place').val(snap.child("Location").val());
                     $('#planner').val(snap.child("Planner").val());
                     completion = snap.child("Completion").val()
-                    $('#progressbar > div').css('width', completion +'%');
+                    $('#progressbar > div').css('width', completion + '%');
                     statusTemp = snap.child("Status").val();
-                    if(statusTemp === "Completed")
-                    {
+                    if (statusTemp === "Completed") {
                         disableAllInputs();
                     }
-                    else
-                    {
+                    else {
                         enableAllInputs();
                     }
                 })
                 $('#home').hide();
                 $('#event-details').show();
                 $('#all-events').hide();
+                isNewEvent = false;
             });
 
             // add to correct table on all events page
-            if(statusColumn.text() == "Ongoing") {
+            if (statusColumn.text() == "Ongoing") {
                 ongoingEventTable.append(eventRow);
             }
             else {
@@ -162,17 +217,298 @@ $(document).ready(function () {
             var tempDate = new Date(Date.parse(childsnap.child("Date").val()));
             var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
             console.log(timeDiff);
-            if(timeDiff < 2 && timeDiff >= 0)
-            {
+            if (timeDiff < 2 && timeDiff >= 0) {
                 upcomingEventTable.append(eventRow1);
             }
         });
     });
+
+    // Forms
+    $('#on-campus').click(function () {
+        $('#location-details').show();
+        $('#location-details1').show();
+        $('#location-type').text("On-Campus");
+        $('#location-details2').show();
+        $('#location-details3').show();
+        $('#location-type1').text("On-Campus");
+        currentLocation = "On";
+    });
+
+    $('#off-campus').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').show();
+        $('#location-type').text("Off-Campus");
+        $('#location-details2').hide();
+        $('#location-details3').show();
+        $('#location-type1').text("Off-Campus");
+        currentLocation = "Off";
+    });
+
+    $('#tbd').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').hide();
+        $('#location-type').text("TBD");
+        $('#location-details2').hide();
+        $('#location-details3').hide();
+        $('#location-type1').text("TBD");
+        currentLocation = "Tbd";
+    });
+
+    $('#on-campus1').click(function () {
+        $('#location-details').show();
+        $('#location-details1').show();
+        $('#location-type').text("On-Campus");
+        $('#location-details2').show();
+        $('#location-details3').show();
+        $('#location-type1').text("On-Campus");
+        currentLocation = "On";
+    });
+
+    $('#off-campus1').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').show();
+        $('#location-type').text("Off-Campus");
+        $('#location-details2').hide();
+        $('#location-details3').show();
+        $('#location-type1').text("Off-Campus");
+        currentLocation = "Off";
+    });
+
+    $('#tbd1').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').hide();
+        $('#location-type').text("TBD");
+        $('#location-details2').hide();
+        $('#location-details3').hide();
+        $('#location-type1').text("TBD");
+        currentLocation = "Tbd";
+    });
+
+    $('#free-event').click(function () {
+        $('#paid-event-details').hide();
+        $('#budget-type').text("Yes");
+        currentIsFree = "Yes";
+    })
+
+    $('#paid-event').click(function () {
+        $('#paid-event-details').show();
+        $('#budget-type').text("No");
+        currentIsFree = "No";
+    })
+
+    // Save Buttons
+    $('#submit1').click(function () {
+        // Add or update event
+        var name = $('#name').val();
+        var date = $('#date').val();
+        var time = $('#time').val();
+
+        if (name === "" || date === "" || time === "" || currentLocation === "") {
+            $('#event-error').text("Please fill in the required information.");
+        }
+        else {
+            if (completion < 15) {
+                if(currentLocation === "Tbd")
+                {
+                    completion += 15
+                }
+                else
+                {
+                    completion += 20;
+                }
+                $('#progressbar > div').css('width', completion + '%');
+            }
+            if(completion)
+            $('#event-error').text("");
+            if(isNewEvent)
+            {
+                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+                    AdStatus: currentAdStatus,
+                    Address: $('#place').val(),
+                    BudgetStatus: currentBudgetStatus,
+                    CarpoolLink: "",
+                    Date: $('#date').val(),
+                    Description: $('#about').val(),
+                    IsFree: currentIsFree,
+                    ListLink: "",
+                    Location: currentLocation,
+                    Notes: "",
+                    Planner: $('#planner').val(),
+                    SigninLink: "",
+                    Time: $('#time').val(),
+                    Status: "Ongoing",
+                    Completion: completion,
+                    VolLink: ""
+                });
+            }
+            else
+            {
+                firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + $('#name').val()).update({
+                    Address: $('#place').val(),
+                    Date: $('#date').val(),
+                    Description: $('#about').val(),
+                    Location: currentLocation,
+                    Planner: $('#planner').val(),
+                    Time: $('#time').val(),
+                    Completion: completion
+                });
+            }
+            eventName = $('#name').val();
+            $('#date2').val($('#date').val());
+            $('#place2').val($('#place').val());
+            $('#time2').val($('#time').val());
+            enableAllInputs();
+        }
+    });
+
+    $('#request-budget-button').click(function() {
+        // send request
+
+        if(completion < 50)
+        {
+            completion += 15;
+            $('#progressbar > div').css('width', completion + '%');
+        }
+
+        currentBudgetStatus = "Pending";
+
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            BudgetStatus: currentBudgetStatus,
+            Completion: completion
+        });
+    })
+
+    $('#submit2').click(function() {
+        // Update event
+        if(currentIsFree === "")
+        {
+            $('#event-error1').text("Please fill in the required information.");
+        }
+        else
+        {
+            if(completion < 50)
+            {
+                if(currentIsFree)
+                {
+                    completion += 30;
+                }
+                else
+                {
+                    completion += 15;
+                }
+                $('#progressbar > div').css('width', completion + '%');
+            }
+
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                IsFree: currentIsFree,
+                BudgetStatus: currentBudgetStatus,
+                ListLink: $('#list-link').val(),
+                Completion: completion
+            });
+            
+            $('#list-link2').val($('#list-link').val());
+        }
+    });
+
+    $('#submit3').click(function() {
+        var date2 = $('#date2').val();
+        var time2 = $('#time2').val();
+        if (date2 === "" || time2 === "")
+        {
+            $('#event-error2').text("Please fill in the required information.");
+        }
+        else
+        {
+            if(completion < 65)
+            {
+                if($('#signin-link').val())
+                {
+                    completion += 5;
+                }
+                if($('#volunteer-link').val())
+                {
+                    completion += 5;
+                }
+                if($('#carpool-link').val())
+                {
+                    completion += 5;
+                }
+                $('#progressbar > div').css('width', completion + '%');
+            }
+
+            firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+                Date: $('#date2').val(),
+                Time: $('#time2').val(),
+                Location: currentLocation,
+                Address: $('#place2').val(),
+                ListLink: $('#list-link2').val(),
+                SigninLink: $('#signin-link').val(),
+                VolLink: $('#volunteer-link').val(),
+                CarpoolLink: $('#carpool-link').val(),
+                Completion: completion
+            });
+
+            $('#date').val($('#date2').val());
+            $('#time').val($('#time2').val());
+            $('#place').val($('#place2').val());
+            $('#list-link').val($('#list-link2').val());
+        }
+    });
+
+    $('#request-ad-button').click(function() {
+        if(completion < 75)
+        {
+            completion += 10;
+            $('#progressbar > div').css('width', completion + '%');
+        }
+
+        currentAdStatus = "Pending";
+
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            Completion: completion,
+            AdStatus: currentAdStatus
+        });
+    });
+
+    $('#submit4').click(function() {
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            Completion: completion,
+            AdStatus: currentAdStatus
+        });
+    });
+
+    $('#feedback-form-button').click(function () {
+        var tempDate = new Date(Date.parse($('#date').val()));
+        var timeDiff = (tempDate.getTime() - Date.now()) / 604800000;
+        if (timeDiff < 0) {
+            completion = 95;
+        }
+
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            Completion: completion
+        });
+    });
+
+    $('#submit5').click(function() {
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            Notes: $('#notes').val()
+        });
+    });
+
+    $('#submit').click(function() {
+        completion = 100;
+        $('#progressbar > div').css('width', completion + '%');
+        firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
+            Status:'Completed',
+            Completion: completion
+        });
+
+        disableAllInputs();
+    });
 });
 
 // Enable all new event inputs
-function enableAllInputs()
-{
+function enableAllInputs() {
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);
     $('#time').prop('disabled', false);
@@ -214,13 +550,12 @@ function enableAllInputs()
     $('#notes').prop('disabled', false);
     $('#submit5').prop('disabled', false);
     $('#cancel5').prop('disabled', false);
-    
+
     $('#submit').prop('disabled', false);
 }
 
 // Reset inputs for new event page
-function resetNewEventPage()
-{
+function resetNewEventPage() {
     var name = $('#name').val("");
     var date = $('#date').val("");
     var time = $('#time').val("");
@@ -239,6 +574,12 @@ function resetNewEventPage()
     $('#volunteer-link').val("");
     $('#carpool-link').val("");
 
+    currentLocation = "";
+    currentIsFree = "";
+    currentAdStatus = "";
+    currentBudgetStatus = "";
+    isNewEvent = true;
+
     $('#detail-title').text("Create New Event");
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
@@ -248,6 +589,7 @@ function resetNewEventPage()
     $('#location-type1').text("Where is the event happening?");
     $('#paid-event-details').hide();
     $('#budget-type').text("Choose an option");
+    $('#event-error').text("");
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);
@@ -290,13 +632,12 @@ function resetNewEventPage()
     $('#notes').prop('disabled', true);
     $('#submit5').prop('disabled', true);
     $('#cancel5').prop('disabled', true);
-    
+
     $('#submit').prop('disabled', true);
 }
 
 // Disable all new event inputs
-function disableAllInputs() 
-{
+function disableAllInputs() {
     $('#name').prop('disabled', true);
     $('#date').prop('disabled', true);
     $('#time').prop('disabled', true);
@@ -338,6 +679,6 @@ function disableAllInputs()
     $('#notes').prop('disabled', true);
     $('#submit5').prop('disabled', true);
     $('#cancel5').prop('disabled', true);
-    
+
     $('#submit').prop('disabled', true);
 }
