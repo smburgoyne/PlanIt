@@ -77,20 +77,26 @@
                 <span id="home-title"></span>
             </h1>
 
-            <div class="col-lg-9">
-                <h2>
-                    Notifications
-                </h2>
-                <table id="notifications-table">
-                </table>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h2>
+                            Notifications
+                        </h2>
+                        <div class="scrollable">
+                            <table id="notifications-table">
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="home-buttons" class="col-lg-3">
+                        <button id="new-event-button" type="button" class="new-event-button btn btn-secondary">Create New Event</button>
+                        <button id="all-events-button" type="button" class="all-events-button btn btn-secondary">View All Events</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-lg-3">
-                <button id="new-event-button" type="button" class="btn btn-primary">Create New Event</button>
-                <button id="all-events-button" type="button" class="btn btn-secondary">View All Events</button>
-            </div>
-
-            <div>
+            <div id="upcoming">
                 <h2>Upcoming Events</h2>
                 <p id="upcoming-tip">Remember to check on these events! They're coming up in less than two weeks.</p>
                 <table id="upcoming-events-table">
@@ -107,9 +113,15 @@
             <h1 id="event-detail-header">
                 <span id="detail-title"></span>
             </h1>
-            <h3>Planning Progress: </h3>
-            <div id="progressbar">
-                <div></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h3>Planning Progress: </h3>
+                    </div>
+                    <div id="progressbar" class="col-lg-3">
+                        <div></div>
+                    </div>
+                </div>
             </div>
 
             <br>
@@ -129,11 +141,13 @@
                         <label for="time">Time*</label>
                         <input id="time" type="time" required>
                             <br>
-                        <label for="location">Location*</label>
-                        <div class="dropdown">
+                        <div class="dropdown-label">
+                            <label for="location">Location*</label>
+                        </div>
+                        <div id="location" class="dropdown">
                             <button id="location-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span id="location-type">Where is the event happening?</span>
-                                <i class="material-icons">arrow_drop_down</i>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
                             </button>
                             <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
                                 <li id="on-campus" role="presentation">
@@ -179,11 +193,13 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <label for="place">Is this a free event?*</label>
+                        <div class="dropdown-label">
+                            <label for="place">Is this a free event?*</label>
+                        </div>
                         <div class="dropdown">
                             <button id="budget-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span id="budget-type">Choose an option</span>
-                                <i class="material-icons">arrow_drop_down</i>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
                             </button>
                             <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
                                 <li id="free-event" role="presentation">
@@ -195,14 +211,14 @@
                             </ul>
                         </div>
                         <div id="paid-event-details">
-                            <button id="request-budget-button" type="button" class="btn btn-primary">Request Budget</button>
+                            <button id="request-budget-button" type="button" class="btn btn-light btn-form">Request Budget</button>
                                 <br>
-                            <button id="supplies-list-button" type="button" class="btn btn-primary">Create Itemized Supplies List</button>
+                            <button id="supplies-list-button" type="button" class="btn btn-light btn-form">Create Itemized Supplies List</button>
                             <br>
-                            <label for="list-link">Link to itemized supplies list</label>
+                            <label for="list-link" class="link-label">Link to itemized supplies list</label>
                             <input id="list-link" type="url">
                                 <br>
-                            <button id="request-reimbursement-button" type="button" class="btn btn-primary">Request Reimbursement</button>
+                            <button id="request-reimbursement-button" type="button" class="btn btn-light btn-form">Request Reimbursement</button>
                         </div>
                         <p>
                             <span id="event-error1"></span>
@@ -225,11 +241,13 @@
                         <label for="time2">Time*</label>
                         <input id="time2" type="time">
                             <br>
-                        <label for="location">Location*</label>
-                        <div class="dropdown">
+                        <div class="dropdown-label">
+                            <label for="location1">Location*</label>
+                        </div>
+                        <div id="location1" class="dropdown">
                             <button id="location-dropdown-button1" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <span id="location-type1">Where is the event happening?</span>
-                                <i class="material-icons">arrow_drop_down</i>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
                             </button>
                             <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
                                 <li id="on-campus1" role="presentation">
@@ -254,24 +272,24 @@
                             <input id="place2" type="text" required>
                         </div>
                             <br>
-                        <button id="supplies-list-button1" type="button" class="btn btn-primary">Create Itemized Supplies List</button>
+                        <button id="supplies-list-button1" type="button" class="btn btn-light btn-form">Create Itemized Supplies List</button>
                         <br>
-                        <label for="list-link2">Link to itemized supplies list</label>
+                        <label for="list-link2" class="link-label">Link to itemized supplies list</label>
                         <input id="list-link2" type="url">
                             <br>
-                        <button id="signin-form-button" type="button" class="btn btn-primary">Create Event Sign-In Form</button>
+                        <button id="signin-form-button" type="button" class="btn btn-light btn-form">Create Event Sign-In Form</button>
                         <br>
-                        <label for="signin-link">Link to Event Sign-In</label>
+                        <label for="signin-link" class="link-label">Link to Event Sign-In</label>
                         <input id="signin-link" type="url">
                             <br>
-                        <button id="volunteer-form-button" type="button" class="btn btn-primary">Create Volunteer Sign-Up</button>
+                        <button id="volunteer-form-button" type="button" class="btn btn-light btn-form">Create Volunteer Sign-Up</button>
                         <br>
-                        <label for="volunteer-link">Link to Volunteer Sign-Up</label>
+                        <label for="volunteer-link" class="link-label">Link to Volunteer Sign-Up</label>
                         <input id="volunteer-link" type="url">
                             <br>
-                        <button id="carpool-form-button" type="button" class="btn btn-primary">Create Carpool Form</button>
+                        <button id="carpool-form-button" type="button" class="btn btn-light btn-form">Create Carpool Form</button>
                         <br>
-                        <label for="carpool-link">Link to Carpool Form</label>
+                        <label for="carpool-link" class="link-label">Link to Carpool Form</label>
                         <input id="carpool-link" type="url">
                             <br>
                         <p>
@@ -289,7 +307,7 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <button id="request-ad-button" type="button" class="btn btn-primary">Request Advertising</button>
+                        <button id="request-ad-button" type="button" class="btn btn-light btn-form">Request Advertising</button>
                             <br>
                         <button id="submit4" class="save btn btn-light" type="button">Save</button>
                         <button id="cancel4" type="button" class="cancel btn btn-secondary">Cancel</button>
@@ -302,7 +320,7 @@
                 </button>
                 <div class="content">
                     <div class="inputs">
-                        <button id="feedback-form-button" type="button" class="btn btn-primary">Complete Feedback Form</button>
+                        <button id="feedback-form-button" type="button" class="btn btn-light btn-form">Complete Feedback Form</button>
                             <br>
                         <label for="about">Anything else you want to say about this event?</label>
                         <textarea id="notes"></textarea>
@@ -318,7 +336,9 @@
                     </div>
                 </div>
 
-                <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+                <div class="button-div">
+                    <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+                </div>
             </div>
         </div>
 
@@ -327,7 +347,7 @@
                 <span id="all-events-title"></span>
             </h1>
 
-            <div>
+            <div id="ongoing">
                 <h2>Ongoing Events</h2>
                 <p>These events are all of those that are still in progress. This includes events that have yet to happen and
                     events that still need to be followed up on.</p>
@@ -340,7 +360,7 @@
                 </table>
             </div>
 
-            <div>
+            <div id="completed">
                 <h2>Completed Events</h2>
                 <p>These events are all of those that are completed, which are events that have already past and all follow-up
                     has been completed.</p>

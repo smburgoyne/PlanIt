@@ -69,6 +69,12 @@
 
 /* home page
 */
+h1, h2, h3
+{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: black;
+}
+
 h1
 {
     margin: 20px auto;
@@ -78,13 +84,59 @@ h1
     color: black;
 }
 
+#upcoming, #ongoing, #completed
+{
+    margin: 20px 32px;
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+
+p
+{
+    text-align: left;
+    font-size: 16px;
+}
+
+.container
+{
+    margin: 0px 20px;
+}
+
+#home-buttons
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.new-event-button
+{
+    background-color: #df5a00;
+    color: #FFF;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.all-events-button
+{
+    background-color: grey;
+    color: #FFF;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
 /* tables
 */
 table 
 {
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
     margin: 0px auto;
+    font-size: 16px;
 }
 
 td, th 
@@ -99,6 +151,20 @@ tr:nth-child(even)
     background-color: #dddddd;
 }
 
+.scrollable
+{
+    height: 150px;
+    overflow-y: scroll;
+    margin: 15px 0px;
+    width: 80%;
+}
+
+#notifications-table
+{
+    width: 100%;
+    margin: 0px;
+}
+
 /* error CSS
 */
 #login-error, #event-error, #event-error1, #event-error2
@@ -107,14 +173,75 @@ tr:nth-child(even)
     text-align: left;
 }
 
+#login-error
+{
+    text-align: center;
+}
+
 /* form CSS
 */
-#location-details, #location-details1, #paid-event-details
+#location-details, #location-details1, #paid-event-details, #location-details2, #location-details3
 {
     display: none;
+    margin: 10px 20px;
 }
 
 .home-img
 {
     height: 250px;
+}
+
+.inputs
+{
+    text-align: left;
+
+}
+
+label
+{
+    font-size: 16px;
+    display: inline-block;
+}
+
+.dropdown-label
+{
+    float: left;
+    margin-top: 15px;
+}
+
+.form
+{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.w3-hover-light-blue:hover
+{
+    color:#000!important;
+    background-color:#87CEEB!important;
+}
+
+.new-event
+{
+    background-color: #df5a00;
+    color: #FFF;
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.button-div
+{
+    text-align: center;
+}
+
+.btn-form
+{
+    margin-left: 0px;
+    padding: 10px 15px;
+}
+
+.link-label
+{
+    margin-left: 25px;
 }
