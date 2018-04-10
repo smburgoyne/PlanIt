@@ -1,344 +1,409 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">	
-	<title>PlanIt</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script>
-		$(document).ready(function () {
-			var isNew = true;
+    <title>PlanIt - An Event Planning Tool</title>
 
-			$("#button1").click(function () {
-				$('#home').show();
-				$('#details').hide();
-				$('#upcoming').hide();
-				$('#past').hide();
-			});
-
-			$("#button2").click(function () {
-				$("#detailHeader").text("Create New Event");
-				clearForms();
-				disableInputs();
-				$('#home').hide();
-				$('#details').show();
-				$('#upcoming').hide();
-				$('#past').hide();
-			});
-
-			$("#button3").click(function () {
-				$('#home').hide();
-				$('#details').hide();
-				$('#upcoming').show();
-				$('#past').hide();
-			});
-
-			$("#button4").click(function () {
-				$('#home').hide();
-				$('#details').hide();
-				$('#upcoming').hide();
-				$('#past').show();
-			});
-
-			$("#new-event-button").click(function () {
-				$("#detailHeader").text("Create New Event");
-				clearForms();
-				disableInputs();
-				$('#home').hide();
-				$('#details').show();
-				$('#upcoming').hide();
-				$('#past').hide();
-			});
-
-			$("#upcoming-button").click(function () {
-				$('#home').hide();
-				$('#details').hide();
-				$('#upcoming').show();
-				$('#past').hide();
-			});
-
-			$("#past-button").click(function () {
-				$('#home').hide();
-				$('#details').hide();
-				$('#upcoming').hide();
-				$('#past').show();
-			});
-
-			var disableInputs = function() {
-				$('#date2').prop('disabled', true);
-				$('#place2').prop('disabled', true);
-				$('#time2').prop('disabled', true);
-				$('#notes').prop('disabled', true);
-				$('#submit3').prop('disabled', true);
-				$('#cancel3').prop('disabled', true);
-				$('#submit5').prop('disabled', true);
-				$('#cancel5').prop('disabled', true);
-				$('#submit').prop('disabled', true);
-			}
-
-			var coll = document.getElementsByClassName("collapsible");
-			var i;
-
-			for (i = 0; i < coll.length; i++) {
-				coll[i].addEventListener("click", function () {
-					this.classList.toggle("active");
-					var content = this.nextElementSibling;
-					if (content.style.display === "block") {
-						content.style.display = "none";
-					} else {
-						content.style.display = "block";
-					}
-				});
-			}
-			
-			var progress = 0;
-
-			$('#test-button2').click(function () {
-				progress += 10;
-				if (progress > 100)
-				{
-					progress = 100;
-				}
-				$('#progressbar > div').css('width', progress+'%');
-			});
-
-			$('#test-button1').click(function () {
-				progress -= 10;
-				if (progress < 0)
-				{
-					progress = 0;
-				}
-				$('#progressbar > div').css('width', progress+'%');
-			});
-
-			$('#login-submit').click(function(){
-				var username = $("#uname").val();
-				var password = $("#password").val();
-				if(username === "username" && password === "password")
-				{
-					$('#login').hide();
-					$('#app').show();
-				}
-				else
-				{
-					$('#login-error').text("Invalid username/password. Please try again.")
-				}
-			});
-
-		})
-	
-	</script>
+    <!-- Styling -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./css/collapsible.css">
+    <link rel="stylesheet" href="./css/notifications.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-	<div id="login">
-			<h1>PlanIt</h1>
-			<img src="./logo2.png" class="home-img">
-			<div>
-				<label for="uname" class="w3-text-teal"><b>Username</b></label>
-				<input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
-				<br>
-				<label for="psw" class="w3-text-teal"><b>Password</b></label>
-				<input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
-				<br>
-				<p><span id="login-error"></span></p>
-				<input id="login-submit" class="save btn btn-light" type="submit" value="Login">
-			</div>
-	</div>
+    <div id="login">
+        <h1>PlanIt</h1>
+        <img src="./img/logo2.png" class="home-img">
+        <div>
+            <label for="uname">
+                <b>Username</b>
+            </label>
+            <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
+            <br>
+            <label for="password">
+                <b>Password</b>
+            </label>
+            <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+            <br>
+            <p>
+                <span id="login-error"></span>
+            </p>
+            <input id="login-submit" class="save btn btn-light" type="submit" value="Login">
+        </div>
+    </div>
 
-	<div id="app">
-		<div class="navbar">
-			<img src="./logo2.png">
-			<button id="button4" type="button" class="navbartab btn">Completed Events</button>
-			<button id="button3" type="button" class="navbartab btn">Ongoing Events</button>
-			<button id="button2" type="button" class="navbartab btn">Create New Event</button>
-			<button id="button1" type="button" class="navbartab btn">Home</button>
-		</div>
+    <div id="main-app">
+        <div id="navbar">
+            <button id="home-tab-button" type="button" class="navbar-tab btn">Home</button>
+            <button id="new-tab-button" type="button" class="navbar-tab btn">Create New Event</button>
+            <button id="all-tab-button" type="button" class="navbar-tab btn">All Events</button>
+            <img id="navbar-logo" src="./img/logo2.png">
+            <div class="dropdown">
+                <button id="user-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
+                    <i class="navbar-icon-img material-icons">person</i>
+                </button>
+                <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                    <li id="logout" role="presentation">
+                        <a role="menuitem" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button id="notification-button" type="button" class="navbar-icon btn dropdown-toggle" data-toggle="dropdown">
+                        <span id="badge" class="w3-badge"></span><i class="navbar-icon-img material-icons">notifications</i>
+                </button>
+                <ul id="notification-dropdown-menu" class="dropdown-menu" role="menu">
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 1</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 2</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 3</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
+        <div id="home" class="page">
+            <h1>
+                <span id="home-title"></span>
+            </h1>
 
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2>
+                            Notifications
+                        </h2>
+                        <p id="note-p"><span class="note-span"></span></p>
+                        <div class="scrollable">
+                            <table id="notifications-table">
+                            </table>
+                        </div>
+                    </div>
 
-		<div id="home" class="page">
-			<h1>PlanIt</h1>
-			<img src="./logo2.png" class="home-img">
-			<p>
-				PlanIt is the only event-planning app you'll need. Here, you'll be able to see everything that goes into event planning and
-				be able to track the progress of every task. In a world of event planning tasks, all you need to do is visit PlanIt!
-			</p>
-			<div>
-				<button id="new-event-button" type="button" class="new-event btn btn-light">Create New Event</button>
-			</div>
-			<div>
-				<button id="upcoming-button" type="button" class="btn btn-secondary"> Ongoing Events</button>
-				<button id="past-button" type="button" class="btn btn-secondary">Completed Events</button>
-			</div>
-		</div>
+                    <div id="home-buttons" class="col-lg-4">
+                        <button id="new-event-button" type="button" class="new-event-button btn btn-secondary">Create New Event</button>
+                        <button id="all-events-button" type="button" class="all-events-button btn btn-secondary">View All Events</button>
+                    </div>
+                </div>
+            </div>
 
-		<div id="details" class="page">
-			<h1 id="detailHeader">Create New Event</h1>
-			<div id="progressbar">
-				<div></div>
-			</div>
-			<!--<button id="test-button1">-</button>-->
-			<!--<button id="test-button2">+</button>-->
-			
-			<br>
-			<div class="collapsing-menu">
-				<button class="collapsible collapsible-top">What is this Event?*
-					<!-- <i class="material-icons">done</i> -->
-					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
-				</button>
-				<div class="content">
-					<div class="inputs">
-	                    <label for="name">Event Name*</label>
-	                    <input id="name" type="text" required><br>
-	                    <label for="date">Date*</label>
-	                    <input id="date" type="date" required><br>
-	                    <label for="time">Time*</label>
-	                    <input id="time" type="time" required><br>
-	                    <label for="place">Location*</label>
-	                    <input id="place" type="text" required><br>
-	                    <label for="about">Event Description</label>
-	                    <textarea id="about"></textarea><br>
-	                    <label for="planner">Primary Event Planner</label>
-	                    <input id="planner" type="text"><br>
-						<p><span id="event-error"></span></p>
-						<p id="tip">*Required inputs</p>
-	                    <input id="submit1" class="save btn btn-light" type="submit" onclick="addEvent()" value="Save">
-	                    <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button> 
-                	</div>
-				</div>
+            <div id="upcoming">
+                <h2>Upcoming Events</h2>
+                <p id="upcoming-tip">Remember to check on these events! They're coming up in less than two weeks.</p>
+                <table id="upcoming-events-table">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-				<button class="collapsible">Finances
-					<!-- <i class="material-icons">done</i> -->
-					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
-				</button>
-				<div class="content">
-					<div class="inputs">
-	                    <a id="budget" class="form-link btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank" onclick="requiredBudget()">Required Budget</a>
-	                    <br>
-	                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList()">Supplies List</a>
-	                    <br>
-	                    <a id="reimbursement" class="form-link btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank" onclick="reimbursementForm()">Reimbursement Form</a>
-                	</div>
-				</div>
+        <div id="event-details" class="page">
+            <h1 id="event-detail-header">
+                <span id="detail-title"></span>
+            </h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <h3>Planning Progress: </h3>
+                    </div>
+                    <div id="progressbar" class="col-lg-3">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
 
-				<button class="collapsible">Logistics
-					<!-- <i class="material-icons">query_builder</i> -->
-					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
-				</button>
-				<div class="content">
-					<div class="inputs">
-	                    <label for="date">Date</label>
-	                    <input id="date2" type="date"><br>
-	                    <label for="time">Time</label>
-	                    <input id="time2" type="time"><br>
-	                    <label for="place">Location</label>
-	                    <input id="place2" type="text"><br>
-	                    <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
-	                    <br>
-	                    <a id="signin" class="form-link btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank" onclick="completeSignin()">Event Sign-In Form</a>
-	                    <br>
-	                    <a id="volunteers" class="form-link btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank" onclick="completeVolunteer()">Volunteers Form</a>
-	                    <br>
-	                    <a id="carpool" class="form-link btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank" onclick="completeCarpool()">Carpool Form</a>
-	                    <br>
-	                    <input id="submit3" class="save btn btn-light" type="submit" onclick="updateEvent()" value="Save">
-	                    <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
-               		</div>
-				</div>
+            <br>
+            <div class="collapsing-menu">
+                <button class="collapsible collapsible-top">What is this Event?*
+                    <i class="material-icons"><span id="pi1"></span></i>
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <label for="name">Event Name*</label>
+                        <input id="name" type="text" required>
+                            <br>
+                        <label for="date">Date*</label>
+                        <input id="date" type="date" required>
+                            <br>
+                        <label for="time">Time*</label>
+                        <input id="time" type="time" required>
+                            <br>
+                        <div class="dropdown-label">
+                            <label for="location">Location*</label>
+                        </div>
+                        <div id="location" class="dropdown">
+                            <button id="location-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="location-type">Where is the event happening?</span>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="on-campus" role="presentation">
+                                    <a role="menuitem" href="#">On-Campus</a>
+                                </li>
+                                <li id="off-campus" role="presentation">
+                                    <a role="menuitem" href="#">Off-Campus</a>
+                                </li>
+                                <li id="tbd" role="presentation">
+                                    <a role="menuitem" href="#">TBD</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="location-details">
+                            <p>
+                                <a href="https://virtualems.union.ufl.edu/">Click here</a> to request a room on UF campus. 
+                                <a href="https://stars.facilities.ufl.edu/class/#/reserve">Click here</a> to request a room at the Reitz Union.
+                            </p>
+                        </div>
+                        <div id="location-details1">
+                            <label for="place">Address</label>
+                            <input id="place" type="text" required>
+                        </div>
+                            <br>
+                        <label for="about">Event Description</label>
+                        <textarea id="about"></textarea>
+                            <br>
+                        <label for="planner">Primary Event Planner</label>
+                        <input id="planner" type="text">
+                            <br>
+                        <p>
+                            <span id="event-error"></span>
+                        </p>
+                        <p id="tip">*Required inputs</p>
+                        <button id="submit1" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
 
-				<button class="collapsible">Marketing
-					<!-- <i class="material-icons">query_builder</i> -->
-					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
-				</button>
-				<div class="content">
-					<div class="inputs">
-	                    <a id="advertise" class="form-link btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank" onclick="completeAdvertise()">Request to Advertise</a>
-	                    <br>
-	                    <!-- <p>response from advertisor</p> -->
-               		</div>
-				</div>
+                <button class="collapsible">Finances
+                        <i class="material-icons"><span id="pi2"></span></i>
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <div class="dropdown-label">
+                            <label for="place">Is this a free event?*</label>
+                        </div>
+                        <div class="dropdown">
+                            <button id="budget-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="budget-type">Choose an option</span>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="free-event" role="presentation">
+                                    <a role="menuitem" href="#">Yes</a>
+                                </li>
+                                <li id="paid-event" role="presentation">
+                                    <a role="menuitem" href="#">No</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="paid-event-details">
+                            <button id="request-budget-button" type="button" class="btn btn-light btn-form">Request Budget</button>
+                                <br>
+                            <button id="supplies-list-button" type="button" class="btn btn-light btn-form">Create Itemized Supplies List</button>
+                            <br>
+                            <label for="list-link" class="link-label">Link to itemized supplies list</label>
+                            <input id="list-link" type="url">
+                                <br>
+                            <button id="request-reimbursement-button" type="button" class="btn btn-light btn-form">Request Reimbursement</button>
+                        </div>
+                        <p>
+                            <span id="event-error1"></span>
+                        </p>
+                        <p id="tip">*Required inputs</p>
+                        <button id="submit2" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel2" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
 
-				<button class="collapsible collapsible-bottom">Post Event Details
-					<!-- <i class="material-icons">clear</i> -->
-					<i id="collapse-arrow-down" class="material-icons">expand_more</i>
-				</button>
-				<div class="content">
-					<div class="inputs">
-	                    <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank" onclick="completeReimburse()">Reimbursement Form</a>
-	                    <br>
-	                    <label for="about">Anything else you want to say about this event?</label>
-	                    <textarea id="notes"></textarea><br>
-	                    <p class="form">
-	                        Remember to do anything else your organization requires you to do, such as
-	                        sending in attendance, completeing <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>,
-	                        and filling out <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
-	                    </p>
-	                    <br>
-	                    <input id="submit5" class="save btn btn-light" type="submit" onclick="addNotes()" value="Save">
-	                    <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
-                	</div>
-				</div>
+                <button class="collapsible">Logistics
+                        <i class="material-icons"><span id="pi3"></span></i>
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <label for="date2">Date*</label>
+                        <input id="date2" type="date">
+                            <br>
+                        <label for="time2">Time*</label>
+                        <input id="time2" type="time">
+                            <br>
+                        <div class="dropdown-label">
+                            <label for="location1">Location*</label>
+                        </div>
+                        <div id="location1" class="dropdown">
+                            <button id="location-dropdown-button1" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="location-type1">Where is the event happening?</span>
+                                <i class="dropdown-arrow material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="on-campus1" role="presentation">
+                                    <a role="menuitem" href="#">On-Campus</a>
+                                </li>
+                                <li id="off-campus1" role="presentation">
+                                    <a role="menuitem" href="#">Off-Campus</a>
+                                </li>
+                                <li id="tbd1" role="presentation">
+                                    <a role="menuitem" href="#">TBD</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="location-details2">
+                            <p>
+                                <a href="https://virtualems.union.ufl.edu/">Click here</a> to request a room on UF campus. 
+                                <a href="https://stars.facilities.ufl.edu/class/#/reserve">Click here</a> to request a room at the Reitz Union.
+                            </p>
+                        </div>
+                        <div id="location-details3">
+                            <label for="place2">Address</label>
+                            <input id="place2" type="text" required>
+                        </div>
+                            <br>
+                        <button id="supplies-list-button1" type="button" class="btn btn-light btn-form">Create Itemized Supplies List</button>
+                        <br>
+                        <label for="list-link2" class="link-label">Link to itemized supplies list</label>
+                        <input id="list-link2" type="url">
+                            <br>
+                        <button id="signin-form-button" type="button" class="btn btn-light btn-form">Create Event Sign-In Form</button>
+                        <br>
+                        <label for="signin-link" class="link-label">Link to Event Sign-In</label>
+                        <input id="signin-link" type="url">
+                            <br>
+                        <button id="volunteer-form-button" type="button" class="btn btn-light btn-form">Create Volunteer Sign-Up</button>
+                        <br>
+                        <label for="volunteer-link" class="link-label">Link to Volunteer Sign-Up</label>
+                        <input id="volunteer-link" type="url">
+                            <br>
+                        <button id="carpool-form-button" type="button" class="btn btn-light btn-form">Create Carpool Form</button>
+                        <br>
+                        <label for="carpool-link" class="link-label">Link to Carpool Form</label>
+                        <input id="carpool-link" type="url">
+                            <br>
+                        <p>
+                            <span id="event-error2"></span>
+                        </p>
+                        <p id="tip">*Required inputs</p>
+                        <button id="submit3" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
 
-				<!-- <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button> -->
-				<finishedbutton></finishedbutton>
-			</div>
-		</div>
+                <button class="collapsible">Marketing
+                        <i class="material-icons"><span id="pi4"></span></i>
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <button id="request-ad-button" type="button" class="btn btn-light btn-form">Request Advertising</button>
+                            <br>
+                        <button id="submit4" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel4" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
 
-		<div id="upcoming" class="page">
-			<h1>Ongoing Events</h1>
-			<p>These events are all of those that are still in progress. This includes events that have yet to happen and events that still need to be followed up on.</p>
-			<event-table id="upcomingEventTable"></event-table>
-		</div>
+                <button class="collapsible collapsible-bottom">Post Event Details
+                        <i class="material-icons"><span id="pi5"></span></i>
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <button id="feedback-form-button" type="button" class="btn btn-light btn-form">Complete Feedback Form</button>
+                            <br>
+                        <label for="about">Anything else you want to say about this event?</label>
+                        <textarea id="notes"></textarea>
+                            <br>
+                        <p class="form">
+                            Remember to do anything else your organization requires you to do, such as sending in attendance, completeing
+                            <a href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>, and filling out
+                            <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
+                        </p>
+                            <br>
+                        <button id="submit5" class="save btn btn-light" type="button">Save</button>
+                        <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
 
-		<div id="past" class="page">
-			<h1>Completed Events</h1>
-			<p>These events are all of those that are completed, which are events that have already past and all follow-up has been completed</p>
-			<event-table id = "pastEventTable"></event-table>
-		</div>
+                <div class="button-div">
+                    <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+                </div>
+            </div>
+        </div>
 
-	</div>
+        <div id="all-events" class="page">
+            <h1>
+                <span id="all-events-title"></span>
+            </h1>
 
-	<!--------------------------------------Testing------------------------------------------>
+            <div id="ongoing">
+                <h2>Ongoing Events</h2>
+                <p>These events are all of those that are still in progress. This includes events that have yet to happen and
+                    events that still need to be followed up on.</p>
+                <table id="ongoing-events-table">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
 
-	<!-- <div style="margin-top:300px">
-		<h1 style="margin: auto;width: 15%">Firebase Test</h1>
-		<p id="test" style="margin: auto; font-size: 20px;width:15%;margin-top: 20px"></p>
-	</div> -->
+            <div id="completed">
+                <h2>Completed Events</h2>
+                <p>These events are all of those that are completed, which are events that have already past and all follow-up
+                    has been completed.</p>
+                <table id="completed-events-table">
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 
-	<!--------------------------------------End Testing------------------------------------------>
-
-	<!-- Firebase stuff -->
-	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
-			authDomain: "planit-e0809.firebaseapp.com",
-			databaseURL: "https://planit-e0809.firebaseio.com",
-			projectId: "planit-e0809",
-			storageBucket: "planit-e0809.appspot.com",
-			messagingSenderId: "956681008314"
-		};
-		firebase.initializeApp(config);
-	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="firebase.js"></script>
-
-	<!-- Vue stuff -->
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-	<script type="text/javascript" src="script.js"></script>
-
-	<!-- Styling stuff -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	 crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	 crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	 crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style>
-		@import './styles.css'
-	</style>
+    <!-- Firebase stuff -->
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDfEKi27Kav9k5IkyY6Ruz43I9M8VbibiM",
+            authDomain: "planit-e0809.firebaseapp.com",
+            databaseURL: "https://planit-e0809.firebaseio.com",
+            projectId: "planit-e0809",
+            storageBucket: "planit-e0809.appspot.com",
+            messagingSenderId: "956681008314"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/events.js"></script>
+    <script type="text/javascript" src="./js/notifications.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

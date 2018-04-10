@@ -1,0 +1,248 @@
+/*
+*
+* Styling for everything else
+*
+*/
+
+/* Login CSS
+*/
+#login
+{
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#main-app
+{
+    display: none;
+}
+
+/* Navbar CSS
+*/
+#navbar
+{
+    height: 70px;
+    margin: 10px;
+    border-bottom: 3px solid #df5a00;
+}
+
+#navbar-logo
+{
+    height: 50px;
+    margin: 10px 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+}
+
+.navbar-tab
+{
+    float: left;
+    height: 50px;
+    border: none;
+    color: #000;
+    background-color: #FFF;
+}
+
+.navbar-icon
+{
+    float: right;
+    height: 50px;
+    background-color: white;
+}
+
+.btn
+{
+    margin: 10px 20px;
+    text-align: center;
+}
+
+#home
+{
+    display: block;
+}
+
+#event-details, #all-events
+{
+    display: none;
+}
+
+/* home page
+*/
+h1, h2, h3
+{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: black;
+}
+
+h1
+{
+    margin: 20px auto;
+    text-align: center;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-size: 80px;
+    color: black;
+}
+
+#upcoming, #ongoing, #completed
+{
+    margin: 20px 32px;
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+
+p
+{
+    text-align: left;
+    font-size: 16px;
+}
+
+.container
+{
+    margin: 0px 20px;
+}
+
+#home-buttons
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.new-event-button
+{
+    background-color: #df5a00;
+    color: #FFF;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.all-events-button
+{
+    background-color: grey;
+    color: #FFF;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 6px;
+}
+
+/* tables
+*/
+table 
+{
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0px auto;
+    font-size: 16px;
+}
+
+td, th 
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) 
+{
+    background-color: #dddddd;
+}
+
+.scrollable
+{
+    height: 150px;
+    overflow-y: auto;
+    margin: 15px 0px;
+    width: 90%;
+}
+
+#notifications-table
+{
+    width: 100%;
+    margin: 0px;
+}
+
+/* error CSS
+*/
+#login-error, #event-error, #event-error1, #event-error2
+{
+    color: red;
+    text-align: left;
+}
+
+#login-error
+{
+    text-align: center;
+}
+
+/* form CSS
+*/
+#location-details, #location-details1, #paid-event-details, #location-details2, #location-details3
+{
+    display: none;
+    margin: 10px 20px;
+}
+
+.home-img
+{
+    height: 250px;
+}
+
+.inputs
+{
+    text-align: left;
+
+}
+
+label
+{
+    font-size: 16px;
+    display: inline-block;
+}
+
+.dropdown-label
+{
+    float: left;
+    margin-top: 15px;
+}
+
+.form
+{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.w3-hover-light-blue:hover
+{
+    color:#000!important;
+    background-color:#87CEEB!important;
+}
+
+.new-event
+{
+    background-color: #df5a00;
+    color: #FFF;
+    width: 300px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.button-div
+{
+    text-align: center;
+}
+
+.btn-form
+{
+    margin-left: 0px;
+    padding: 10px 15px;
+}
+
+.link-label
+{
+    margin-left: 25px;
+}

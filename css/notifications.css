@@ -1,0 +1,26 @@
+/*
+*
+* Styling for notifications
+*
+*/
+
+.navbar-icon-img
+{
+    width: 35px;
+    font-size: 35px;
+}
+
+#badge
+{
+    background: #023059;
+    text-align: center;
+    border-radius: 50%;
+    border: 3px solid #023059;
+    color: white;
+}
+
+li
+{
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
