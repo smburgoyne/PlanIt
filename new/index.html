@@ -49,7 +49,9 @@
                     <i class="material-icons">person</i>
                 </button>
                 <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
-                    <li id="logout" role="presentation"><a role="menuitem" href="#">Logout</a></li>
+                    <li id="logout" role="presentation">
+                        <a role="menuitem" href="#">Logout</a>
+                    </li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -57,9 +59,15 @@
                     <i class="material-icons">notifications</i>
                 </button>
                 <ul id="notification-dropdown-menu" class="dropdown-menu" role="menu">
-                    <li role="presentation"><a role="menuitem" href="#">Notification 1</a></li>
-                    <li role="presentation"><a role="menuitem" href="#">Notification 2</a></li>
-                    <li role="presentation"><a role="menuitem" href="#">Notification 3</a></li>
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 1</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 2</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" href="#">Notification 3</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -120,7 +128,33 @@
                         <input id="time" type="time" required>
                         <br>
                         <label for="place">Location*</label>
-                        <input id="place" type="text" required>
+                        <div class="dropdown">
+                            <button id="location-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                                <span id="location-type">Where is the event happening?</span>
+                                <i class="material-icons">arrow_drop_down</i>
+                            </button>
+                            <ul id="user-dropdown-menu" class="dropdown-menu" role="menu">
+                                <li id="on-campus" role="presentation">
+                                    <a role="menuitem" href="#">On-Campus</a>
+                                </li>
+                                <li id="off-campus" role="presentation">
+                                    <a role="menuitem" href="#">Off-Campus</a>
+                                </li>
+                                <li id="tbd" role="presentation">
+                                    <a role="menuitem" href="#">TBD</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="location-details">
+                            <p>
+                                <a href="https://virtualems.union.ufl.edu/">Click here</a> to request a room on UF campus. 
+                                <a href="https://stars.facilities.ufl.edu/class/#/reserve">Click here</a> to request a room at the Reitz Union.
+                            </p>
+                        </div>
+                        <div id="location-details1">
+                            <label for="address">Address</label>
+                            <input id="address" type="text" required>
+                        </div>
                         <br>
                         <label for="about">Event Description</label>
                         <textarea id="about"></textarea>
@@ -278,9 +312,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

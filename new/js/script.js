@@ -21,9 +21,24 @@ $(document).ready(function () {
         });
     }
 
-    // dropdown menus
-    // $('#user-button').dropdown();
-    // $('#notification-button').dropdown();
+    // forms
+    $('#on-campus').click(function () {
+        $('#location-details').show();
+        $('#location-details1').show();
+        $('#location-type').text("On-Campus");
+    });
+    
+    $('#off-campus').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').show();
+        $('#location-type').text("Off-Campus");
+    });
+
+    $('#tbd').click(function () {
+        $('#location-details').hide();
+        $('#location-details1').hide();
+        $('#location-type').text("TBD");
+    });
 })
 
 // Enable all new event inputs
@@ -73,6 +88,9 @@ function resetNewEventPage()
     completion = 0;
 
     $('#detail-title').text("Create New Event");
+    $('#location-type').text("Where is the event happening?");
+    $('#location-details').hide();
+    $('#location-details1').hide();
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);

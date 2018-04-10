@@ -111,3 +111,10 @@ tr:nth-child(even)
     color: red;
     text-align: left;
 }
+
+/* form CSS
+*/
+#location-details, #location-details1
+{
+    display: none;
+}

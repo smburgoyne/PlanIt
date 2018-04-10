@@ -103,6 +103,9 @@ function resetNewEventPage()
     completion = 0;
 
     $('#detail-title').text("Create New Event");
+    $('#location-type').text("Where is the event happening?");
+    $('#location-details').hide();
+    $('#location-details1').hide();
 
     $('#name').prop('disabled', false);
     $('#date').prop('disabled', false);
