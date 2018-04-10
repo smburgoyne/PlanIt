@@ -1,10 +1,10 @@
 /*
 *
-* For all other jquery functions
+* For all other functions
 *
 */
 
 $(document).ready(function ()
 {
-    
+
 })

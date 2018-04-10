@@ -2,10 +2,31 @@
 <html>
 
 <head>
-	<title>PlanIt - An Event Planning Tool</title>
+    <title>PlanIt - An Event Planning Tool</title>
+    <link rel="stylesheet" href="./css/collapsible.css">
+    <link rel="stylesheet" href="./css/progress-icons.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
+    <div id="login">
+            <h1>PlanIt</h1>
+            <img src="./img/logo2.png" class="home-img">
+            <div>
+                <label for="uname" class="w3-text-teal"><b>Username</b></label>
+                <input type="text" id="uname" class="w3-input w3-border w3-sand" placeholder="Enter Username" name="uname" required>
+                <br>
+                <label for="psw" class="w3-text-teal"><b>Password</b></label>
+                <input type="password" id="password" class="w3-input w3-border w3-sand" placeholder="Enter Password" name="psw" required>
+                <br>
+                <p><span id="login-error"></span></p>
+                <input id="login-submit" class="save btn btn-light" type="submit" value="Login">
+            </div>
+    </div>
+
+    <div id="main-app">
+        <p>test</p>
+    </div>
 
 	<!-- Firebase stuff -->
 	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
@@ -21,7 +42,10 @@
 		};
 		firebase.initializeApp(config);
 	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/firebase.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
