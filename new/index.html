@@ -76,7 +76,132 @@
         </div>
 
         <div id="event-details" class="page">
-            <p>new event/event details</p>
+            <h1 id="event-detail-header">Create New Event</h1>
+            <div id="progressbar">
+                <div></div>
+            </div>
+
+            <br>
+            <div class="collapsing-menu">
+                <button class="collapsible collapsible-top">What is this Event?*
+                    <!-- <i class="material-icons">done</i> -->
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <label for="name">Event Name*</label>
+                        <input id="name" type="text" required>
+                        <br>
+                        <label for="date">Date*</label>
+                        <input id="date" type="date" required>
+                        <br>
+                        <label for="time">Time*</label>
+                        <input id="time" type="time" required>
+                        <br>
+                        <label for="place">Location*</label>
+                        <input id="place" type="text" required>
+                        <br>
+                        <label for="about">Event Description</label>
+                        <textarea id="about"></textarea>
+                        <br>
+                        <label for="planner">Primary Event Planner</label>
+                        <input id="planner" type="text">
+                        <br>
+                        <p>
+                            <span id="event-error"></span>
+                        </p>
+                        <p id="tip">*Required inputs</p>
+                        <input id="submit1" class="save btn btn-light" type="submit" onclick="addEvent()" value="Save">
+                        <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+
+                <button class="collapsible">Finances
+                    <!-- <i class="material-icons">done</i> -->
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <a id="budget" class="form-link btn btn-light" href="https://goo.gl/forms/BP5Jo2jFLNlibMQw1" role="button" target="_blank"
+                            onclick="requiredBudget()">Required Budget</a>
+                        <br>
+                        <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList()">Supplies List</a>
+                        <br>
+                        <a id="reimbursement" class="form-link btn btn-light" href="https://goo.gl/forms/7A31GtgQunEcRejo1" role="button" target="_blank"
+                            onclick="reimbursementForm()">Reimbursement Form</a>
+                    </div>
+                </div>
+
+                <button class="collapsible">Logistics
+                    <!-- <i class="material-icons">query_builder</i> -->
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <label for="date">Date</label>
+                        <input id="date2" type="date">
+                        <br>
+                        <label for="time">Time</label>
+                        <input id="time2" type="time">
+                        <br>
+                        <label for="place">Location</label>
+                        <input id="place2" type="text">
+                        <br>
+                        <a id="list" class="form-link btn btn-light" href="https://goo.gl/QNxakh" role="button" target="_blank" onclick="suppliesList2()">Supplies List</a>
+                        <br>
+                        <a id="signin" class="form-link btn btn-light" href="https://goo.gl/forms/vrGmz4Me8nOMuEJL2" role="button" target="_blank"
+                            onclick="completeSignin()">Event Sign-In Form</a>
+                        <br>
+                        <a id="volunteers" class="form-link btn btn-light" href="https://goo.gl/forms/6DV4GxeEZTFYZI8S2" role="button" target="_blank"
+                            onclick="completeVolunteer()">Volunteers Form</a>
+                        <br>
+                        <a id="carpool" class="form-link btn btn-light" href="https://goo.gl/forms/Lj4CF5iiSh50gExz1" role="button" target="_blank"
+                            onclick="completeCarpool()">Carpool Form</a>
+                        <br>
+                        <input id="submit3" class="save btn btn-light" type="submit" onclick="updateEvent()" value="Save">
+                        <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+
+                <button class="collapsible">Marketing
+                    <!-- <i class="material-icons">query_builder</i> -->
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <a id="advertise" class="form-link btn btn-light" href="https://goo.gl/forms/4QmScVqEhfjktEAe2" role="button" target="_blank"
+                            onclick="completeAdvertise()">Request to Advertise</a>
+                        <br>
+                        <!-- <p>response from advertisor</p> -->
+                    </div>
+                </div>
+
+                <button class="collapsible collapsible-bottom">Post Event Details
+                    <!-- <i class="material-icons">clear</i> -->
+                    <i id="collapse-arrow-down" class="material-icons">expand_more</i>
+                </button>
+                <div class="content">
+                    <div class="inputs">
+                        <a id="feedback" class="form-link btn btn-light" href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" role="button" target="_blank"
+                            onclick="completeReimburse()">Reimbursement Form</a>
+                        <br>
+                        <label for="about">Anything else you want to say about this event?</label>
+                        <textarea id="notes"></textarea>
+                        <br>
+                        <p class="form">
+                            Remember to do anything else your organization requires you to do, such as sending in attendance, completeing
+                            <a
+                                href="https://goo.gl/forms/7A31GtgQunEcRejo1" target="_blank">reimbursement forms</a>, and filling out
+                                <a href="https://goo.gl/forms/4TyWNsoeZSb8Bwz83" target="_blank">feedback forms</a>.
+                        </p>
+                        <br>
+                        <input id="submit5" class="save btn btn-light" type="submit" onclick="addNotes()" value="Save">
+                        <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
+                    </div>
+                </div>
+
+                <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+            </div>
         </div>
 
         <div id="all-events" class="page">
