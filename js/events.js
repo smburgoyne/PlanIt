@@ -143,6 +143,7 @@ $(document).ready(function () {
 
             // go to event details page
             eventRow.click(function () {
+                enableAllInputs();
                 eventName = nameColumn.text();
                 $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
@@ -196,6 +197,21 @@ $(document).ready(function () {
 
                     currentIsFree = snap.child("IsFree").val();
                     currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentBudgetStatus != "")
+                    {
+                        $('#request-budget-button-text').text("Budget Request Sent");
+                        $('#request-budget-button').prop("disabled", "true");
+                        if(currentBudgetStatus === "Pending")
+                        {
+                            $('#request-budget-response-icon').text("query_builder");
+                            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
+                        }
+                        else if (currentBudgetStatus === "Approved")
+                        {
+                            $('#request-budget-response-icon').text("done");
+                            $('#request-budget-response').text("Your budget of $50 has been approved!");
+                        }
+                    }
                     if(currentIsFree === "Yes")
                     {
                         $('#paid-event-details').hide();
@@ -243,17 +259,29 @@ $(document).ready(function () {
                     }
 
                     currentAdStatus = snap.child("AdStatus").val();
-                    if(currentAdStatus === "")
+                    if(currentAdStatus == "")
                     {
                         $('#pi4').text('clear');
+                        $('#request-ad-button-text').text("Request Advertising");
+                        $('#request-ad-response-icon').text("");
+                        $('#request-ad-response').text("");
+                        // $('#request-ad-button').prop("disabled", "false");
                     }
-                    else if (currentAdStatus === "Pending")
+                    else if (currentAdStatus == "Pending")
                     {
                         $('#pi4').text('query_builder');
+                        $('#request-ad-button-text').text("Advertising Request Sent");
+                        $('#request-ad-response-icon').text("query_builder");
+                        $('#request-ad-response').text("Your request for advertising has been sent to your Marketing Chair.");
+                        $('#request-ad-button').prop("disabled", "true");
                     }
-                    else if(currentAdStatus === "Approved")
+                    else if(currentAdStatus == "Approved")
                     {
                         $('#pi4').text('done');
+                        $('#request-ad-button-text').text("Advertising Request Sent");
+                        $('#request-ad-response-icon').text("done");
+                        $('#request-ad-response').text("The Marketing Chair is advertising your event!");
+                        $('#request-ad-button').prop("disabled", "true");
                     }
 
                     $("#notes").val(snap.child("Notes").val());
@@ -276,9 +304,6 @@ $(document).ready(function () {
                         $('#pi3').text('done');
                         $('#pi4').text('done');
                         $('#pi5').text('done');
-                    }
-                    else {
-                        enableAllInputs();
                     }
                 })
                 $('#home').hide();
@@ -287,6 +312,7 @@ $(document).ready(function () {
                 isNewEvent = false;
             });
             eventRow1.click(function () {
+                enableAllInputs();
                 eventName = nameColumn.text();
                 $('#detail-title').text(eventName + ' Details');
                 var statusTemp = "";
@@ -340,6 +366,21 @@ $(document).ready(function () {
 
                     currentIsFree = snap.child("IsFree").val();
                     currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentBudgetStatus != "")
+                    {
+                        $('#request-budget-button-text').text("Budget Request Sent");
+                        $('#request-budget-button').prop("disabled", "true");
+                        if(currentBudgetStatus === "Pending")
+                        {
+                            $('#request-budget-response-icon').text("query_builder");
+                            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
+                        }
+                        else if (currentBudgetStatus === "Approved")
+                        {
+                            $('#request-budget-response-icon').text("done");
+                            $('#request-budget-response').text("Your budget of $50 has been approved!");
+                        }
+                    }
                     if(currentIsFree === "Yes")
                     {
                         $('#paid-event-details').hide();
@@ -387,17 +428,29 @@ $(document).ready(function () {
                     }
 
                     currentAdStatus = snap.child("AdStatus").val();
-                    if(currentAdStatus === "")
+                    if(currentAdStatus == "")
                     {
                         $('#pi4').text('clear');
+                        $('#request-ad-button-text').text("Request Advertising");
+                        $('#request-ad-response-icon').text("");
+                        $('#request-ad-response').text("");
+                        // $('#request-ad-button').prop("disabled", "false");
                     }
-                    else if (currentAdStatus === "Pending")
+                    else if (currentAdStatus == "Pending")
                     {
                         $('#pi4').text('query_builder');
+                        $('#request-ad-button-text').text("Advertising Request Sent");
+                        $('#request-ad-response-icon').text("query_builder");
+                        $('#request-ad-response').text("Your request for advertising has been sent to the Marketing Chair.");
+                        $('#request-ad-button').prop("disabled", "true");
                     }
-                    else if(currentAdStatus === "Approved")
+                    else if(currentAdStatus == "Approved")
                     {
                         $('#pi4').text('done');
+                        $('#request-ad-button-text').text("Advertising Request Sent");
+                        $('#request-ad-response-icon').text("done");
+                        $('#request-ad-response').text("The Marketing chair is advertising your event!");
+                        $('#request-ad-button').prop("disabled", "true");
                     }
 
                     $("#notes").val(snap.child("Notes").val());
@@ -420,9 +473,6 @@ $(document).ready(function () {
                         $('#pi3').text('done');
                         $('#pi4').text('done');
                         $('#pi5').text('done');
-                    }
-                    else {
-                        enableAllInputs();
                     }
                 })
                 $('#home').hide();
@@ -625,6 +675,10 @@ $(document).ready(function () {
         if(currentBudgetStatus !== "Approved")
         {
             currentBudgetStatus = "Pending";
+            $('#request-budget-button-text').text("Budget Request Sent");
+            $('#request-budget-response-icon').text("query_builder");
+            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
+            $('#request-budget-button').prop("disabled", "true");
         }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -741,6 +795,10 @@ $(document).ready(function () {
         if(currentAdStatus !== "Approved")
         {
             currentAdStatus = "Pending";
+            $('#request-ad-button-text').text("Advertising Request Sent");
+            $('#request-ad-response-icon').text("query_builder");
+            $('#request-ad-response').text("Your request for advertising has been sent to the Marketing Chair.");
+            $('#request-ad-button').prop("disabled", "true");
         }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -883,6 +941,14 @@ function resetNewEventPage() {
     currentBudgetStatus = "";
     isNewEvent = true;
 
+    $('#request-budget-button-text').text("Request Budget");
+    $('#request-budget-response-icon').text("");
+    $('#request-budget-response').text("");
+
+    $('#request-ad-button-text').text("Request Advertising");
+    $('#request-ad-response-icon').text("");
+    $('#request-ad-response').text("");
+                        
     $('#detail-title').text("Create New Event");
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
