@@ -196,6 +196,20 @@ $(document).ready(function () {
 
                     currentIsFree = snap.child("IsFree").val();
                     currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentBudgetStatus != "")
+                    {
+                        $('#request-budget-button-text').text("Budget Request Sent");
+                        if(currentBudgetStatus === "Pending")
+                        {
+                            $('#request-budget-response-icon').text("query_builder");
+                            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
+                        }
+                        else if (currentBudgetStatus === "Approved")
+                        {
+                            $('#request-budget-response-icon').text("done");
+                            $('#request-budget-response').text("Your budget of $50 has been approved!");
+                        }
+                    }
                     if(currentIsFree === "Yes")
                     {
                         $('#paid-event-details').hide();
@@ -340,6 +354,20 @@ $(document).ready(function () {
 
                     currentIsFree = snap.child("IsFree").val();
                     currentBudgetStatus = snap.child("BudgetStatus").val();
+                    if(currentBudgetStatus != "")
+                    {
+                        $('#request-budget-button-text').text("Budget Request Sent");
+                        if(currentBudgetStatus === "Pending")
+                        {
+                            $('#request-budget-response-icon').text("query_builder");
+                            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
+                        }
+                        else if (currentBudgetStatus === "Approved")
+                        {
+                            $('#request-budget-response-icon').text("done");
+                            $('#request-budget-response').text("Your budget of $50 has been approved!");
+                        }
+                    }
                     if(currentIsFree === "Yes")
                     {
                         $('#paid-event-details').hide();
@@ -625,6 +653,9 @@ $(document).ready(function () {
         if(currentBudgetStatus !== "Approved")
         {
             currentBudgetStatus = "Pending";
+            $('#request-budget-button-text').text("Budget Request Sent");
+            $('#request-budget-response-icon').text("query_builder");
+            $('#request-budget-response').text("Your budget is pending approval from the Treasurer.");
         }
 
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -883,6 +914,10 @@ function resetNewEventPage() {
     currentBudgetStatus = "";
     isNewEvent = true;
 
+    $('#request-budget-button-text').text("Request Budget");
+    $('#request-budget-response-icon').text("");
+    $('#request-budget-response').text("");
+                        
     $('#detail-title').text("Create New Event");
     $('#location-type').text("Where is the event happening?");
     $('#location-details').hide();
