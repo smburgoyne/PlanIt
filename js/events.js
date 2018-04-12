@@ -243,7 +243,7 @@ $(document).ready(function () {
                     $('#list-link').val(snap.child("ListLink").val());
 
                     $('#date2').val(snap.child("Date").val());
-                    $('#place2').val(snap.child("Location").val());
+                    $('#place2').val(snap.child("Address").val());
                     $('#time2').val(snap.child("Time").val());
                     $('#list-link2').val(snap.child("ListLink").val());
                     $('#signin-link').val(snap.child("SigninLink").val());
@@ -412,7 +412,7 @@ $(document).ready(function () {
                     $('#list-link').val(snap.child("ListLink").val());
 
                     $('#date2').val(snap.child("Date").val());
-                    $('#place2').val(snap.child("Location").val());
+                    $('#place2').val(snap.child("Address").val());
                     $('#time2').val(snap.child("Time").val());
                     $('#list-link2').val(snap.child("ListLink").val());
                     $('#signin-link').val(snap.child("SigninLink").val());
