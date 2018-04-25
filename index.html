@@ -184,7 +184,10 @@
                             <span id="event-error"></span>
                         </p>
                         <p id="tip">*Required inputs</p>
-                        <button id="submit1" class="save btn btn-light" type="button">Save</button>
+                        <div class="popup">
+                             <span class="popuptext" id="popup1">Saved</span>
+                            <button id="submit1" class="save btn btn-light" type="button">Save</button>
+                        </div>
                         <button id="cancel1" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -196,7 +199,7 @@
                 <div class="content">
                     <div class="inputs">
                         <div class="dropdown-label">
-                            <label for="place">Is this a free event?*</label>
+                            <label for="place">Does this event require a budget?*</label>
                         </div>
                         <div class="dropdown">
                             <button id="budget-dropdown-button" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -235,7 +238,10 @@
                             <span id="event-error1"></span>
                         </p>
                         <p id="tip">*Required inputs</p>
-                        <button id="submit2" class="save btn btn-light" type="button">Save</button>
+                         <div class="popup">
+                             <span class="popuptext" id="popup2">Saved</span>
+                            <button id="submit2" class="save btn btn-light" type="button">Save</button>
+                        </div>
                         <button id="cancel2" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -323,7 +329,10 @@
                             <span id="event-error2"></span>
                         </p>
                         <p id="tip">*Required inputs</p>
-                        <button id="submit3" class="save btn btn-light" type="button">Save</button>
+                        <div class="popup">
+                             <span class="popuptext" id="popup3">Saved</span>
+                            <button id="submit3" class="save btn btn-light" type="button">Save</button>
+                        </div>
                         <button id="cancel3" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -337,7 +346,10 @@
                         <button id="request-ad-button" type="button" class="btn btn-light btn-form"><span id="request-ad-button-text">Request Advertising</span></button>
                         <p class="link-label"><i id="request-ad-response-icon" class="material-icons"></i><span id="request-ad-response"></span></p>
                             <br>
-                        <button id="submit4" class="save btn btn-light" type="button">Save</button>
+                        <div class="popup">
+                             <span class="popuptext" id="popup4">Saved</span>
+                            <button id="submit4" class="save btn btn-light" type="button">Save</button>
+                        </div>
                         <button id="cancel4" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
@@ -363,13 +375,28 @@
                             <a href="https://goo.gl/forms/nMYeYednHJ7hB4YQ2" target="_blank">feedback forms</a>.
                         </p>
                             <br>
-                        <button id="submit5" class="save btn btn-light" type="button">Save</button>
+                         <div class="popup">
+                             <span class="popuptext" id="popup5">Saved</span>
+                            <button id="submit5" class="save btn btn-light" type="button">Save</button>
+                        </div>
                         <button id="cancel5" type="button" class="cancel btn btn-secondary">Cancel</button>
                     </div>
                 </div>
 
                 <div class="button-div">
-                    <button id="submit" type="button" class="new-event btn btn-light">Event is Finished!</button>
+                    <button id="finish" type="button" class="new-event btn btn-light">Finish Later</button>
+                    <button id="submit" type="button" class="new-event btn btn-light">End Event</button>
+                </div>
+
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <h3 style="margin-left: 30%">Are you sure you want to end the event?</h3>
+                    <p style="margin-left: 15%">Ending the event will save it to the archive, preventing you from making any further changes</p>
+                    <button id="modalConfirm" type="button" class="btn btn-error" style="margin-left: 30%">Confirm</button>
+                    <button id="modalCancel" type="button" class="btn .btn-secondary">Cancel</button>
+                  </div>
+
                 </div>
             </div>
         </div>
