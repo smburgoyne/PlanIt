@@ -58,6 +58,17 @@
     border-radius: 6px;
 }
 
+.btn-error
+{
+    background-color: red;
+    color: #FFF;
+    width: 12%;
+    height: 40px;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
 .save
 {
     background-color: #df5a00;
