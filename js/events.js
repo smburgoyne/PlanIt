@@ -54,6 +54,12 @@ $(document).ready(function () {
         $('#all-events').hide();
     });
 
+    $("#finish").click(function () {
+        $('#home').show();
+        $('#event-details').hide();
+        $('#all-events').hide();
+    });
+
     $("#new-tab-button").click(function () {
         resetNewEventPage();
 
@@ -590,6 +596,9 @@ $(document).ready(function () {
             $('#event-error').text("Please fill in the required information.");
         }
         else {
+            var popup = document.getElementById("popup1");
+            popup.classList.toggle("show");
+            setTimeout(function() {popup.classList.toggle("show")},1500);
             if (completion < 15) {
                 if(currentLocation === "Tbd")
                 {
@@ -688,6 +697,7 @@ $(document).ready(function () {
     })
 
     $('#submit2').click(function() {
+       
         // Update event
         if(currentIsFree === "")
         {
@@ -695,6 +705,9 @@ $(document).ready(function () {
         }
         else
         {
+             var popup = document.getElementById("popup2");
+             popup.classList.toggle("show");
+            setTimeout(function() {popup.classList.toggle("show")},1500);
             if(completion < 50)
             {
                 if(currentIsFree === "Yes")
@@ -736,6 +749,7 @@ $(document).ready(function () {
     });
 
     $('#submit3').click(function() {
+         
         var date2 = $('#date2').val();
         var time2 = $('#time2').val();
         if (date2 === "" || time2 === "")
@@ -744,6 +758,9 @@ $(document).ready(function () {
         }
         else
         {
+            var popup = document.getElementById("popup3");
+             popup.classList.toggle("show");
+            setTimeout(function() {popup.classList.toggle("show")},1500);
             if(completion < 65)
             {
                 if($('#signin-link').val())
@@ -808,6 +825,9 @@ $(document).ready(function () {
     });
 
     $('#submit4').click(function() {
+        var popup = document.getElementById("popup4");
+        popup.classList.toggle("show");
+        setTimeout(function() {popup.classList.toggle("show")},1500);
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
             Completion: completion,
             AdStatus: currentAdStatus
@@ -837,6 +857,9 @@ $(document).ready(function () {
     });
 
     $('#submit5').click(function() {
+         var popup = document.getElementById("popup5");
+        popup.classList.toggle("show");
+        setTimeout(function() {popup.classList.toggle("show")},1500);
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
             Notes: $('#notes').val()
         });
@@ -845,6 +868,14 @@ $(document).ready(function () {
     });
 
     $('#submit').click(function() {
+        var modal = document.getElementById('myModal');
+         modal.style.display = "block";
+    });
+});
+
+    $("#modalConfirm").click(function () {
+        var modal = document.getElementById('myModal');
+         modal.style.display = "none";
         completion = 100;
         $('#progressbar > div').css('width', completion + '%');
         firebase.database().ref("/Organizations/" + currentOrg + "/Events/" + eventName).update({
@@ -859,8 +890,19 @@ $(document).ready(function () {
         $('#pi5').text('done');
 
         disableAllInputs();
+    })
+
+    $("#modalCancel").click(function() {
+        var modal = document.getElementById('myModal');
+         modal.style.display = "none";
     });
-});
+
+    window.onclick = function(event) {
+    var modal = document.getElementById('myModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 // Enable all new event inputs
 function enableAllInputs() {
