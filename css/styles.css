@@ -111,6 +111,17 @@ p
 
 .new-event-button
 {
+    background-color:  #CCD1D1;
+    color: #FFF;
+    width: 250px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+}
+
+.event-button
+{
     background-color: #df5a00;
     color: #FFF;
     width: 250px;
@@ -247,6 +258,7 @@ label
     margin-left: 25px;
 }
 
+
 /* Popup container */
 .popup {
     position: relative;
@@ -323,3 +335,4 @@ label
     border: 1px solid #888;
     width: 80%;
 }
+
