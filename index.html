@@ -385,16 +385,20 @@
 
                 <div class="button-div">
                     <button id="finish" type="button" class="new-event btn btn-light">Finish Later</button>
-                    <button id="submit" type="button" class="new-event btn btn-light">End Event</button>
+                    <button id="submit" type="button" class="new-event btn btn-light">Archive Event</button>
                 </div>
 
                 <div id="myModal" class="modal">
                   <!-- Modal content -->
                   <div class="modal-content">
-                    <h3 style="margin-left: 30%">Are you sure you want to end the event?</h3>
-                    <p style="margin-left: 15%">Ending the event will save it to the archive, preventing you from making any further changes</p>
-                    <button id="modalConfirm" type="button" class="btn btn-error" style="margin-left: 30%">Confirm</button>
-                    <button id="modalCancel" type="button" class="btn .btn-secondary">Cancel</button>
+                    <h3 style="text-align: center;">Are you sure you want to archive the event?</h3>
+                    <p style="text-align: center">You <b>will not</b> be able to make any further changes</p>
+                    <div class="button-div">
+                        <button id="modalConfirm" type="button" class="btn btn-light" style="background-color: #df5a00;
+                        color: #FFF;">Confirm</button>
+                         <button id="modalCancel" type="button" class="btn .btn-secondary">Cancel</button>
+                    </div>
+                    
                   </div>
 
                 </div>
